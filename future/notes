@@ -1,0 +1,14 @@
+export EDITOR set to e
+
+make bin visible in home?   (bin.symlink)
+
+need to fix completion cache having hostname?  (no shared home - needed?)
+
+need to fix .zcompdump - same - no shared homedir
+
+add .localrc for passwords or whatever?
+
+split path and critical ENV stuff to .zshenv?
+
+DONE - write cleanup script for borken amazon cp commands 
+
