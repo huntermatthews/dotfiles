@@ -2,15 +2,7 @@
 
 if [[ ${HOSTNAME%amazon.com} != ${HOSTNAME} ]] ; then  # cant use =~ at work, zsh too old
 # the test is backwards (if the strings are different we ARE at work)
-# Love to have another way out of this 
-
-## PATH INSANITY
-#Adding SE Tools to $PATH
-path[1,0]=/apollo/bin
-path[1,0]=/apollo/env/SDETools/bin
-path[1,0]=/apollo/env/envImprovement/bin
-path[1,0]=/apollo/env/GlacierOpsTools/bin
-path[1,0]=
+# Love to have another way out of this
 
 #Configuration needed by perforce to function correctly in any directory 
 #export P4CONFIG=.p4config
