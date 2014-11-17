@@ -1,0 +1,6 @@
+
+I'm not sure how you'd get this script (since git requires the xcode command line tools) but here's the 
+commnad line command to do it anyway.
+
+xcode-select --install
+

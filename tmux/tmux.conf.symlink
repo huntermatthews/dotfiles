@@ -1,0 +1,31 @@
+# Reset the option prefix to control-backslash
+# its safe (and available, lordy) in emacs bindings and after 10 years ingrained in my brain
+set-option -g prefix C-\ 
+unbind-key C-b 
+bind-key C-\ send-prefix
+
+# 0 is too far away - lazy fingers.
+set -g base-index 1
+
+# multiple iterms work
+setw -g aggressive-resize on
+
+# control instead of escape sequence
+set -s escape-time 0
+
+# Quickly switch to last window
+bind-key C-\ last-window
+
+
+# Set status bar
+# set -g status-utf8 on
+# set -g status-bg black
+# set -g status-fg white
+# set -g status-interval 5 
+# set -g status-left-length 90
+# set -g status-right-length 60
+# set -g status-left "#[fg=Green]#(whoami)#[fg=white]::#[fg=blue]#(hostname -s)#[fg=white]::#[fg=yellow]"
+# set -g status-justify left
+# set -g status-right '#[fg=Cyan]#S #[fg=white]%a %d %b %R'
+
+## END OF LINE ##
