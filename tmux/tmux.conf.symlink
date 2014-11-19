@@ -6,6 +6,7 @@ bind-key C-\ send-prefix
 
 # 0 is too far away - lazy fingers.
 set -g base-index 1
+set-window-option -g pane-base-index 1
 
 # multiple iterms work
 setw -g aggressive-resize on
