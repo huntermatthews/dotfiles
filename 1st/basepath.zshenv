@@ -1,5 +1,7 @@
-# Purposely put this definitive PATH before we source the oh-my-zsh stuff
-# That way plugins or whatever can expand it but we have something to start from
+# 
+# No one can consistently and reliably set the damn path. So I do it myself.
+#
+
 #export PATH="/usr/local/bin:$HOME/.dotfiles/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 # export MANPATH="/usr/local/man:$MANPATH"
 ## NEW STYLE ZSH PATH MADNESS

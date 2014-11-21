@@ -1,0 +1,31 @@
+# -*- mode: sh -*-
+
+# shortcut to this dotfiles path is $DOTFILES
+export DOTFILES=$HOME/.dotfiles
+export DOTFILES_DEBUG=False
+
+dotfiles_debug()
+{
+    if [[ -n "$DOTFILES_DEBUG" && "$DOTFILES_DEBUG" == "True" ]] ; then
+        echo "$@"
+    fi
+}
+
+dotfiles_debug running .zshenv
+
+# all of our zshenv files
+typeset -U zshenv_files
+zshenv_files=($DOTFILES/**/*.zshenv)
+
+# and load them
+for file in ${zshenv_files} ; do 
+    dotfiles_debug sourcing $file
+    source $file
+done
+
+unset zshenv_files file
+
+# Last second cleanup of path elements that don't exist (shouldn't happen but meh)
+path=($^path(N))
+
+## END OF LINE ##
