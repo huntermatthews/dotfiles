@@ -20,6 +20,9 @@ alias brazil-tpt="/apollo/env/BrazilThirdPartyTool/bin/brazil-third-party-tool"
 # Apollo Aliases
 alias our='/apollo/bin/env -e GlacierOpsTools'
 
+# Gets rid of needing an amazon specific dot file everywhere.
+alias post-review='post-review --note --target-groups=Glacier'
+
 # Should make these generic
 PAGER=less
 READNULLCMD=less
