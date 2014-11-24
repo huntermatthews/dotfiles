@@ -1,8 +1,9 @@
 #-*- mode: sh -*-
 
-if [[ ${HOSTNAME%amazon.com} != ${HOSTNAME} ]] ; then  # cant use =~ at work, zsh too old
-# the test is backwards (if the strings are different we ARE at work)
-# Love to have another way out of this
+if [[ ${HOSTNAME%amazon.com} == ${HOSTNAME} ]] ; then  # cant use =~ at work, zsh too old
+    # if that test matches then we are _NOT_ at work - and should skip this file
+    return 
+fi
 
 #Configuration needed by perforce to function correctly in any directory 
 #export P4CONFIG=.p4config
@@ -26,7 +27,5 @@ alias post-review='post-review --note --target-groups=Glacier'
 # Should make these generic
 PAGER=less
 READNULLCMD=less
-
-fi ## if at work
 
 ## END OF LINE ##
