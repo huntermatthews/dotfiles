@@ -18,6 +18,7 @@ alias eh="expand-hostclass --recurse"
 # server-attributes
 # I _know_ this occluds the system sa in /usr/sbin/sa  -- useless to me at amazon
 alias sa='server-attributes -H  -a HostName AssetId HardwareId ServerTypeId'
+alias sac='sa | column -t'
 
 # Brazil Aliases
 alias brazil-tpt="/apollo/env/BrazilThirdPartyTool/bin/brazil-third-party-tool"
