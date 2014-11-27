@@ -1,0 +1,64 @@
+# Figure out what os/distro we are on
+  IS_MAC=
+  IS_LINUX=
+  IS_SUN=
+  DISTRO=
+  OS=
+  VERSION=
+
+  if which uname &> /dev/null; then
+    OS=`uname`
+  fi
+
+  if [[ "$OS" == 'Darwin' ]]; then
+    DISTRO='OSX'
+    IS_MAC=1
+  elif [[ "$OS" == 'SunOS' ]]; then
+    DISTRO='SunOS'
+    IS_SUN=1
+  elif [[ "$OS" == 'Linux' ]]; then
+    IS_LINUX=1
+    if [[ -f /etc/gentoo-release ]]; then
+      DISTRO='Gentoo'
+    elif [[ -f /etc/redhat-release ]]; then
+      DISTRO=`awk '{ print $1 }' /etc/redhat-release`
+    elif [[ -f /etc/debian_version ]]; then
+      DISTRO='Debian'
+    elif [[ -f /etc/lsb*release ]]; then
+      eval `cat /etc/lsb*release`
+      DISTRO=$DISTRIB_ID
+    fi
+  fi
+
+# In a root-capable group?
+  ROOTGROUP=
+  if [[ $IS_LINUX ]]; then
+    groups | grep 'root\|wheel' &> /dev/null
+    if [[ "$?" == 0 ]]; then
+      ROOTGROUP=1
+    fi
+  elif [[ $IS_MAC ]]; then
+    groups | grep 'root\|admin' &> /dev/null
+    if [[ "$?" == 0 ]]; then
+      ROOTGROUP=1
+    fi
+  fi
+
+# Local X server?
+  LOCAL_X=
+  if [[ $IS_LINUX ]]; then
+    if [[ ':' == "${DISPLAY:0:1}" ]]; then
+      LOCAL_X=1
+    fi
+  elif [[ $IS_MAC ]]; then
+    if [[ '/tmp/launch' == "${DISPLAY:0:11}" ]]; then
+      LOCAL_X=1
+    fi
+  fi
+
+# Get the primary domain for this host (minus any subdomains)
+  if [[ $IS_LINUX || $IS_MAC ]]; then
+    DOMAIN=`echo \`hostname -d\` | sed -e 's/^.\+\.\([^\.]\+\?\.[^\.]\+\)$/\1/'`
+  else
+    DOMAIN=
+  fi
