@@ -1,8 +1,10 @@
 # -*- mode: sh -*-
 
-if [[ ${HOSTNAME%amazon.com} == ${HOSTNAME} ]] ; then  # cant use =~ at work, zsh too old
-    # If the tests passes then we are NOT at work and should skip this file
-    return 
+# Maybe should put this in its own file, but whatever
+is_amazon() { [[ ${HOSTNAME%amazon.com} != ${HOSTNAME} ]] }  # yes, NOT equal
+
+if ! is_amazon ; then
+    return
 fi
 
 ## PATH INSANITY

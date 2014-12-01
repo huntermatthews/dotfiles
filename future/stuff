@@ -1,8 +1,3 @@
-$ type pr
-pr is aliased to `post-review --note --target-groups=Glacier'
-[0] marusich@marusich.desktop.amazon.com:/workplace/marusich/glacier-ops/src/GlacierDFDDConfig
-$ type our
-our is aliased to `/apollo/bin/env -e GlacierOpsTools'
 
 $ cat /var/log/kern.log | grep 'I/O error' | egrep -o ', dev [^ ]+,' | sort | uniq -c | sort -nk 1,1
 

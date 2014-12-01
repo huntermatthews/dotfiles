@@ -12,4 +12,7 @@ fi
 export HOSTNAME_CUSTOM=$(hostname_custom)
 export ZSH_THEME_TERM_TITLE_IDLE="%n@$HOSTNAME_CUSTOM: %~"
 
+# one day 
+# displayname() { echo $DISPLAYNAME } 
+
 ## END OF LINE ##
