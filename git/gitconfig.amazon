@@ -6,35 +6,42 @@
         name = Hunter Matthews
         email = thm@amazon.com
 [alias]
+        # Remember you don't need aliases to ~/bin or ~/.dotfiles/git here - those are found via PATH
         co = checkout
-        promote = !$DOTFILES/bin/git-promote
-        wtf     = !$DOTFILES/bin/git-wtf
-        rank-contributors = !$DOTFILES/bin/git-rank-contributors
+        ci = commit
         count   = !git shortlog -sn
-	dag = log --graph --format='format:%C(yellow)%h%C(reset) %C(blue)\"%an\" <%ae>%C(reset) %C(magenta)%ar%C(reset)%C(auto)%d%C(reset)%n%s' --date-order
+        dag = log --graph --format='format:%C(yellow)%h%C(reset) %C(blue)\"%an\" <%ae>%C(reset) %C(magenta)%ar%C(reset)%C(auto)%d%C(reset)%n%s' --date-order
+
 [color]
         diff = auto
         status = auto
         branch = auto
         ui = true
+
 [core]
         excludesfile = ~/.gitignore
-        editor = emacs 
-	pager = less -FMRiX
+        editor = e
+        pager = less -FMRiX
+
 [apply]
         whitespace = nowarn
+
 [mergetool]
         keepBackup = false
+
 [difftool]
         prompt = false
+
 [help]
         autocorrect = 1
+
 [push]
         # See `git help config` (search for push.default)
         # for more information on different options of the below setting.
         #
         # Setting to git 2.0 default to surpress warning message
         default = simple
+
 [amazon]
 	append-cr-url = true
 	pull-request-by-default = false

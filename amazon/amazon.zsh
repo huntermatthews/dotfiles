@@ -29,6 +29,8 @@ alias our='/apollo/bin/env -e GlacierOpsTools'
 # Gets rid of needing an amazon specific dot file everywhere.
 alias post-review='post-review --note --target-groups=Glacier'
 
+alias remote-command='remote-command --recurse 999 --batch --override-ping /bin/true --text-output'
+
 # Should make these generic
 PAGER=less
 READNULLCMD=less

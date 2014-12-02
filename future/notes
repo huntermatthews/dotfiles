@@ -1,4 +1,4 @@
-DONE export EDITOR set to e
+DONE export EDITOR set to e   (VISUAL too)
 
 make bin visible in home?   (bin.symlink)
 
@@ -12,5 +12,7 @@ DONE split path and critical ENV stuff to .zshenv?
 
 DONE - write cleanup script for borken amazon cp commands 
 
-emacsclient --nw --eval '(view-file "/tmp/EXAMPLE")'
-alias diff to diff -u --color or something
+sudo spctl --master-disable  ---- What does this do? Do I want it?
+
+e --eval "(view-file \"lib/r2d2/system/block_device.py\")"
+
