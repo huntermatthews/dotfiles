@@ -1,0 +1,12 @@
+#! /usr/bin/env zsh
+
+# give a single line number (from an ssh client login failure)  remove that line from the 
+# ssh known_hosts file.
+if [[ "$#" -ne 1 ]] ; then
+    echo "$(basename $0) only takes one argument, a single line number to remove"
+    exit 1
+fi
+
+sed -i -e "${1}d" ~/.ssh/known_hosts
+
+## END OF LINE ##
