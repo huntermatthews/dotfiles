@@ -13,6 +13,14 @@ dotfiles_debug()
 
 dotfiles_debug running .zshenv
 
+# special code to cleanup homedirs that get synced with cp
+typeset -U zshenv_cleanup_files
+zshenv_cleanup_files=($DOTFILES/**/*.cleanup)
+for file in ${zshenv_cleanup_files} ; do
+    echo running cleanup file: $file
+    source $file
+done
+
 # all of our zshenv files
 typeset -U zshenv_files
 zshenv_files=($DOTFILES/**/*.zshenv)
@@ -23,7 +31,7 @@ for file in ${zshenv_files} ; do
     source $file
 done
 
-unset zshenv_files file
+unset zshenv_files zshenv_cleanup_files file
 
 # Last second cleanup of path elements that don't exist (shouldn't happen but meh)
 path=($^path(N))

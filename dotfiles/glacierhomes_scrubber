@@ -1,0 +1,29 @@
+# Extra stuff we remove from the fleet if it made it out in earlier revs
+
+# We use apollo to deploy to the fleet
+rm -rf $HOME/.dotfiles/dotfiles    
+
+# Fleet has an incompatible version of the following when it has it  at all
+## Might be able to fix these one day...
+rm -rf $HOME/.dotfiles/emacs 
+rm -rf $HOME/.dotfiles/git
+
+# Doesn't exist in the fleet, why install it
+rm -rf $HOME/.dotfiles/homebrew
+rm -rf $HOME/.dotfiles/osx
+rm -rf $HOME/.dotfiles/future
+rm -rf $HOME/.dotfiles/LICENSE.md
+rm -rf $HOME/.dotfiles/README.md
+rm -rf $HOME/.dotfiles/python
+
+# These esp should never have gone out.
+rm -rf $HOME/.dotfiles/.git
+rm -rf $HOME/.dotfiles/.gitignore
+
+
+# old directory names that were blowing up .zshrc file finding (finding dupes and out of order)
+rm -rf $HOME/.dotfiles/functions
+rm -rf $HOME/.dotfiles/oh-my-zsh
+rm -rf $HOME/.dotfiles/zsh-custom
+
+## END OF LINE ##
