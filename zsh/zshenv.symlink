@@ -17,9 +17,9 @@ dotfiles_debug running .zshenv
 typeset -U zshenv_cleanup_files
 zshenv_cleanup_files=($DOTFILES/**/*.cleanup(N))
 for file in ${zshenv_cleanup_files} ; do
-    dotfiles_debug sourcing and removing $file
+    dotfiles_debug sourcing $file
     source $file
-    rm -f $file   ## only do this once
+    ## removing the cleanup files was too much trouble to be worth it
 done
 
 # all of our zshenv files
