@@ -15,10 +15,11 @@ dotfiles_debug running .zshenv
 
 # special code to cleanup homedirs that get synced with cp
 typeset -U zshenv_cleanup_files
-zshenv_cleanup_files=($DOTFILES/**/*.cleanup)
+zshenv_cleanup_files=($DOTFILES/**/*.cleanup(N))
 for file in ${zshenv_cleanup_files} ; do
-    echo running cleanup file: $file
+    dotfiles_debug sourcing and removing $file
     source $file
+    rm -f $file   ## only do this once
 done
 
 # all of our zshenv files
