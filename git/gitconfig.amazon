@@ -9,8 +9,10 @@
         # Remember you don't need aliases to ~/bin or ~/.dotfiles/git here - those are found via PATH
         co = checkout
         ci = commit
+        st = status
         count   = !git shortlog -sn
-        dag = log --graph --format='format:%C(yellow)%h%C(reset) %C(blue)\"%an\" <%ae>%C(reset) %C(magenta)%ar%C(reset)%C(auto)%d%C(reset)%n%s' --date-order
+        dag = log --graph --format='format:%C(yellow)%h%C(reset) %C(blue)\"%an\" <%ae>%C(reset) %C(green)%cr%C(reset)%C(auto)%d%C(reset)%n%s' --date-order
+        logg = !echo git dag is what you want.
 
 [color]
         diff = auto
