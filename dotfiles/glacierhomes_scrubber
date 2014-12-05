@@ -26,4 +26,9 @@ rm -rf $HOME/.dotfiles/functions
 rm -rf $HOME/.dotfiles/oh-my-zsh
 rm -rf $HOME/.dotfiles/zsh-custom
 
+# FIX: I remove the targets of the symlinks but not the symlinks - dang.
+rm -f $HOME/.emacs
+rm -f $HOME/.gitconfig
+rm -f $HOME/.gitignore
+
 ## END OF LINE ##
