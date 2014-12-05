@@ -1,0 +1,27 @@
+# Taken directly from the code that envImprovement runs
+## With the bug fix that I make login shells stay login shells
+## what the heck people?
+
+ENV_IMPROVEMENT_ROOT=/apollo/env/envImprovement
+ZSH=$ENV_IMPROVEMENT_ROOT/var/bin/zsh
+
+if [[ $SHELL != $ZSH && -e $ZSH ]]
+then
+  SHELL=$ZSH
+  exec - $ZSH "$@"
+fi
+
+# Gets the right, e.g., zle.so to load
+ZSH_VERSION=${${(fz)"$($SHELL -f --version)"}[2]}
+
+#################### important pre-external-hook vars ################
+# path where zsh searches for modules (such as zle, the zsh line editor)
+# you *want* this to work
+module_path=($ENV_IMPROVEMENT_ROOT/var/lib/zsh/$ZSH_VERSION/)
+\
+# search path for zsh functions  (fpath ==> function path)
+# Make sure the AmazonZshFunctions list comes second for overriding reasons
+fpath=(                                                             \
+        $ENV_IMPROVEMENT_ROOT/var/zsh/functions/$ZSH_VERSION        \
+        $ENV_IMPROVEMENT_ROOT/var/share/zsh/$ZSH_VERSION/functions  \
+      )
