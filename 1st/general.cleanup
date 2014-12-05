@@ -1,4 +1,10 @@
-# This was replaced with an alias - no more .reviewbaordrc on osx
+if [[ -n "$CLEANUP_GENERAL" ]] ; then 
+    return
+fi
+
+export CLEANUP_GENERAL=1
+
+# This was replaced with an alias - no  more .reviewbaordrc on osx
 rm -rf $HOME/.dotfiles/amazon/.reviewboardrc
 rm -rf $HOME/.reviewboardrc
 
