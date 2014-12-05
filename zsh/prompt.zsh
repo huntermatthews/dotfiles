@@ -5,6 +5,29 @@
 
 # CLock part was  %{$fg[white]%}[%T]%{$reset_color%}
 
+## 
+## So this is convoluted
+## 
+## zsh 4.3.0 adds a "promptsp" setopt option which fixes this
+## FAQ: 3.23 from http://zsh.sourceforge.net/FAQ/zshfaq03.html
+## if only work would deploy a newer zsh
+##
+
+if ! eval '[[ -o promptsp ]] 2>/dev/null'; then
+    function precmd {
+        # An efficient version using termcap multi-right:
+        echo -n ' '       # Output 1 space
+        echotc RI $((COLUMNS - 3))
+        echo -n '  '      # Output 2 spaces
+        # Alternately, try replacing the above 3 lines with this echo
+        # that outputs a screen-column-width of spaces:
+        #echo -n ${(l:$COLUMNS:::):-}
+    }
+else
+    setopt promptsp
+fi
+
+
 PROMPT=$'
 %{$fg[blue]%}%/%{$reset_color%} $(git_prompt_info)%{$fg[white]%}[%n@$HOSTNAME_CUSTOM]%{$reset_color%}
 %{$fg_bold[black]%}>%{$reset_color%} '
