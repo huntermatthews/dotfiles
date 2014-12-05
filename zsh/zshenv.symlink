@@ -12,6 +12,11 @@ dotfiles_debug()
 }
 
 dotfiles_debug running .zshenv
+if [[ -o login ]]; then 
+    dotfiles_debug runing as login shell
+else
+    dotfiles_debug not running as login shell
+fi
 
 # special code to cleanup homedirs that get synced with cp
 typeset -U zshenv_cleanup_files
