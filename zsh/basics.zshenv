@@ -2,6 +2,8 @@
 EMAIL="thm@amazon.com"
 
 # ubiquity   ## may make sense to have -S here (chop long lines instead of wrapping)
-LESS="-FRX"
+LESS="-FMRiX"
+PAGER=less
+READNULLCMD=less
 
 ## END OF LINE ##

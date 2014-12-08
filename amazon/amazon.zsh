@@ -1,7 +1,6 @@
 #-*- mode: sh -*-
 
-if [[ ${HOSTNAME%amazon.com} == ${HOSTNAME} ]] ; then  # cant use =~ at work, zsh too old
-    # if that test matches then we are _NOT_ at work - and should skip this file
+if ! is_amazon || is_mac ; then
     return 
 fi
 
@@ -31,8 +30,5 @@ alias post-review='post-review --note --target-groups=Glacier'
 
 alias remote-command='remote-command --recurse 999 --batch --override-ping /bin/true --text-output'
 
-# Should make these generic
-PAGER=less
-READNULLCMD=less
 
 ## END OF LINE ##
