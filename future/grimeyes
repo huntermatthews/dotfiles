@@ -1,0 +1,2 @@
+ssh -L 6030:irc.cuckoo.com:6667  hunter@grimeyes
+
