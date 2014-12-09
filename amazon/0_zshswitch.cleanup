@@ -3,12 +3,22 @@
 ## what the heck people?
 
 ENV_IMPROVEMENT_ROOT=/apollo/env/envImprovement
+OLD_ZSH=$ZSH
 ZSH=$ENV_IMPROVEMENT_ROOT/var/bin/zsh
+
+#echo $SHELL
+#echo $ZSH
+#[[ -e $ZSH ]] && echo $ZSH executable || echo $ZSH not execable
 
 if [[ $SHELL != $ZSH && -e $ZSH ]]
 then
   SHELL=$ZSH
   exec - $ZSH "$@"
+else
+  ZSH=$OLD_ZSH
+  unset OLD_ZSH 
+  unset ENV_IMPROVEMENT_ROOT
+  return
 fi
 
 # Gets the right, e.g., zle.so to load
