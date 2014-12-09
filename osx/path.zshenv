@@ -1,5 +1,5 @@
 ## Add all the osx specific path locations
 
-path+=('/opt/x11/bin')
+path+=('/opt/X11/bin')
 
 ## END OF LINE ##
