@@ -9,7 +9,7 @@ bindkey "^[m" copy-prev-shell-word
 setopt long_list_jobs
 
 ## pager
-export PAGER="less"
-export LESS="-R"
+#export PAGER="less"   # zsh/basics.zshenv
+#export LESS="-R"      # zsh/basics.zshenv
 
 export LC_CTYPE=$LANG
