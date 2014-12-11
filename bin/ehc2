@@ -1,0 +1,91 @@
+#! /bin/bash
+
+# Wrapper around expand-hostclass to cache results.
+
+## 
+## Config Section
+## 
+CACHE_LIFETIME_HOURS=24
+CACHE_DIR=$HOME/.ehc/cache
+CONFIG_FILE=$HOME/.ehc/config
+
+# In general, don't change anything below this line
+DEBUG=True
+
+## 
+debug()
+{
+    if [[ -n "$DEBUG" && "$DEBUG" == "True" ]] ; then
+        echo "debug: $@" 
+    fi
+}
+
+debug_var()
+{
+    # Every time I write this code I feel a little dirty inside.
+    debug $1 = $(eval echo \$$1)
+}
+
+
+# Allow users to override defaults.
+if [[ -r $CONFIG_FILE ]] ; then 
+   source $CONFIG_FILE
+fi
+debug_var DEBUG
+debug_var CACHE_LIFETIME_HOURS
+debug_var CACHE_DIR
+debug_var CONFIG_FILE
+
+
+## 
+## Compute various things
+## 
+script_name=$(basename $0)
+args_filename=$(echo "$@" |  tr ' ' '=')
+cache_filename="$script_name=$args_filename"
+cache_pathname=$CACHE_DIR/$cache_filename
+cache_lifetime_seconds=$(($CACHE_LIFETIME_HOURS * 60 * 60))
+debug_var script_name
+debug_var args_filename
+debug_var cache_filename
+debug_var cache_pathname
+debug_var cache_lifetime_seconds
+
+update_cache()
+{
+    debug running update_cache
+    mkdir -p $CACHE_DIR
+    debug running expand-hostclass
+    debug eh is at $(which expand-hostclass)
+    debug cmdline = expand-hostclass --recurse --hosts-only "$@" \| tee $cache_pathname
+    expand-hostclass --recurse --hosts-only "$@" | tee $cache_pathname
+    debug done running expand-hostclass
+}
+
+
+if [[ -f $cache_pathname && -r $cache_pathname ]] ; then
+    debug we think the cache_pathname exists, is a file and is readable
+
+    file_age_seconds=$(date -r $cache_pathname +%s)
+    now=$(date +%s)
+    debug_var file_age_seconds
+    debug_var now
+
+    if [[ $(($now - $file_age_seconds)) -gt $cache_lifetime_seconds ]] ; then
+        debug we think that the cache file is too old
+        update_cache "$@"
+    else
+        debug we think the cache file is valid
+        debug catting cache
+        cat $cache_pathname
+        debug done catting cache
+    fi
+else
+    debug the cache filename doesnt exist
+    update_cache  "$@"
+fi
+
+debug end of line
+
+## END OF LINE ##
+

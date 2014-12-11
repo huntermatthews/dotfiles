@@ -1,0 +1,6 @@
+#! /usr/bin/env zsh
+
+echo "im a program!"
+type printenv
+printenv
+

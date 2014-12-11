@@ -1,0 +1,33 @@
+#!/usr/bin/ruby
+
+#
+# Usage: pickn [n=1]
+#
+#   Picks n random lines from STDIN and prints them to STDOUT.
+#   Initial ordering is preserved.
+#
+#   This is a fun interview problem, although it does require a bit of a trick
+#   to figure out.
+#
+#   https://w.amazon.com/index.php/PickN
+#
+
+if ARGV.length > 1
+   STDERR.puts "Invalid usage! See https://w.amazon.com/index.php/PickN\nExpected: pickn [n=1]"
+   exit(1)
+end
+
+n = ARGV.length > 0 ? ARGV[0].to_i : 1
+results = Array.new
+i = 1
+
+while line = STDIN.gets
+    x = rand(i)
+    if x < n
+        results.delete_at(x) if i > n
+        results << line
+    end
+    i += 1
+end
+
+puts *results
