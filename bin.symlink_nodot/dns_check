@@ -1,0 +1,36 @@
+#! /bin/zsh
+
+info () {
+  print "[\033[00;34minfo\033[0m ] $@"
+}
+
+success () {
+  print "\r[  \033[00;32mOK\033[0m ] $@"
+}
+
+error () {
+  print "\r[\033[0;31mERROR\033[0m] $@"
+}
+
+fail () {
+    error "$@"
+    exit 1
+}
+
+hostname=$(hostname)
+ip_addr=$(host $hostname | cut -f4 -d' ')
+reverse_name=$(host $ip_addr | cut -f5 -d' ')
+reverse_name=${reverse_name%.}
+
+info "$hostname => $ip_addr <= $reverse_name"
+
+if [[ ${hostname} == ${reverse_name} ]] ; then
+    success "forward/reverse match" 
+else
+    fail "forward/reverse out of sync"
+fi
+
+
+
+
+## END OF LINE ##

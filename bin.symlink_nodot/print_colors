@@ -1,0 +1,57 @@
+#! /bin/zsh
+
+## opening \033[31m   (where 31 is the color code)
+## closing \033[m     (no code)
+
+test1 () {
+
+  for mod in 1 2 4 7 ;  do
+      
+      for fg in 30 31 32 33 34 35 36 37 ; do 
+#          for bg in 40 41 42 43 44 45 46 47 ; do
+              printf "\033[0;${mod};${fg};${bg}mSAMPLE_TEXT with spaces\033[0m ${mod}:${fg}:${bg}\n"
+              
+#          done
+
+      done
+
+
+  done
+}
+
+debug () {
+  print "\r[ \033[0;1;30mdebug\033[0m ] $@"
+}
+
+info () {
+  print "\r[  \033[00;34minfo\033[0m ] $@"
+}
+
+warn () {
+  print "\r[  \033[00;33mWARN\033[0m ] $@"
+}
+
+success () {
+  print "\r[  \033[00;32mOK\033[0m   ] $@"
+}
+
+error () {
+  print "\r[  \033[0;31mERR\033[0m  ] $@"
+}
+
+fail () {
+    error "$@"
+    exit 1
+}
+
+test1
+debug hark the herald
+info one two three
+success four five six
+warn foo bar baz
+error seven eight nine
+fail ten eleven twelve
+
+
+
+## END OF LINE ##
