@@ -11,8 +11,8 @@ fi
 export BRAZIL_WORKSPACE_DEFAULT_LAYOUT=short
 
 # Hostclass aliases
-alias ehc="expand-hostclass --recurse --hosts-only"
-alias eh="expand-hostclass --recurse"
+alias ehc="eh --hosts-only"
+alias eh="caching-expand-hostclass --recurse"
 
 # server-attributes
 # I _know_ this occluds the system sa in /usr/sbin/sa  -- useless to me at amazon
