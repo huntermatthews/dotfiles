@@ -57,8 +57,8 @@ update_cache()
     mkdir -p $CACHE_DIR
     debug running expand-hostclass
     debug eh is at $(which expand-hostclass)
-    debug cmdline = expand-hostclass --recurse --hosts-only "$@" \| tee $cache_pathname
-    expand-hostclass --recurse --hosts-only "$@" | tee $cache_pathname
+    debug cmdline = expand-hostclass "$@" \| tee $cache_pathname
+    expand-hostclass "$@" | tee $cache_pathname
     debug done running expand-hostclass
 }
 
@@ -82,7 +82,7 @@ if [[ -f $cache_pathname && -r $cache_pathname ]] ; then
     fi
 else
     debug the cache filename doesnt exist
-    update_cache  "$@"
+    update_cache "$@"
 fi
 
 debug end of line
