@@ -3,7 +3,8 @@
 # make symlinks for *.symlink files.
 
 cd "$(dirname "$0")/.."
-DOTFILES_ROOT=$(pwd)
+DOTFILES_ROOT=$(basename $PWD)
+#echo DOTFILES_ROOT = $DOTFILES_ROOT
 
 set -e
 
@@ -29,6 +30,9 @@ fail () {
 
 link_file () {
   local src=$1 dst=$2
+
+ # echo src = $src 
+ # echo dst = $dst
 
   local overwrite= backup= skip=
   local action=
@@ -106,16 +110,20 @@ install_dotfiles () {
 
   local overwrite_all=false backup_all=false skip_all=false
 
+  cd ..               ## state - we were in .dotfiles (see top of script)
+                      ## with luck, this will work for glacierhomes
+                      ## due to that, you cant use $HOME
+#  echo "creating symlink in $PWD"
   for src in $(find "$DOTFILES_ROOT" -maxdepth 2 -name '*.symlink')
   do
-    dst="$HOME/.$(basename "${src%.*}")"
+    dst=".$(basename "${src%.*}")"
     link_file "$src" "$dst"
   done
 
   # Special case - I wanted bin symlinked into home, but NOT hidden
   for src in $(find "$DOTFILES_ROOT" -maxdepth 2 -name '*.symlink_nodot')
   do
-    dst="$HOME/$(basename "${src%.*}")"
+    dst="$(basename "${src%.*}")"
     link_file "$src" "$dst"
   done
 
