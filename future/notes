@@ -1,10 +1,10 @@
 DONE export EDITOR set to e   (VISUAL too)
 
-make bin visible in home?   (bin.symlink)
+DONE make bin visible in home?   (bin.symlink)   suck - its ugly
 
-need to fix completion cache having hostname?  (no shared home - needed?)
+DONE need to fix completion cache having hostname?  (no shared home - needed?)
 
-need to fix .zcompdump - same - no shared homedir
+DONE need to fix .zcompdump - same - no shared homedir
 
 add .localrc for passwords or whatever?
 
@@ -14,5 +14,11 @@ DONE - write cleanup script for borken amazon cp commands
 
 sudo spctl --master-disable  ---- What does this do? Do I want it?
 
-e --eval "(view-file \"lib/r2d2/system/block_device.py\")"
+DONE e --eval "(view-file \"lib/r2d2/system/block_device.py\")" 
+
+alias ssh="cat ~/.ssh/config.d/* > ~/.ssh/config; ssh"
+    or something - how to selectively pull in amazon's config?
+    (IE, don't need it at home???)
+
+
 

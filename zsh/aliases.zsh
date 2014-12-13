@@ -9,4 +9,7 @@ alias ll='LANG=C ls -lh'
 # Remove commnets and whitespace only /blank lines from input (to be used in a pipeline)
 alias nocomment="sed -e 's/#.*$//' -e '/^\s*$/d'"
 
+# Kerberos 4 has been obsolete for since 1993 <sigh>
+alias klist='klist -5'
+
 ## END OF LINE ##
