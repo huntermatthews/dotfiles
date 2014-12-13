@@ -23,9 +23,12 @@ i = 1
 
 while line = STDIN.gets
     x = rand(i)
+#    STDOUT.puts "n = #{n}, x = #{x}, i = #{i}"  
     if x < n
         results.delete_at(x) if i > n
+#        STDOUT.puts "deleting line at #{x}" if i > n
         results << line
+#        STDOUT.puts "add line to array"
     end
     i += 1
 end

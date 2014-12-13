@@ -10,7 +10,7 @@ CACHE_DIR=$HOME/.ehc/cache
 CONFIG_FILE=$HOME/.ehc/config
 
 # In general, don't change anything below this line
-DEBUG=True
+DEBUG=${DEBUG:-FALSE}
 
 ## 
 debug()
@@ -76,9 +76,9 @@ if [[ -f $cache_pathname && -r $cache_pathname ]] ; then
         update_cache "$@"
     else
         debug we think the cache file is valid
-        debug catting cache
+        debug using cache
         cat $cache_pathname
-        debug done catting cache
+        debug done using cache
     fi
 else
     debug the cache filename doesnt exist
