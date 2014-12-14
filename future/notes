@@ -20,5 +20,12 @@ alias ssh="cat ~/.ssh/config.d/* > ~/.ssh/config; ssh"
     or something - how to selectively pull in amazon's config?
     (IE, don't need it at home???)
 
+oh-my-zsh cleanup -- replace all whoami calls with $USER
+                     replace all pwd calls with $PWD
+                     replace all hostname calls with HOST (or HOSTNAME)
+
+add "autojump" ???
+
+
 
 
