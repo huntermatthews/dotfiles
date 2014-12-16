@@ -1,9 +1,6 @@
 # -*- mode: sh -*-
 
-# We rely on the plugin "hostname_custom" to set a HOSTNAME_CUSTOM shell variable to configure the hostname
-# portion of the prompt.
-
-# CLock part was  %{$fg[white]%}[%T]%{$reset_color%}
+# Clock part was  %{$fg[white]%}[%T]%{$reset_color%}
 
 ## 
 ## So this is convoluted
@@ -27,9 +24,10 @@ else
     setopt promptsp
 fi
 
+export ZSH_THEME_TERM_TITLE_IDLE="%n@$DISPLAY_HOSTNAME: %~"
 
 PROMPT=$'
-%{$fg[blue]%}%/%{$reset_color%} $(git_prompt_info)%{$fg[white]%}[%n@$HOSTNAME_CUSTOM]%{$reset_color%}
+%{$fg[blue]%}%/%{$reset_color%} $(git_prompt_info)%{$fg[white]%}[%n@$DISPLAY_HOSTNAME]%{$reset_color%}
 %{$fg_bold[black]%}>%{$reset_color%} '
 
 PROMPT2="%{$fg_blod[black]%}%_> %{$reset_color%}"

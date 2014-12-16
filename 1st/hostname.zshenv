@@ -1,18 +1,10 @@
 # -*- mode: sh -*-
 
-function hostname_custom {
-    [ -f ~/.hostname_custom ] && cat ~/.hostname_custom || hostname -s 
-}
-
-# on osx HOST is set but not HOSTNAME
+# in zsh HOST is set but not HOSTNAME (linux sometimes gets it anyway, not sure from where)
 if [[ -z $HOSTNAME ]] ; then 
     export HOSTNAME=$HOST
 fi
 
-export HOSTNAME_CUSTOM=$(hostname_custom)
-export ZSH_THEME_TERM_TITLE_IDLE="%n@$HOSTNAME_CUSTOM: %~"
-
-# one day 
-# displayname() { echo $DISPLAYNAME } 
+export DISPLAY_HOSTNAME=$([ -f ~/.hostname_custom ] && cat ~/.hostname_custom || hostname -s)
 
 ## END OF LINE ##
