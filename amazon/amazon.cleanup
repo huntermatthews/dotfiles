@@ -1,0 +1,16 @@
+if [[ -n "$CLEANUP_AMAZON" ]] ; then 
+    return
+fi
+
+export CLEANUP_AMAZON=1
+
+# This was replaced with an alias - no  more .reviewbaordrc on osx
+rm -f $HOME/.dotfiles/amazon/.reviewboardrc
+rm -f $HOME/.reviewboardrc
+
+# This was a right disaster - don't switch shell versions in .cleanup/.zshenv files
+# BReaks running remote commands (whole point of .zshenv in the first place).
+# Only do it in .zprofile or .zshrc
+rm -f $HOME/.dotfiles/amazon/0_zshswitch.cleanup
+
+## END OF LINE ##
