@@ -11,7 +11,7 @@ if [[ $HOSTNAME != thm.desktop.amazon.com ]] ; then
 fi
 
 # Get to the glacier homes workspace 
-cd ~/_ws/glacierhomes/src/GlacierHomes/configuration/user.envs/thm
+cd ~/ws/homes
 
 # Start a fresh copy
 rm -rf .dotfiles
@@ -20,17 +20,12 @@ cp -a ~/.dotfiles .dotfiles
 # Manipulate the copied dotfiles.
 cd .dotfiles
 
-# Move the fleet cleanup script into place 
-# Obviously we can't have this in the real place as we'd delete half of .dotfiles every time we logged in.
-cp dotfiles/glacierhomes_scrubber 1st/fleet.cleanup
-
 # Remove junk not needed
-
+# Dont remove .dotfiles/dotfiles itself just yet.
 rm -f LICENSE.md
 rm -f README.md
 
 rm -rf .git*
-rm -rf dotfiles
 rm -rf emacs 
 rm -rf git
 rm -rf homebrew
@@ -38,11 +33,12 @@ rm -rf osx
 rm -rf future
 rm -rf python
 
-echo ""
-echo "DANGER: "
-echo "WARNING: "
-echo "ACHTUNG: "
-echo "SHIT: You have to update the in home dir symlinks yourself"
-echo 'FUCK: go do that now!'
+# Move the fleet cleanup script into place 
+# Obviously we can't have this in the real place as we'd delete half of .dotfiles every time we logged in.
+cp dotfiles/glacierhomes_scrubber 1st/fleet.cleanup
+
+dotfiles/make_symlinks
+
+rm -rf dotfiles
 
 ## END OF LINE ##

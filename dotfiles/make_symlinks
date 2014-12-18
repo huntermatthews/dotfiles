@@ -127,7 +127,7 @@ install_dotfiles () {
     link_file "$src" "$dst"
   done
 
-
+  link_file ".dotfiles/bin" "bin"
 }
 
 install_dotfiles
