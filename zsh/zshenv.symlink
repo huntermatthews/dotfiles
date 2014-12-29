@@ -2,7 +2,7 @@
 
 # shortcut to this dotfiles path is $DOTFILES
 export DOTFILES=$HOME/.dotfiles
-export DOTFILES_DEBUG=False
+export DOTFILES_DEBUG=True
 
 dotfiles_debug()
 {
