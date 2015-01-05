@@ -30,5 +30,7 @@ alias post-review='post-review --note --target-groups=Glacier'
 
 alias remote-command='remote-command --recurse 999 --batch --override-ping /bin/true --text-output'
 
+# @graydonp: for region in iad dub fra sfo pdx nrt syd bjs pdt; do alias "$region"aux='ssh $( ehc glacier-prod-aux-'$region' | head -1)'; done
+aux() { ssh $(ehc glacier-prod-aux-$1 | tail -1) }
 
 ## END OF LINE ##
