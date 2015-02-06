@@ -7,9 +7,9 @@ alias printenv="/usr/bin/env  | sort"
 alias ll='LANG=C ls -lh'
 alias la='LANG=C ls -lah'
 
-
 # Remove commnets and whitespace only /blank lines from input (to be used in a pipeline)
 alias nocomment="sed -e 's/#.*$//' -e '/^\s*$/d'"
+alias wsstrip="sed -e 's/^[ \t]*//' -e 's/[ \t]*$//' -e 's/[ \t][ \t]*/ /'"
 
 # Kerberos 4 has been obsolete for since 1993 <sigh>
 alias klist='klist -5'
