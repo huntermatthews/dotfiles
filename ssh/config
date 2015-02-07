@@ -12,7 +12,8 @@ Host glacier-*.amazon.com *bastion*.amazon.com
         UserKnownHostsFile /dev/null
         StrictHostKeyChecking no
         ForwardAgent no
-        LogLevel Error   # makesthe "warning: host key X added to /dev/null" useless messages
+        # makesthe "warning: host key X added to /dev/null" useless messages
+        LogLevel Error   
 
 # Configuration for DUB/EU-WEST-1
 host !security-bastions-prod* *.dub*.amazon.com *.dub*.amazon.com. *.dub? *.dub?? *.eu-west-1.amazon.com *.eu-west-1.amazon.com. *.eu-west-1
