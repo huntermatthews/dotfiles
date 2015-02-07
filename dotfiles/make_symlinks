@@ -128,6 +128,8 @@ install_dotfiles () {
   done
 
   link_file ".dotfiles/bin" "bin"
+  link_file "../.dotfiles/ssh/config" ".ssh/config"
+
 }
 
 install_dotfiles

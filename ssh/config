@@ -1,0 +1,65 @@
+#
+# Prod Bastion SSH Config additions. See https://w.amazon.com/index.php/Infosec/Infrastructure_Services/Radium/PROD_Bastions
+# for details and contact information.
+
+host desktop deskside
+     ForwardX11 yes
+     ForwardX11Trusted yes
+
+Host glacier-*.amazon.com *bastion*.amazon.com
+# We don't currently have a good way to keep track of all the host
+# keys in our large, dynamic fleet of hosts, so don't check these
+        UserKnownHostsFile /dev/null
+        StrictHostKeyChecking no
+        ForwardAgent no
+        LogLevel Error   # makesthe "warning: host key X added to /dev/null" useless messages
+
+# Configuration for DUB/EU-WEST-1
+host !security-bastions-prod* *.dub*.amazon.com *.dub*.amazon.com. *.dub? *.dub?? *.eu-west-1.amazon.com *.eu-west-1.amazon.com. *.eu-west-1
+     ProxyCommand ssh -q -o StrictHostKeyChecking=no security-bastions-prod-dub.amazon.com nc %h %p
+
+# Configuration for GRU
+host !security-bastions-prod* *.gru*.amazon.com *.gru*.amazon.com. *.gru? *.gru?? *.sa-east-*.amazon.com *.sa-east-*.amazon.com. *.sa-east-?
+        ProxyCommand ssh -q -o StrictHostKeyChecking=no security-bastions-prod-gru.amazon.com nc %h %p
+
+# Configuration for IAD/VDC/US-EAST
+host !security-bastions-prod* *.iad*.amazon.com *.iad*.amazon.com. *.iad? *.iad?? *.vdc.amazon.com *.vdc.amazon.com. *.vdc *.us-east-*.amazon.com *.us-east-*.amazon.com. *.us-east-?
+     ProxyCommand ssh -q -o StrictHostKeyChecking=no security-bastions-prod-iad.amazon.com nc %h %p
+
+# Configuration for LUX
+host !security-bastions-prod* *.lux*.amazon.com *.lux*.amazon.com. *.lux? *.lux??
+     ProxyCommand ssh -q -o StrictHostKeyChecking=no security-bastions-prod-lux.amazon.com nc %h %p
+
+# Configuration for NRT
+host !security-bastions-prod* *.nrt*.amazon.com *.nrt*.amazon.com. *.nrt? *.nrt?? *.ap-northeast-*.amazon.com *.ap-northeast-*.amazon.com. *.ap-northeast-?
+     ProxyCommand ssh -q -o StrictHostKeyChecking=no security-bastions-prod-nrt.amazon.com nc %h %p
+
+# Configuration for PDX/US-WEST-2
+host !security-bastions-prod* *.pdx*.amazon.com *.pdx*.amazon.com. *.pdx? *.pdx?? *.us-west-2.amazon.com *.us-west-2.amazon.com. *.us-west-2
+     ProxyCommand ssh -q -o StrictHostKeyChecking=no security-bastions-prod-pdx.amazon.com nc %h %p
+
+# Configuration for PEK
+host !security-bastions-prod* *.pek*.amazon.com *.pek*.amazon.com. *.pek? *.pek??
+     ProxyCommand ssh -q -o StrictHostKeyChecking=no security-bastions-prod-pek.amazon.com nc %h %p
+
+# Configuration for SEA
+host !security-bastions-prod* *.sea*.amazon.com *.sea*.amazon.com. *.sea? *.sea??
+     ProxyCommand ssh -q -o StrictHostKeyChecking=no security-bastions-prod-sea.amazon.com nc %h %p
+
+# Configuration for SFO
+host !security-bastions-prod* *.sfo*.amazon.com *.sfo*.amazon.com. *.sfo? *.sfo??
+     ProxyCommand ssh -q -o StrictHostKeyChecking=no security-bastions-prod-sfo.amazon.com nc %h %p
+
+# Configuraiton for SIN
+host !security-bastions-prod* *.sin*.amazon.com *.sin*.amazon.com. *.sin? *.sin?? *.ap-southeast-1.amazon.com *.ap-southeast-1.amazon.com. *.ap-southeast-1
+     ProxyCommand ssh -q -o StrictHostKeyChecking=no security-bastions-prod-sin.amazon.com nc %h %p
+
+# Configuration for SYD
+host !security-bastions-prod* *.syd*.amazon.com *.syd*.amazon.com. *.syd? *.syd?? *.ap-southeast-2.amazon.com *.ap-southeast-2.amazon.com. *.ap-southeast-2
+     ProxyCommand ssh -q -o StrictHostKeyChecking=no security-bastions-prod-syd.amazon.com nc %h %p
+
+# BJS bastion
+Host *.bjs*.amazon.com
+  ProxyCommand ssh -qxTA bastion-bjs.amazon.com nc %h 22
+
+# End Prod Bastion config
