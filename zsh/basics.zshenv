@@ -1,9 +1,9 @@
 ## Some programs sensibly use this, others just fuck up by using the username@hostname
 # This should be different away from work...
-EMAIL="thm@amazon.com"
+export EMAIL="thm@amazon.com"
 
 # ubiquity   ## may make sense to have -S here (chop long lines instead of wrapping)
-LESS="-FRiX"
+export LESS="-FRiX"
 PAGER=less
 READNULLCMD=less
 
