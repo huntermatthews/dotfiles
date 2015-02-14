@@ -21,3 +21,9 @@
 (add-to-list 'interpreter-mode-alist '("python3.2" . python-mode))
 (add-to-list 'interpreter-mode-alist '("python3.3" . python-mode))
 (add-to-list 'interpreter-mode-alist '("python3.4" . python-mode))
+
+;; '#!this hashbang blah blah blah python' appears in many glacier ops tools python programs. 
+;; tell emacs that this means python mode
+(add-to-list 'interpreter-mode-alist '("this" . python-mode))
+
+;; END OF LINE ;;
