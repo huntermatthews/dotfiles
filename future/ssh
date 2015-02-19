@@ -1,0 +1,5 @@
+Host !git.amazon.com !devtools-git*.amazon.com *
+    ControlMaster auto
+    ControlPath /tmp/cm-%r@%h:%p
+    ControlPersist 2h
+

@@ -21,6 +21,7 @@ alias sac='sa | column -t'
 
 # Brazil Aliases
 alias brazil-tpt="/apollo/env/BrazilThirdPartyTool/bin/brazil-third-party-tool"
+alias brazil-pycharm='env PYTHONUSERBASE="$(brazil-path "graphName=testrun;recipe=runtimefarm;excludeRoot=true")" open "/Applications/PyCharm.app"'
 
 # Apollo Aliases
 alias our='/apollo/bin/env -e GlacierOpsTools'
@@ -28,9 +29,9 @@ alias our='/apollo/bin/env -e GlacierOpsTools'
 # Gets rid of needing an amazon specific dot file everywhere.
 alias post-review='post-review --note --target-groups=Glacier'
 
-alias remote-command='remote-command --recurse 999 --batch --override-ping /bin/true --text-output'
+alias remote-command='remote-command --recurse 999 --batch --text-output'
 
-# @graydonp: for region in iad dub fra sfo pdx nrt syd bjs pdt; do alias "$region"aux='ssh $( ehc glacier-prod-aux-'$region' | head -1)'; done
+# Get me an aux box in some region
 aux() { ssh $(ehc glacier-prod-aux-$1 | tail -1) }
 
 ## END OF LINE ##

@@ -17,7 +17,13 @@ fail () {
     exit 1
 }
 
-hostname=$(hostname)
+# command line specified hostname to check (like dev desktop) or if not assume this host
+if [ -n "$1" ] ; then 
+    hostname=$1
+else
+    hostname=$(hostname)
+fi
+
 ip_addr=$(host $hostname | cut -f4 -d' ')
 reverse_name=$(host $ip_addr | cut -f5 -d' ')
 reverse_name=${reverse_name%.}

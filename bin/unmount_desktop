@@ -1,0 +1,5 @@
+#! /bin/bash
+
+sudo umount /rhel5pdi
+
+## END OF LINE ##

@@ -1,3 +1,8 @@
 #! /bin/zsh 
 
-sudo mount -t nfs -o resvport thm.desktop.amazon.com:/rhel5pdi /rhel5pdi
+#sudo mount -t nfs -o resvport thm.desktop.amazon.com:/rhel5pdi /rhel5pdi
+# NFS quit working. Not sure why.
+
+mount -t smbfs //thm:$(get-keychain-password thm)@thm.desktop.amazon.com/rhel5pdi /rhel5pdi
+
+## END OF LINE ##
