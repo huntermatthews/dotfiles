@@ -13,5 +13,7 @@ alias wsstrip="sed -e 's/^[ \t]*//' -e 's/[ \t]*$//' -e 's/[ \t][ \t]*/ /'"
 
 # Kerberos 4 has been obsolete for since 1993 <sigh>
 alias klist='klist -5'
+alias mkpasswd='mkpasswd -l 30 -c 5 -d 5 -C 5 -s 5'
+
 
 ## END OF LINE ##

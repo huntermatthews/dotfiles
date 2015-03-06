@@ -3,7 +3,7 @@
 #Fully support screen, iterm, and probably most modern xterm and rxvt
 #Limited support for Apple Terminal (Terminal can't set window or tab separately)
 function title {
-  if [[ "$DISABLE_AUTO_TITLE" == "true" ]] || [[ "$EMACS" == *term* ]]; then
+  if [[ "$DISABLE_AUTO_TITLE" == "true" ]] || [[ "$EMACS" == *term* ]] || [[ -n "$TMUX" ]] ; then
     return
   fi
   if [[ "$TERM" == screen* ]]; then

@@ -3,6 +3,7 @@
 #sudo mount -t nfs -o resvport thm.desktop.amazon.com:/rhel5pdi /rhel5pdi
 # NFS quit working. Not sure why.
 
+# Cmd to change password is (on desktop) "sudo smbpasswd -a thm" 
 mount -t smbfs //thm:$(get-keychain-password thm)@thm.desktop.amazon.com/rhel5pdi /rhel5pdi
 
 ## END OF LINE ##
