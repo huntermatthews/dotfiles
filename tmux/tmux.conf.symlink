@@ -21,6 +21,10 @@ bind-key C-\ last-window
 unbind r
 bind r source-file ~/.tmux.conf \; display-message "Config reloaded..."
 
+# see if we can get buffer scrolling to work, rather than frustration
+set -g mode-mouse on
+#set -ga terminal-overrides ',xterm-256color:smcup@:rmcup@'   # this didn't work in iterm2
+
 # Set status bar
 # set -g status-utf8 on
 # set -g status-bg black
