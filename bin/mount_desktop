@@ -1,9 +1,14 @@
 #! /bin/zsh 
 
-#sudo mount -t nfs -o resvport thm.desktop.amazon.com:/rhel5pdi /rhel5pdi
+sudo mount -t nfs -o resvport thm.desktop.amazon.com:/rhel5pdi /rhel5pdi
 # NFS quit working. Not sure why.
 
+# This does the deed with samba (CIFS)
 # Cmd to change password is (on desktop) "sudo smbpasswd -a thm" 
-mount -t smbfs //thm:$(get-keychain-password thm)@thm.desktop.amazon.com/rhel5pdi /rhel5pdi
+#mount -t smbfs //thm:$(get-keychain-password thm)@thm.desktop.amazon.com/rhel5pdi /rhel5pdi
+
+# This is the sshfs equivalent. No setup on desktop, kext and other magic brewed on the mac.
+#IE, brew install sshfs  and follow instructions
+#sshfs thm@thm.desktop.amazon.com:/rhel5pdi /rhel5pdi -oauto_cache,reconnect,defer_permissions,noappledouble,negative_vncache,volname=myVolName,transform_symlinks
 
 ## END OF LINE ##
