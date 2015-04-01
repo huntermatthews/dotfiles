@@ -1,3 +1,5 @@
+; -*- mode: emacs-lisp -*-
+
 ;;; This file should ONLY contain path munging stuff for the emacs config itself.
 ;;; Adding load paths, changing whatever, loading elisp files.
 
@@ -9,6 +11,7 @@
 (load-library "diff.el")
 (load-library "backups.el")
 (load-library "programming.el")
+(load-library "mypython.el")
 (load-library "changelog.el")
 
 ;; Diretory to pull added themes from
