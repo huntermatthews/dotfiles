@@ -22,6 +22,8 @@ alias sac='sa | column -t'
 # Brazil Aliases
 alias brazil-tpt="/apollo/env/BrazilThirdPartyTool/bin/brazil-third-party-tool"
 alias brazil-pycharm='env PYTHONUSERBASE="$(brazil-path "graphName=testrun;recipe=runtimefarm;excludeRoot=true")" open "/Applications/PyCharm.app"'
+alias bre="brazil-runtime-exec "
+alias brep="brazil-runtime-exec python2.7"
 
 # Apollo Aliases
 alias our='/apollo/bin/env -e GlacierOpsTools'
