@@ -15,5 +15,13 @@ alias wsstrip="sed -e 's/^[ \t]*//' -e 's/[ \t]*$//' -e 's/[ \t][ \t]*/ /'"
 alias klist='klist -5'
 alias mkpasswd='mkpasswd -l 30 -c 5 -d 5 -C 5 -s 5'
 
+# is your environment sudo heavy?
+# alias fuck='sudo $(history \!\!)' is the bash equivalent.
+alias fuck='sudo $(fc -ln -1)'
+
+# web handy
+alias urldecode='python -c "import sys, urllib as ul; print ul.unquote_plus(sys.argv[1])"'
+alias urlencode='python -c "import sys, urllib as ul; print ul.quote_plus(sys.argv[1])"'
+
 
 ## END OF LINE ##
