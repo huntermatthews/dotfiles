@@ -8,5 +8,7 @@ mkdir -p .emacs.d
 mkdir -p .emacs.d/auto-save-list
 mkdir -p .emacs.d/backups
 
+emacs -batch -f batch-byte-compile .dotfiles/emacs/*.el
+
 ## END OF LINE ##
 
