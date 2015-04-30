@@ -34,5 +34,11 @@ function omz_termsupport_preexec {
   title '$CMD' '%100>...>$LINE%<<'
 }
 
-precmd_functions+=(omz_termsupport_precmd)
-preexec_functions+=(omz_termsupport_preexec)
+## Deactivate this sorry mess 
+## I never use/rely on the titles and it just makes using tmux stupid
+## 
+#precmd_functions+=(omz_termsupport_precmd)
+#preexec_functions+=(omz_termsupport_preexec)
+
+
+## END OF LINE ##

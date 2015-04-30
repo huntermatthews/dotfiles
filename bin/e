@@ -8,7 +8,7 @@
 # USAGE:
 #
 #   $ e
-#   # => opens the current directory in your editor
+#   # => open editor without any new files - for emacs server mode, this is handy.
 #
 #   $ e .
 #   $ e /usr/local
@@ -16,7 +16,7 @@
 
 # USing EDITOR variable here is problematic if you want a "-a ''" with it.
 if [ "$1" = "" ] ; then
-  exec emacsclient -a '' -t  .
+  exec emacsclient -a '' -t  
 else
   exec emacsclient -a '' -t  "$@"
 fi
