@@ -47,3 +47,4 @@
 [amazon]
 	append-cr-url = true
 	pull-request-by-default = false
+	suggest-gitfarm-client = shown
