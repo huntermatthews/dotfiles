@@ -25,3 +25,4 @@ alias urlencode='python -c "import sys, urllib as ul; print ul.quote_plus(sys.ar
 
 
 ## END OF LINE ##
+alias rfcdate='date +%FT%T%z'

@@ -29,4 +29,7 @@
 ;; unbind c-\ which I use for tmux/screen
 (global-unset-key "\C-\\")
 
+;; Apparently its electric mode that makes cut -n paste wonky in emacs
+(when (fboundp 'electric-indent-mode) (electric-indent-mode -1))
+
 ;; END OF LINE ;;
