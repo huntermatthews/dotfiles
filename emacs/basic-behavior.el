@@ -32,4 +32,11 @@
 ;; Apparently its electric mode that makes cut -n paste wonky in emacs
 (when (fboundp 'electric-indent-mode) (electric-indent-mode -1))
 
+;; Disable stuff I don't use.
+(menu-bar-mode -1)
+(when (fboundp 'tool-bar-mode)
+  (tool-bar-mode -1))
+(when (fboundp 'scroll-bar-mode)
+  (scroll-bar-mode -1))
+
 ;; END OF LINE ;;
