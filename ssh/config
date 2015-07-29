@@ -1,8 +1,3 @@
-# 
-# Prod Bastion SSH Config additions. See https://w.amazon.com/index.php/Infosec/Infrastructure_Services/Radium/PROD_Bastions
-# for details and contact information.
-# 
-# See https://security-bastions.amazon.com/ for the latest copy of the official Amazon config.
 
 #
 # Personal Hacks
@@ -19,80 +14,33 @@ host desktop deskside grimeyes
     ForwardX11 yes
     ForwardX11Trusted yes
 
-host desktop
-    HostName thm.desktop.amazon.com
-
-host deskside 
-    HostName ua41f7274096b53a1bb97.ant.amazon.com
-
 host grimeyes
     HostName grimeyes.huntermatthews.com
 
-Host glacier-*.amazon.com *bastion*.amazon.com
+#Host glacier-*.bigA.com *bastion*.bigA.com
 # We don't currently have a good way to keep track of all the host
 # keys in our large, dynamic fleet so don't bother
-    UserKnownHostsFile /dev/null
-    StrictHostKeyChecking no
-    ForwardAgent no
-    # makes the "warning: host key X added to /dev/null" useless messages go away
-    LogLevel Error
+#    UserKnownHostsFile /dev/null
+#    StrictHostKeyChecking no
+#    ForwardAgent no
+#    # makes the "warning: host key X added to /dev/null" useless messages go away
+#    LogLevel Error
 #
-# Amazon Generic Config
+# BigA Generic Config
 #
 
 # Do not try to proxy when going straight to a bastion host
-host security-bastions-prod*.amazon.com bastion-*.amazon.com
-    ProxyCommand none
-
-# Configuration for BJS
-Host *.bjs*.amazon.com
-    ProxyCommand ssh -q -W %h:%p bastion-bjs.amazon.com
+#host security-bastions-prod*.bigA.com bastion-*.bigA.com
+#    ProxyCommand none
 
 # Configuration for DUB/EU-WEST-1
-host *.dub*.amazon.com *.dub*.amazon.com. *.dub? *.dub?? *.eu-west-1.amazon.com *.eu-west-1.amazon.com. *.eu-west-1
-  	ProxyCommand ssh -q -W %h:%p security-bastions-prod-dub.amazon.com
+#host *.dub*.bigA.com *.dub*.bigA.com. *.dub? *.dub?? *.eu-west-1.bigA.com *.eu-west-1.bigA.com. *.eu-west-1
+#  	ProxyCommand ssh -q -W %h:%p security-bastions-prod-dub.bigA.com
 
 # Configuration for FRA/EU-CENTRAL-1
-host *.fra*.amazon.com *.fra? *.fra?? *.eu-west-1.amazon.com *.eu-west-1
-    ProxyCommand ssh -q -W %h:%p bastion-fra.amazon.com
+#host *.fra*.bigA.com *.fra? *.fra?? *.eu-west-1.bigA.com *.eu-west-1
+#    ProxyCommand ssh -q -W %h:%p bastion-fra.bigA.com
 
-# Configuration for GRU
-host *.gru*.amazon.com *.gru*.amazon.com. *.gru? *.gru?? *.sa-east-*.amazon.com *.sa-east-*.amazon.com. *.sa-east-?
-    ProxyCommand ssh -q -W %h:%p security-bastions-prod-gru.amazon.com
+## END OF LINE ##
 
-# Configuration for IAD/VDC/US-EAST
-host *.iad*.amazon.com *.iad*.amazon.com. *.iad? *.iad?? *.vdc.amazon.com *.vdc.amazon.com. *.vdc *.us-east-*.amazon.com *.us-east-*.amazon.com. *.us-east-?
-    ProxyCommand ssh -q -W %h:%p security-bastions-prod-iad.amazon.com
-
-# Configuration for LUX
-host *.lux*.amazon.com *.lux*.amazon.com. *.lux? *.lux?? 
-    ProxyCommand ssh -q -W %h:%p security-bastions-prod-lux.amazon.com
-
-# Configuration for NRT
-host *.nrt*.amazon.com *.nrt*.amazon.com. *.nrt? *.nrt?? *.ap-northeast-*.amazon.com *.ap-northeast-*.amazon.com. *.ap-northeast-?
-    ProxyCommand ssh -q -W %h:%p security-bastions-prod-nrt.amazon.com
-
-# Configuration for PDX/US-WEST-2
-host *.pdx*.amazon.com *.pdx*.amazon.com. *.pdx? *.pdx?? *.us-west-2.amazon.com *.us-west-2.amazon.com. *.us-west-2
-    ProxyCommand ssh -q -W %h:%p security-bastions-prod-pdx.amazon.com
-
-# Configuration for PEK
-host *.pek*.amazon.com *.pek*.amazon.com. *.pek? *.pek?? 
-    ProxyCommand ssh -q -W %h:%p security-bastions-prod-pek.amazon.com
-
-# Configuration for SEA
-host *.sea*.amazon.com *.sea*.amazon.com. *.sea? *.sea??
-    ProxyCommand ssh -q -W %h:%p security-bastions-prod-sea.amazon.com
-
-# Configuration for SFO
-host *.sfo*.amazon.com *.sfo*.amazon.com. *.sfo? *.sfo??
-    ProxyCommand ssh -q -W %h:%p security-bastions-prod-sfo.amazon.com
-
-# Configuration for SIN
-host *.sin*.amazon.com *.sin*.amazon.com. *.sin? *.sin?? *.ap-southeast-1.amazon.com *.ap-southeast-1.amazon.com. *.ap-southeast-1
-    ProxyCommand ssh -q -W %h:%p security-bastions-prod-sin.amazon.com
-
-# Configuration for SYD
-host *.syd*.amazon.com *.syd*.amazon.com. *.syd? *.syd?? *.ap-southeast-2.amazon.com *.ap-southeast-2.amazon.com. *.ap-southeast-2
-    ProxyCommand ssh -q -W %h:%p security-bastions-prod-syd.amazon.com
 

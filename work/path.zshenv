@@ -1,6 +1,6 @@
 # -*- mode: sh -*-
 
-if ! is_amazon ; then
+if ! is_work ; then
     return
 fi
 

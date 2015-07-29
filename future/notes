@@ -6,18 +6,14 @@ DONE need to fix completion cache having hostname?  (no shared home - needed?)
 
 DONE need to fix .zcompdump - same - no shared homedir
 
-add .localrc for passwords or whatever?
-
 DONE split path and critical ENV stuff to .zshenv?
-
-DONE - write cleanup script for borken amazon cp commands 
 
 sudo spctl --master-disable  ---- What does this do? Do I want it?
 
 DONE e --eval "(view-file \"lib/r2d2/system/block_device.py\")" 
 
 alias ssh="cat ~/.ssh/config.d/* > ~/.ssh/config; ssh"
-    or something - how to selectively pull in amazon's config?
+    or something - how to selectively pull in work's config?
     (IE, don't need it at home???)
 
 oh-my-zsh cleanup -- replace all whoami calls with $USER

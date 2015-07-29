@@ -9,11 +9,9 @@
 #   This is a fun interview problem, although it does require a bit of a trick
 #   to figure out.
 #
-#   https://w.amazon.com/index.php/PickN
-#
 
 if ARGV.length > 1
-   STDERR.puts "Invalid usage! See https://w.amazon.com/index.php/PickN\nExpected: pickn [n=1]"
+   STDERR.puts "Invalid usage! Expected: pickn [n=1]"
    exit(1)
 end
 
