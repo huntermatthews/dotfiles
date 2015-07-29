@@ -3,6 +3,8 @@
 # This installs some of the common dependencies needed (or at least desired)
 # using Homebrew.
 
+export HOMEBREW_CASK_OPTS="--appdir=/Applications"
+
 # Brew/homebrew is a mac only thing - don't run this elsewhere
 if [[ "$(uname -s)" != "Darwin" ]] ; then
     exit 1
@@ -18,23 +20,50 @@ fi
 brew update
 brew upgrade
 
-brew install --cocoa --srgb emacs
-brew install tmux 
-brew install tree
-brew install figlet
+pkgs=(
+"--cocoa --srgb emacs"
+tmux 
+tree
+figlet
+)
+
+for pkg in $pkgs ; do 
+    brew install $pkg
+done
 
 
-# Keep chickening out on these
-#brew install caskroom/cask/brew-cask
-#brew tap caskroom/versions
+brew install caskroom/cask/brew-cask
+brew tap caskroom/versions
 
-# brew cask install dropbox 2> /dev/null
-# brew cask install google-chrome 2> /dev/null
-# brew cask install iterm2 2> /dev/null
-# brew cask install the-unarchiver 2> /dev/null
-# brew cask install transmission 2> /dev/null
-# brew cask install virtualbox 2> /dev/null
-# brew cask install vlc 2> /dev/null
+pkgs=(
+1password
+alinof-timer
+adobe-photoshop-lightroom
+appcleaner
+busycal
+caffeine
+dropbox
+firefox
+google-drive
+google-earth
+google-chrome
+iterm2
+jettison
+mou
+skype
+sublime-text
+the-unarchiver
+totalspaces
+transmission
+virtualbox
+vlc
+yubikey-personalization-gui
+)
+
+for pkg in $pkgs ; do 
+    brew cask install $pkg 2> /dev/null
+done
+
 
 # Remove outdated versions from the cellar
 brew cleanup

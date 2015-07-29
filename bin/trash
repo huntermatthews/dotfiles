@@ -1,0 +1,16 @@
+#!/usr/bin/env python
+import os
+import sys
+if len(sys.argv) > 1:   
+    for arg in sys.argv[1:]:
+        if os.path.exists(arg):
+            os.system('osascript -e \'tell app "Finder" '
+                      + 'to move the POSIX file "'
+                      + os.path.abspath(arg) + '" to trash\'')
+        else:
+            print "Error:", os.path.abspath(arg), "does not exist"
+else:
+    print "usage: rem file(s)"
+    print "       move file(s) to Trash"
+
+## END OF LINE ##
