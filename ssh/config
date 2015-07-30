@@ -17,6 +17,10 @@ host desktop deskside grimeyes
 host grimeyes
     HostName grimeyes.huntermatthews.com
 
+host dev
+    HostName devvm1265.prn1.facebook.com
+
+
 #Host glacier-*.bigA.com *bastion*.bigA.com
 # We don't currently have a good way to keep track of all the host
 # keys in our large, dynamic fleet so don't bother

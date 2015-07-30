@@ -2,6 +2,7 @@
 #
 # This installs some of the common dependencies needed (or at least desired)
 # using Homebrew.
+set -o shwordsplit
 
 export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 
@@ -13,7 +14,8 @@ fi
 # Install brew itself
 if ! which brew >/dev/null ; then
     echo "installing brew"
-    ruby -e "$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)" | tee /tmp/brew-install.log
+    #ruby -e "$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)" | tee /tmp/brew-install.log
+    ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)" | tee /tmp/brew-install.log
 fi
 
 # Make sure we’re using the latest Homebrew and formulas
@@ -21,7 +23,6 @@ brew update
 brew upgrade
 
 pkgs=(
-"--cocoa --srgb emacs"
 tmux 
 tree
 figlet
@@ -31,6 +32,8 @@ for pkg in $pkgs ; do
     brew install $pkg
 done
 
+#FIXME: whats the right freaking way to do this with zsh
+brew install --with-cocoa --srgb emacs
 
 brew install caskroom/cask/brew-cask
 brew tap caskroom/versions
