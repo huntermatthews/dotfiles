@@ -44,29 +44,32 @@ alinof-timer
 adobe-photoshop-lightroom
 appcleaner
 busycal
-caffeine
-dropbox
-firefox
 google-drive
 google-earth
-google-chrome
 iterm2
 jettison
 mou
-skype
 sublime-text
 the-unarchiver
 totalspaces
 transmission
 virtualbox
 vlc
-yubikey-personalization-gui
 )
 
 for pkg in $pkgs ; do 
     brew cask install $pkg 2> /dev/null
 done
 
+# Packages that $work handles for me - so I need these at home...
+work_pkgs=(
+caffeine
+dropbox
+firefox               # not sure about this one 
+google-chrome         # not sure about this one 
+skype
+yubikey-personalization-gui
+)
 
 # Remove outdated versions from the cellar
 brew cleanup
