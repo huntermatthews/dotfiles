@@ -1,3 +1,4 @@
+(when (string= (getenv "NO_OUTSIDE_NET") "FALSE")
 
 ;; Pull from stable?
 (require 'package)
@@ -18,5 +19,7 @@
 (dolist (package package-list)
   (unless (package-installed-p package)
     (package-install package)))
+
+) ;; (when (string= (getenv "EMACS_DISABLE_ELPA") "FALSE")
 
 ;; END OF LINE ;;

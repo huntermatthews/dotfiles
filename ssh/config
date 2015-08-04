@@ -3,6 +3,11 @@
 # Personal Hacks
 #
 
+#Host *
+#  ControlMaster auto
+#  ControlPath ~/.ssh/masters/%r@%h:%p
+#  ControlPersist 10m
+
 Host irc
     HostName grimeyes.huntermatthews.com
     LocalForward 6030 irc.cuckoo.com:6667
@@ -18,7 +23,7 @@ host grimeyes
     HostName grimeyes.huntermatthews.com
 
 host dev
-    HostName devvm1265.prn1.facebook.com
+    HostName devvm1531.prn1.facebook.com
 
 
 #Host glacier-*.bigA.com *bastion*.bigA.com
