@@ -1,8 +1,5 @@
 #!/bin/zsh
 
-# disable-copyfile fixes incompat from osx (bsd) tar to gnu tar. <sigh>
-tar cvzf dotfiles.tgz --disable-copyfile --exclude .git .dotfiles 
-scp dotfiles.tgz dev: 
-ssh dev "rm -rf .dotfiles ; tar xvzf dotfiles.tgz"
+rsync -arv --exclude '.git*' ~/.dotfiles/ dev:.dotfiles/
 
 ## END OF LINE ##

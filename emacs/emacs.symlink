@@ -14,6 +14,7 @@
 (load-library "mypython.el")
 (load-library "changelog.el")
 (load-library "mypackages.el")
+(load-library "work.el")
 
 ;; Diretory to pull added themes from
 (add-to-list 'custom-theme-load-path "~/.dotfiles/emacs/themes/")
