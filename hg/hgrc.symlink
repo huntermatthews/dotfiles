@@ -1,0 +1,12 @@
+[ui]
+username = Hunter Matthews <thm@fb.com>
+
+[alias]
+# short log
+llog = log --limit 10
+
+# bookmark is too many letters
+bk = bookmark
+
+sl = smartlog --template "{shortest(node, 12)}  {author|user} {label(\"sl.diff\", phabdiff)}{if(phabdiff, \"  \")}{bookmarks % '{ifeq(bookmark, current, label(\"sl.curbook\", \"{bookmark}*\"))}'}{bookmarks % '{ifeq(bookmark, current, \"\", label(\"sl.book\",\"{bookmark} \"))}'}{if(bookmarks, if(remotebookmarks, \"\", \"\"))}{if(remotebookmarks, label(\"sl.rembook\", \"{remotebookmarks}\"))}{ifeq(branch, 'default', '', label(\"sl.branch\", \"{branch}  \"))}{label(\"evolution.troubles\", troubles)}\n{desc|firstline}\n\n"
+
