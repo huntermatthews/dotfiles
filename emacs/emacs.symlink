@@ -5,10 +5,14 @@
 
 (add-to-list 'load-path "~/.dotfiles/emacs/")
 
+;; beware shadowing - use M-x list-load-path-shadows
+; (require 'load-directory)
+; (load-directory "~/.emacs.d/my-lisp")    ; swtich?
+
 (load-library "basic-behavior.el")
 (load-library "colors.el")
 (load-library "frames.el")
-(load-library "diff.el")
+(load-library "diff.el")   ;;; FIXME -shadows an emacs file
 (load-library "backups.el")
 (load-library "programming.el")
 (load-library "mypython.el")
