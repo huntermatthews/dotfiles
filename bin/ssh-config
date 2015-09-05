@@ -1,0 +1,12 @@
+#! /bin/zsh
+
+# concatenate all the bits and pieces into one config file for ssh client.
+
+cat ~/.ssh/config.d/*.conf > ~/.ssh/newconfig
+cat ~/.ssh/config.d/*.host >> ~/.ssh/newconfig
+
+# OSX Sed requires a zero length arg after -i to replicate gnu sed.
+sed -i '' -e "/^ *#.*$/d" -e "/^ *$/d" ~/.ssh/newconfig
+
+
+## END OF LINE ##
