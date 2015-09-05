@@ -4,8 +4,8 @@
 alias printenv="/usr/bin/env  | sort"
 
 # I prefer the old sort order -capitals at the top, then everything else. Mac/BSD goes this. Fake it
-alias ll='LANG=C ls -lh'
-alias la='LANG=C ls -lah'
+alias ll='LANG=C ls -lhH'
+alias la='LANG=C ls -lahH'
 
 # Remove commnets and whitespace only /blank lines from input (to be used in a pipeline)
 alias nocomment="sed -e 's/#.*$//' -e '/^\s*$/d'"
