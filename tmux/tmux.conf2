@@ -1,0 +1,70 @@
+# Reset the option prefix to control-backslash
+# its safe (and available, lordy) in emacs bindings and after 10 years ingrained in my brain
+set-option -g prefix C-\ 
+unbind-key C-b 
+bind-key C-\ send-prefix 
+
+# 0 is too far away - lazy fingers.
+set -g base-index 1
+set-window-option -g pane-base-index 1
+
+# multiple iterms work
+setw -g aggressive-resize on
+
+# control instead of escape sequence
+set -s escape-time 0
+
+# Quickly switch to last window
+bind-key C-\ last-window
+
+# force a reload of the config file
+unbind r
+bind r source-file ~/.tmux.conf \; display-message "Config reloaded..."
+
+# see if we can get buffer scrolling to work, rather than frustration
+set -g mode-mouse on
+#set -ga terminal-overrides ',xterm-256color:smcup@:rmcup@'   # this didn't work in iterm2
+
+# Hate autotitle
+set-window-option -g automatic-rename off
+
+# explicitly disable mouse control 
+setw -g mode-mouse off 
+set -g mouse-select-pane off 
+set -g mouse-resize-pane off 
+set -g mouse-select-window off
+
+# ----------------------
+# Status Bar
+# -----------------------
+set-option -g status on                # turn the status bar on
+set -g status-utf8 on                  # set utf-8 for the status bar
+#set -g status-interval 5               # set update frequencey (default 15 seconds)
+set -g status-justify centre           # center window list for clarity
+# set-option -g status-position top    # position the status bar at top of screen
+
+# visual notification of activity in other windows
+setw -g monitor-activity on
+set -g visual-activity on
+
+# set color for status bar
+set-option -g status-bg colour235 #base02
+set-option -g status-fg yellow #yellow
+set-option -g status-attr dim 
+
+# set window list colors - red for active and cyan for inactive
+set-window-option -g window-status-fg brightblue #base0
+set-window-option -g window-status-bg colour236 
+set-window-option -g window-status-attr dim
+
+set-window-option -g window-status-current-fg brightred #orange
+set-window-option -g window-status-current-bg colour236 
+set-window-option -g window-status-current-attr bright
+
+set -g status-left-length 30
+set -g status-left "#[fg=blue][#S] "
+
+set -g status-right-length 60
+set -g status-right "#[fg=green]:: %l:%M %p %Z :: #(date -u | awk '{print $4,$5}'):"
+
+## END OF LINE ##

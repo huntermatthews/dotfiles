@@ -5,8 +5,8 @@
 cat ~/.ssh/config.d/*.conf > ~/.ssh/newconfig
 cat ~/.ssh/config.d/*.host >> ~/.ssh/newconfig
 
-# OSX Sed requires a zero length arg after -i to replicate gnu sed.
-sed -i '' -e "/^ *#.*$/d" -e "/^ *$/d" ~/.ssh/newconfig
+sed -i -e "/^ *#.*$/d" -e "/^ *$/d" ~/.ssh/newconfig
 
+mv -f ~/.ssh/newconfig ~/.ssh/config
 
 ## END OF LINE ##

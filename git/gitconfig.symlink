@@ -1,9 +1,10 @@
 #
-# Gitconfig 
+# Gitconfig
 #
 
 [user]
         name = Hunter Matthews
+        email = thm@fb.com
 
 [credential]
         helper = osxkeychain
@@ -15,6 +16,8 @@
         st = status
         count   = !git shortlog -sn
         dag = log --graph --format='format:%C(yellow)%h%C(reset) %C(blue)\"%an\" <%ae>%C(reset) %C(green)%cr%C(reset)%C(auto)%d%C(reset)%n%s' --date-order
+        diffi = diff --cached
+        br = branch
 
 [color]
         diff = auto
@@ -45,4 +48,3 @@
         #
         # Setting to git 2.0 default to surpress warning message
         default = simple
-

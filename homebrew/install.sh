@@ -4,12 +4,8 @@
 # using Homebrew.
 set -o shwordsplit
 
-export HOMEBREW_CASK_OPTS="--appdir=/Applications"
-
 # Brew/homebrew is a mac only thing - don't run this elsewhere
-if [[ "$(uname -s)" != "Darwin" ]] ; then
-    exit 1
-fi
+is_mac || return
 
 # Install brew itself
 if ! which brew >/dev/null ; then
