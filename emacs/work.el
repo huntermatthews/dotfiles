@@ -4,6 +4,7 @@
 
 (add-hook 'python-mode-hook
           (lambda ()
+            (setq-default highlight-80+-columns 78)
             (highlight-80+-mode t)
             ))
 
