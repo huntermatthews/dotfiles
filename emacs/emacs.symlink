@@ -1,46 +1,23 @@
 ; -*- mode: emacs-lisp -*-
 
-;; (dolist (module  (mapcar (lambda (file-name)
-;;                            (replace-regexp-in-string "\.el$" "" file-name))
-;;                   (directory-files "/Users/gkeramidas/.emacs.d/lisp" nil ".*\.el")))
-;;   (insert (format "loading library %s\n" module)))
+;; This file should ONLY contain path munging stuff for the emacs config itself.
+;; Adding load paths, changing whatever, loading elisp files.
 
-;; => C-x C-e
-
-;; loading library ace-jump-mode
-;; loading library markdown
-;; loading library rcirc-gkeramidas
-;; loading library rcirc-notify
-
-;; nil
-
-;; Guard to ensure that TRAMP is available
-;; (if (locate-library "tramp")
-;;     (eval-after-load "tramp"
-
-;;; This file should ONLY contain path munging stuff for the emacs config itself.
-;;; Adding load paths, changing whatever, loading elisp files.
-
-(add-to-list 'load-path "~/.dotfiles/emacs/")
+(defun my-load-all-in-directory (dir)
+  "`load' all elisp libraries in directory DIR which are not already loaded."
+  (interactive "D")
+  (let ((libraries-loaded (mapcar #'file-name-sans-extension
+                                  (delq nil (mapcar #'car load-history)))))
+    (dolist (file (directory-files dir t ".+\\.elc?$"))
+      (let ((library (file-name-sans-extension file)))
+        (unless (member library libraries-loaded)
+          (load library nil t)
+          (push library libraries-loaded))))))
 
 ;; beware shadowing - use M-x list-load-path-shadows
-; (require 'load-directory)
-; (load-directory "~/.emacs.d/my-lisp")    ; swtich?
 
-(load-library "basic-behavior.el")
-(load-library "colors.el")
-(load-library "frames.el")
-(load-library "mydiff.el")
-(load-library "backups.el")
-(load-library "programming.el")
-(load-library "mypython.el")
-(load-library "changelog.el")
-(load-library "mypackages.el")
-(load-library "myserver.el")
-(load-library "highlight-80+.el")
-(load-library "work.el")
-(load-library "myyaml.el")
-(load-library "myzsh.el")
+;; Directory to pull all my personal customizations from
+(my-load-all-in-directory "~/.dotfiles/emacs/")
 
 ;; Diretory to pull added themes from
 (add-to-list 'custom-theme-load-path "~/.dotfiles/emacs/themes/")
