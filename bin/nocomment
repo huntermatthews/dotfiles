@@ -1,0 +1,4 @@
+#!/bin/sh
+sed -e '/^[ \t]*#/d' -e '/^[ \t]*$/d' $*
+
+# END OF LINE #
