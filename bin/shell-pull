@@ -1,0 +1,11 @@
+#! /bin/zsh
+
+branch_name=$(git symbolic-ref --short HEAD)
+if [ $? != 0 ] ; then
+    echo "not in a git repo or cannot determine branch"
+    exit 1
+fi
+
+rsync -arv shell:${branch_name}/ ./
+
+# END OF LINE #

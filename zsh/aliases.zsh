@@ -1,3 +1,5 @@
+# Prevents aliases on the command line from being internally substituted before completion is attempted. The effect is to make the alias a distinct command for completion purposes.
+setopt complete_aliases
 
 # printenv does something stupid in some places - I forgot what or where
 # Why is the output of neither printenv or env sorted by default?
@@ -23,6 +25,6 @@ alias fuck='sudo $(fc -ln -1)'
 alias urldecode='python -c "import sys, urllib as ul; print ul.unquote_plus(sys.argv[1])"'
 alias urlencode='python -c "import sys, urllib as ul; print ul.quote_plus(sys.argv[1])"'
 
+alias rfcdate='date +%FT%T%z'
 
 ## END OF LINE ##
-alias rfcdate='date +%FT%T%z'

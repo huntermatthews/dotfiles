@@ -8,7 +8,7 @@ if [ "$DISABLE_LS_COLORS" != "true" ]
 then
   # Find the option for using colors in ls, depending on the version: Linux or BSD
   if [[ "$(uname -s)" == "NetBSD" ]]; then
-    # On NetBSD, test if "gls" (GNU ls) is installed (this one supports colors); 
+    # On NetBSD, test if "gls" (GNU ls) is installed (this one supports colors);
     # otherwise, leave ls as is, because NetBSD's ls doesn't support -G
     gls --color -d . &>/dev/null 2>&1 && alias ls='gls --color=tty'
   elif [[ "$(uname -s)" == "OpenBSD" ]]; then
@@ -20,10 +20,11 @@ then
   fi
 fi
 
-#setopt no_beep
+setopt no_beep
+setopt nolistbeep
 setopt auto_cd
 setopt multios
-setopt cdablevarS
+setopt cdablevars
 
 if [[ x$WINDOW != x ]]
 then
@@ -43,4 +44,3 @@ ZSH_THEME_GIT_PROMPT_CLEAN=""               # Text to display if the branch is c
 
 # Setup the prompt with pretty colors
 setopt prompt_subst
-

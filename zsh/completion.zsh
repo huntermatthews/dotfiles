@@ -6,6 +6,9 @@ setopt auto_menu         # show completion menu on succesive tab press
 setopt complete_in_word
 setopt always_to_end
 
+setopt equals       # Expand =cmd to /path/to/cmd
+
+
 WORDCHARS=''
 
 zmodload -i zsh/complist
