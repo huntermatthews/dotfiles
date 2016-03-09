@@ -7,9 +7,14 @@
 setopt promptsp
 
 export ZSH_THEME_TERM_TITLE_IDLE="%n@$DISPLAY_HOSTNAME: %~"
+if is_prod ; then
+    PROMPT_HOST_COLOR="$FG[208]"   # Nice noticable orange
+else
+    PROMPT_HOST_COLOR="$fg[white]"
+fi
 
 PROMPT=$'
-%{$fg[blue]%}%/%{$reset_color%} $(git_prompt_info)%{$fg[green]%}$(pyenv_prompt_info)%{$reset_color%}%{$fg[white]%}[%n@$DISPLAY_HOSTNAME]%{$reset_color%}
+%{$fg[blue]%}%/%{$reset_color%} $(git_prompt_info)%{$fg[green]%}$(pyenv_prompt_info)%{$reset_color%}%{$PROMPT_HOST_COLOR%}[%n@$DISPLAY_HOSTNAME]%{$reset_color%}
 %{$fg_bold[black]%}>%{$reset_color%} '
 
 PROMPT2="%{$fg_bold[black]%}%_> %{$reset_color%}"

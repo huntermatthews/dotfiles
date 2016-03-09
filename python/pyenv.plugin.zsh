@@ -21,12 +21,12 @@ for pyenvdir in "${pyenvdirs[@]}" ; do
         eval "$(pyenv virtualenv-init - zsh)"
 
         function pyenv_prompt_info() {
-            echo "[py:$(pyenv version-name)] "
+            echo "[py:$(pyenv version-name)]"
         }
     fi
 done
 unset pyenvdir
 
 if [ $FOUND_PYENV -eq 0 ] ; then
-    function pyenv_prompt_info() { echo "system: $(python -V 2>&1 | cut -f 2 -d ' ')" }
+    function pyenv_prompt_info() { echo "python: $(python -V 2>&1 | cut -f 2 -d ' ')" }
 fi
