@@ -4,10 +4,10 @@
 
 [user]
         name = Hunter Matthews
-        email = hunter@pobox.com
+        email = hunter.matthews@nih.gov
 
-[credential]
-        helper = osxkeychain
+#[credential]
+#        helper = osxkeychain
 
 [alias]
         # Remember you don't need aliases to ~/bin or ~/.dotfiles/git here - those are found via PATH

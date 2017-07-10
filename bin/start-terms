@@ -1,0 +1,2 @@
+#! /bin/bash
+NO_AT_BRIDGE=1 gnome-terminal  --geometry=90x53 --window --window --window --window
