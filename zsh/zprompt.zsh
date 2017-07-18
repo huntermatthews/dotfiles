@@ -14,14 +14,21 @@ else
 fi
 
 PROMPT=$'
-%{$fg[blue]%}%/%{$reset_color%} $(git_prompt_info)%{$fg[green]%}$(pyenv_prompt_info)%{$reset_color%}%{$PROMPT_HOST_COLOR%}[%n@$DISPLAY_HOSTNAME]%{$reset_color%}
+%{$fg[blue]%}%/%{$reset_color%} $(git_prompt_info)$(svn_prompt_info)%{$fg[green]%}$(pyenv_prompt_info)%{$reset_color%}%{$PROMPT_HOST_COLOR%}[%n@$DISPLAY_HOSTNAME]%{$reset_color%}
 %{$fg_bold[black]%}>%{$reset_color%} '
 
 PROMPT2="%{$fg_bold[black]%}%_> %{$reset_color%}"
 
-GIT_CB="git::"
 ZSH_THEME_SCM_PROMPT_PREFIX="%{$fg[green]%}["
+
+GIT_CB="git::"
 ZSH_THEME_GIT_PROMPT_PREFIX=$ZSH_THEME_SCM_PROMPT_PREFIX$GIT_CB
 ZSH_THEME_GIT_PROMPT_SUFFIX="]%{$reset_color%} "
 ZSH_THEME_GIT_PROMPT_DIRTY=" %{$fg[red]%}*%{$fg[green]%}"
 ZSH_THEME_GIT_PROMPT_CLEAN=""
+
+SVN_CB="svn::"
+ZSH_THEME_SVN_PROMPT_PREFIX=$ZSH_THEME_SCM_PROMPT_PREFIX$SVN_CB
+ZSH_THEME_SVN_PROMPT_SUFFIX="]%{$reset_color%} "
+ZSH_THEME_SVN_PROMPT_DIRTY=" %{$fg[red]%}*%{$fg[green]%}"
+ZSH_THEME_SVN_PROMPT_CLEAN=""
