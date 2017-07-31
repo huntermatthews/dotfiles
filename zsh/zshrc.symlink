@@ -6,7 +6,6 @@ dotfiles_debug running .zshrc
 # all of our zsh files
 typeset -U config_files
 config_files=($DOTFILES/**/*.zsh)
-echo $config_files
 
 # Remember that all the former "path" files are now handled in zshenv  and friends
 
