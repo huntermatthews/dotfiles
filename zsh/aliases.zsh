@@ -26,5 +26,5 @@ alias urldecode='python -c "import sys, urllib as ul; print ul.unquote_plus(sys.
 alias urlencode='python -c "import sys, urllib as ul; print ul.quote_plus(sys.argv[1])"'
 
 alias rfcdate='date +%FT%T%z'
-
+alias diff='diff -u'
 ## END OF LINE ##

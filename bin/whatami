@@ -1,5 +1,0 @@
-#! /bin/bash
-
-grep -e hw_id -e server_type_id -e asset_it /etc/hardware.stanza | tr -d ' \t'
-
-## END OF LINE ##

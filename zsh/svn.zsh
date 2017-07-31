@@ -89,3 +89,11 @@ svn_dirty_choose_pwd () {
     fi
   fi
 }
+
+# Moved over from zprompt.zsh
+SVN_CB="svn::"
+ZSH_THEME_SVN_PROMPT_PREFIX="%{$fg[green]%}[${SVN_CB}"
+ZSH_THEME_SVN_PROMPT_SUFFIX="]%{$reset_color%} "
+ZSH_THEME_SVN_PROMPT_DIRTY=" %{$fg[red]%}*%{$fg[green]%}"
+ZSH_THEME_SVN_PROMPT_CLEAN=""
+

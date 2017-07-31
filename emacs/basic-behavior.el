@@ -39,4 +39,7 @@
 (when (fboundp 'scroll-bar-mode)
   (scroll-bar-mode -1))
 
+;; emacs makes read only HARD - no idea why
+(global-set-key [f12] (lambda () (interactive) (setq buffer-read-only t)))
+
 ;; END OF LINE ;;

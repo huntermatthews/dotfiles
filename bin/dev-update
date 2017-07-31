@@ -1,5 +1,0 @@
-#!/bin/zsh
-
-rsync -arv --exclude '.git*' ~/.dotfiles/ dev:.dotfiles/
-
-## END OF LINE ##

@@ -23,9 +23,6 @@ fi
 
 zstyle ':completion:*' list-colors ''
 
-# should this be in keybindings?
-bindkey -M menuselect '^o' accept-and-infer-next-history
-
 zstyle ':completion:*:*:*:*:*' menu select
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#) ([0-9a-z-]#)*=01;34=0=01'
 zstyle ':completion:*:*:*:*:processes' command "ps -u `whoami` -o pid,user,comm -w -w"
@@ -52,12 +49,3 @@ zstyle ':completion:*:*:*:users' ignored-patterns \
 # ... unless we really want to.
 zstyle '*' single-ignored show
 
-if [ "x$COMPLETION_WAITING_DOTS" = "xtrue" ]; then
-  expand-or-complete-with-dots() {
-    echo -n "\e[31m......\e[0m"
-    zle expand-or-complete
-    zle redisplay
-  }
-  zle -N expand-or-complete-with-dots
-  bindkey "^I" expand-or-complete-with-dots
-fi

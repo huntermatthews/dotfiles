@@ -6,6 +6,9 @@
 # workaround for this.
 setopt promptsp
 
+# Setup the prompt with pretty colors
+setopt prompt_subst
+
 export ZSH_THEME_TERM_TITLE_IDLE="%n@$DISPLAY_HOSTNAME: %~"
 if is_prod ; then
     PROMPT_HOST_COLOR="$FG[208]"   # Nice noticable orange
@@ -21,14 +24,3 @@ PROMPT2="%{$fg_bold[black]%}%_> %{$reset_color%}"
 
 ZSH_THEME_SCM_PROMPT_PREFIX="%{$fg[green]%}["
 
-GIT_CB="git::"
-ZSH_THEME_GIT_PROMPT_PREFIX=$ZSH_THEME_SCM_PROMPT_PREFIX$GIT_CB
-ZSH_THEME_GIT_PROMPT_SUFFIX="]%{$reset_color%} "
-ZSH_THEME_GIT_PROMPT_DIRTY=" %{$fg[red]%}*%{$fg[green]%}"
-ZSH_THEME_GIT_PROMPT_CLEAN=""
-
-SVN_CB="svn::"
-ZSH_THEME_SVN_PROMPT_PREFIX=$ZSH_THEME_SCM_PROMPT_PREFIX$SVN_CB
-ZSH_THEME_SVN_PROMPT_SUFFIX="]%{$reset_color%} "
-ZSH_THEME_SVN_PROMPT_DIRTY=" %{$fg[red]%}*%{$fg[green]%}"
-ZSH_THEME_SVN_PROMPT_CLEAN=""
