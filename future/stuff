@@ -1,7 +1,0 @@
-
-$ cat /var/log/kern.log | grep 'I/O error' | egrep -o ', dev [^ ]+,' | sort | uniq -c | sort -nk 1,1
-
-bash-4.1$ hex=1a1b1c1d ; echo
-$((16#${hex:0:2})).$((16#${hex:2:2})).$((16#${hex:4:2})).$((16#${hex:6:2}))
-26.27.28.29
-bash-4.1$

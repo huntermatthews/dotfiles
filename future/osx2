@@ -1,2 +1,0 @@
-sudo defaults write com.apple.usbd NoiPadNotifications \
-  -bool YES ; sudo killall usbd
