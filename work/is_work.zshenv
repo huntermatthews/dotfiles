@@ -1,7 +1,7 @@
 # -*- mode: sh -*-
 
 
-is_work() { [[ ${HOSTNAME%nih.gov} != ${HOSTNAME} ]] }  # yes, NOT equal
+is_work() { [[ ${HOSTNAME} == *'nih.gov' ]] } 
 
 if ! is_work ; then
    return
