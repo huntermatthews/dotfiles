@@ -1,3 +1,5 @@
+host hermes.nhgri.nih.gov hermes 156.40.242.17
+  port 2222 
 
 #
 # Personal Hacks
