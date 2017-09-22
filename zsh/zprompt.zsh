@@ -17,7 +17,7 @@ else
 fi
 
 PROMPT=$'
-%{$fg[blue]%}%/%{$reset_color%} $(git_prompt_info)$(svn_prompt_info)%{$fg[green]%}$(pyenv_prompt_info)%{$reset_color%}%{$PROMPT_HOST_COLOR%}[%n@$DISPLAY_HOSTNAME]%{$reset_color%}
+%{$fg[blue]%}${PWD/#$HOME/~}%{$reset_color%} $(git_prompt_info)$(svn_prompt_info)%{$fg[green]%}$(pyenv_prompt_info)%{$reset_color%}%{$PROMPT_HOST_COLOR%}[%n@$DISPLAY_HOSTNAME]%{$reset_color%}
 %{$fg_bold[black]%}>%{$reset_color%} '
 
 PROMPT2="%{$fg_bold[black]%}%_> %{$reset_color%}"

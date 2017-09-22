@@ -1,7 +1,7 @@
 #! /bin/zsh
 
-project() {
-    export PROJECT
+prj() {
+    export PROJECT PROJECT_DIR
 
     case "$1" in
         go)
@@ -9,11 +9,12 @@ project() {
             ;;
         reset)
             source ~/.project
-            project set $PROJECT
+            prj set $PROJECT
+            prj go 
             ;;
         set)
             PROJECT="$2"
-            PROJECT_DIR=~/rpmbuild/${PROJECT}
+            PROJECT_DIR=~/projects/${PROJECT}
             echo "PROJECT=\"${PROJECT}\"" > ~/.project
             ;;
         view)
@@ -28,25 +29,37 @@ project() {
 
 backend() {
     case "$1" in
+        build)
+            shift 
+            case "$1" in
+                *.spec)
+#                    mock --no-clean --resultdir $PROJECT_DIR/MOCK \
+#                        --buildsrpm --sources SOURCES --spec $@
+                    mock --no-clean --resultdir $PROJECT_DIR/MOCK \
+                        --buildsrpm --sources $(dirname $1) --spec $@ >/tmp/mocklog
+                    if [[ $? == 0 ]] ; then
+                        srcrpm=$(grep Wrote /tmp/mocklog | sed -e 's|^.*/||g')
+                        mock --no-clean --resultdir $PROJECT_DIR/MOCK \
+                            $PROJECT_DIR/MOCK/$srcrpm
+                        rm -f /tmp/worklog
+                    fi
+                    if [[ $? == 0 ]]; then
+                        echo 'run rpmlint now?'
+                    fi
+                    ;;
+                *.src.rpm)
+                    mock --no-clean --resultdir $PROJECT_DIR/MOCK $@
+                    ;;
+                *)
+                    echo "ERROR: unrecognized project request. Please shoot gerbil"
+                    exit 1
+                    ;;
+            esac
+            ;;
         debug)
             for x in "$@" ; do
                 echo $x
             done
-            ;;
-        build)
-            case "$2" in
-                *.spec)
-                    mock --no-clean --resultdir $PROJECT_DIR/mock-results \
-                        --buildsrpm --sources SOURCES --spec $2
-                    ;;
-                *.src.rpm)
-                    mock --no-clean --resultdir $PROJECT_DIR/mock-results $2
-                    ;;
-                *)
-                    echo "ERROR: unrecognized build request. Please shoot gerbil"
-                    exit 1
-                    ;;
-            esac
             ;;
         destroy)
             rm -rf ${PROJECT_DIR}
@@ -54,8 +67,19 @@ backend() {
         help)
             echo "should print help here"
             ;;
+        ls)
+            case "$2" in 
+                '')
+                    ls -1 ~/projects
+                    ;;
+                *)
+                    cd ~/projects
+                    ls -1d $2/* | grep -v -e BUILD -e RPMS -e SOURCES -e MOCK
+                    ;;
+            esac
+            ;;
         new)
-            mkdir -p ~/rpmbuild/${PROJECT}/{BUILD,BUILDROOT,mock-results,RPMS,SOURCES,SPECS,SRPMS}
+            mkdir -p ~/projects/${PROJECT}/{BUILD,RPMS,SOURCES,MOCK}
             ;;
         usage)
             echo "should print usage here"
@@ -73,7 +97,7 @@ if [[ $1 == 'backend' ]]; then
     backend "$@"
 else
     if [[ -z $PROJECT && -f ~/.project ]]; then
-        project reset
+        prj reset
     fi
     unfunction backend
 fi

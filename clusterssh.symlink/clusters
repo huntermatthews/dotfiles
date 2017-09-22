@@ -1,0 +1,14 @@
+b12-p blueplate delhi flume jeeper mumbai sybil
+#b12-v aj bioweboirprod01 biowebprod01 biowebprod03 cathedral cftest colliseum cplbcode01 enki2 fusion4 fusionprime fusionprime-dev heportal heportal2 hermes itbweb itbwebmw01 ito koehly-collab kona nhgriftp niscweb phenodb phenotips phenotips-collab rhea sbrblood udplims-collab valhalla webftp
+
+# no udplims-collab
+b12-v aj bioweboirprod01 biowebprod01 biowebprod03 cathedral cftest colliseum cplbcode01 enki2 fusion4 fusionprime fusionprime-dev heportal heportal2 hermes itbweb itbwebmw01 ito koehly-collab kona nhgriftp niscweb phenodb phenotips phenotips-collab rhea sbrblood valhalla webftp
+
+# dmz
+dmz bioweboirprod01 biowebprod01 biowebprod03 fusionprime fusionprime-dev heportal2 hermes itbwebmw01 koehly-collab kona nhgriftp niscweb phenotips-collab sbrblood udplims-collab udplims-collab-dev valhalla webftp
+
+# tdc
+tdc arabica bach biowebdev01 biowebdev02 biowebdev03 bioweboirdev01 bioweboirstage01 bioweboirstage02 bioweboirstage03 cfsecure itbossec01 itbrepo01 itbsecdev01 itbwebmw02 itbwebtdc mocha mysqlvm owlsim phenotips-dev redcap01 redmine sumatra udplims udplims-dev udplims-test udplims-ora voyeur bcsnp colcompute01 gibbcompute01 gibbcompute02 grits homer nwg-tdc peeper plato sawmill sleeper tto1
+
+# patch
+patch bioweboirprod01 bioweboirprod02 bioweboirprod03 biowebprod01 biowebprod02 biowebprod03 biowebprod04 fusionprime heportal2 hermes itbwebmw01 koehly-collab kona nhgriftp niscweb phenotips-collab sbrblood udplims-collab udplims-collab-dev udpweb

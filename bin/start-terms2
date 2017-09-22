@@ -1,0 +1,2 @@
+terminator --geometry=1850x1090+30+5 --layout=split 2>/dev/null &
+terminator --geometry=1850x1090+30+5 --layout=split 2>/dev/null &

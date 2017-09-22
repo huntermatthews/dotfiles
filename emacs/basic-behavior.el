@@ -39,7 +39,7 @@
 (when (fboundp 'scroll-bar-mode)
   (scroll-bar-mode -1))
 
-;; emacs makes read only HARD - no idea why
-(global-set-key [f12] (lambda () (interactive) (setq buffer-read-only t)))
+;; I want fill paragraph to get closer to 80 (default was 70)
+(setq-default fill-column 79)
 
 ;; END OF LINE ;;
