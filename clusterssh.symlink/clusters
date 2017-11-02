@@ -1,14 +1,42 @@
-b12-p blueplate delhi flume jeeper mumbai sybil
-#b12-v aj bioweboirprod01 biowebprod01 biowebprod03 cathedral cftest colliseum cplbcode01 enki2 fusion4 fusionprime fusionprime-dev heportal heportal2 hermes itbweb itbwebmw01 ito koehly-collab kona nhgriftp niscweb phenodb phenotips phenotips-collab rhea sbrblood udplims-collab valhalla webftp
+b12-phys-dmz-web 
 
-# no udplims-collab
-b12-v aj bioweboirprod01 biowebprod01 biowebprod03 cathedral cftest colliseum cplbcode01 enki2 fusion4 fusionprime fusionprime-dev heportal heportal2 hermes itbweb itbwebmw01 ito koehly-collab kona nhgriftp niscweb phenodb phenotips phenotips-collab rhea sbrblood valhalla webftp
+b12-vm-dmz-web koehly-collab bioweboirprod03 biowebprod02 kona bioweboirprod02 biowebprod01 bioweboirprod01 biowebprod03 phenotips-collab heportal2 itbwebmw01 udplims-collab-dev udplims-collab sbrblood niscweb fusionprime biowebprod04 udpweb 
 
-# dmz
-dmz bioweboirprod01 biowebprod01 biowebprod03 fusionprime fusionprime-dev heportal2 hermes itbwebmw01 koehly-collab kona nhgriftp niscweb phenotips-collab sbrblood udplims-collab udplims-collab-dev valhalla webftp
+b12-vm-dmz-notweb hermes nhgriftp 
 
-# tdc
-tdc arabica bach biowebdev01 biowebdev02 biowebdev03 bioweboirdev01 bioweboirstage01 bioweboirstage02 bioweboirstage03 cfsecure itbossec01 itbrepo01 itbsecdev01 itbwebmw02 itbwebtdc mocha mysqlvm owlsim phenotips-dev redcap01 redmine sumatra udplims udplims-dev udplims-test udplims-ora voyeur bcsnp colcompute01 gibbcompute01 gibbcompute02 grits homer nwg-tdc peeper plato sawmill sleeper tto1
+b12-phys-dmz-notweb 
 
-# patch
-patch bioweboirprod01 bioweboirprod02 bioweboirprod03 biowebprod01 biowebprod02 biowebprod03 biowebprod04 fusionprime heportal2 hermes itbwebmw01 koehly-collab kona nhgriftp niscweb phenotips-collab sbrblood udplims-collab udplims-collab-dev udpweb
+b12-vm-notdmz ostwebdev01 biowebdev02 bioweboirdev01 biowebdev06 bioweboirstage02 bioweboirstage01 itbnfstest01 ito dgsciweb01 cplbcode01 sybil itbsecdev01 phenotips nhgridbb12dev01 biowebprod05 biowebdev01 itbsalt01 voyeur nhgridbb12prod01 udpweb01 biowebdev04 rhea fusion4 redmine itbarch01 heportal bioweboirstage03 cartagenia-connector itbossec01 itbsaltdev01 biowebdev03 biowebdev07 itbmonb12 dirwebopalprod01 phenotips-dev owlsim colliseum niscsmlimsdev01 cplbwebdev01 ttoweb01 itbweb 
+
+b12-phys-notdmz flume jeeper blueplate 
+
+tdc-vm udplims itbwebtdc niscwebprod01 udplims-ora itbcylancedev01 mocha itbwebmw02 itbrepo01 itbmontdc nhgridbtdcdev01 elnwebprod01 udplims-dev itbmondev01 arabica udplims-test cfsecure itbesetdev01 biowebprod06 
+
+tdc-phys sleeper sawmill peeper itbnwsn01 colcompute01 homer grits plato 
+
+tdca-phys nextgenlims itbmontdca nextgenlimsdev itbnetgwtdca 
+
+bal-phys balnwsn01 
+
+
+## Lumped together groups
+
+tdc tdc-vm tdc-phys
+
+tdca tdca-phys
+
+vm tdc-vm b12-vm b12-vm-notdmz b12-vm-dmz-web b12-vm-dmz-notweb
+
+phys tdc-phys b12-phys-notdmz b12-phys-dmz-web b12-phys-dmz-notweb bal-phys
+
+dmz b12-vm-dmz-web b12-phys-dmz-web b12-vm-dmz-notweb b12-phys-dmz-notweb
+
+dmz-web b12-vm-dmz-web b12-phys-dmz-web
+
+dmz-notweb b12-vm-dmz-notweb b12-phys-dmz-notweb
+
+b12 b12-vm-dmz-web b12-phys-dmz-web b12-vm-dmz-notweb b12-phys-dmz-notweb b12-vm-notdmz b12-phys-notdmz
+
+bal bal-phys
+
+all phys vm

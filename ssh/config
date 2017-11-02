@@ -1,3 +1,11 @@
+Host *
+  UseKeychain yes
+  AddKeysToAgent yes
+  IdentityFile ~/.ssh/id_hostlogin
+  IdentityFile ~/.ssh/id_workgithub
+  ForwardAgent yes
+  ForwardX11 yes
+
 host hermes.nhgri.nih.gov hermes 156.40.242.17
   port 2222 
 
