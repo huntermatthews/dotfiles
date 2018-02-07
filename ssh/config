@@ -3,6 +3,8 @@ Host *
   AddKeysToAgent yes
   IdentityFile ~/.ssh/id_hostlogin
   IdentityFile ~/.ssh/id_workgithub
+
+Host warehouse13
   ForwardAgent yes
   ForwardX11 yes
 
