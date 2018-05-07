@@ -5,8 +5,13 @@ Host *
   IdentityFile ~/.ssh/id_workgithub
 
 Host warehouse13
+  HostName 192.168.56.101
   ForwardAgent yes
   ForwardX11 yes
+
+Host bb69
+  HostName 192.168.56.101
+
 
 host hermes.nhgri.nih.gov hermes 156.40.242.17
   port 2222 
@@ -33,9 +38,6 @@ host desktop deskside grimeyes
 
 host grimeyes
     HostName grimeyes.huntermatthews.com
-
-host dev
-    HostName devvm1531.prn1.facebook.com
 
 
 #Host glacier-*.bigA.com *bastion*.bigA.com

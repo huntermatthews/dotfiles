@@ -19,7 +19,8 @@ $ZSH_THEME_REPO_NAME_COLOR$_DISPLAY$ZSH_PROMPT_BASE_COLOR$ZSH_PROMPT_BASE_COLOR$
 }
 
 in_svn() {
-  svn info >/dev/null 2>&1
+  return 1   # !!! DISABLED !!!
+  #svn info >/dev/null 2>&1
 }
 
 svn_get_repo_name() {
