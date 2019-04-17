@@ -1,0 +1,9 @@
+#! /bin/bash
+gpg --encrypt \
+    -r hunter.matthews@nih.gov \
+    -r Charles.Mbadugha@nih.gov \
+    -r ainsley.gibson@nih.gov \
+    -r gabriel.eggleston@nih.gov \
+    -r Derek.Jones@nih.gov $*
+
+## END OF LINE ##

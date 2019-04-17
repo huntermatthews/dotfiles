@@ -1,6 +1,5 @@
 # -*- mode: sh -*-
 
-
 is_work() { [[ ${HOSTNAME} == *'nih.gov' ]] } 
 
 if ! is_work ; then

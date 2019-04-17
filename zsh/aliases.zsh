@@ -27,4 +27,7 @@ alias urlencode='python -c "import sys, urllib as ul; print ul.quote_plus(sys.ar
 
 alias rfcdate='date +%FT%T%z'
 alias diff='diff -u'
+
+alias tsize='echo $LINES x $COLUMNS'
+
 ## END OF LINE ##

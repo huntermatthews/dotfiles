@@ -1,6 +1,6 @@
 #! /bin/bash
 
-DEFAULT_KEY=fb_id_rsa.pub
+DEFAULT_KEY=id_hostlogin.pub
 
 
 usage() {
@@ -19,6 +19,7 @@ if [ $1 = "-h" -o $1 = "--help" ] ; then
     exit 0 
 fi
 
+# FIXME: check that file exists.
 if [ $1 = "-k" -o $1 = "--key" ] ; then
    KEY=$2
    shift 2
@@ -27,7 +28,8 @@ else
 fi
 
 for host in $* ; do 
-    cat ~/.ssh/$KEY | ssh $host 'mkdir -p ~/.ssh ; chmod go-rwx .ssh ; cat >> ~/.ssh/authorized_keys'
+    cat ~/.ssh/$KEY | ssh $host 'mkdir -p ~/.ssh ; cat >> ~/.ssh/authorized_keys ; chmod -R go-rwx .ssh '
+    cat ~/bin/subl-remote | ssh $host 'mkdir -p ~/bin ; cat >> ~/bin/subl ; chmod u+x ~/bin/subl '
 done
 
 ## END OF LINE ##

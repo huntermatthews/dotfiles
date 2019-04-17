@@ -3,8 +3,8 @@
 #
 
 [user]
-        name = Hunter Matthews
-        email = hunter.matthews@nih.gov
+	name = Hunter Matthews
+	email = hunter.matthews@nih.gov
 
 #[credential]
 #        helper = osxkeychain
@@ -27,7 +27,7 @@
 
 [core]
         excludesfile = ~/.gitignore
-        editor = e
+        editor = subl
         pager = less -FMRiX
 
 [apply]

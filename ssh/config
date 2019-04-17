@@ -3,15 +3,10 @@ Host *
   AddKeysToAgent yes
   IdentityFile ~/.ssh/id_hostlogin
   IdentityFile ~/.ssh/id_workgithub
-
-Host warehouse13
-  HostName 192.168.56.101
+  # subl hack
+  RemoteForward 58962 127.0.0.1:52698
+  LogLevel=ERROR
   ForwardAgent yes
-  ForwardX11 yes
-
-Host bb69
-  HostName 192.168.56.101
-
 
 host hermes.nhgri.nih.gov hermes 156.40.242.17
   port 2222 

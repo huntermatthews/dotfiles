@@ -1,0 +1,82 @@
+#! /bin/bash
+
+# work in progress - proof of concept
+
+# You have GOT to be kidding me....
+get_address() {
+    if [[ $(uname) = 'Darwin' ]] ; then
+        grep -w $1 /etc/hosts | cut -f1 -d' '
+    else
+        getent hosts $1 | cut -f1 -d' '
+    fi
+}
+
+if [[ $# -ne 1 ]]; then 
+    echo "ERROR: you must provide the ip/name of the BMC to connect to"
+    exit 1
+fi
+
+# We don't uses actual names at the moment because there is no DNS...
+name=$1
+
+# This is a gross mac-ism. Getent doesn't exist (really)
+address=$(get_address $name)
+
+if [[ -z $address ]]; then
+    echo "ERROR: could not resolve '$name' to a mgmt network IP"
+    exit 1
+fi
+
+# HACK: This is terrible, but about as good as it gets in shell
+BASTION=""
+case $address in
+    (10.7.0.*)              
+        BASTION=itbbastiontdca01 
+        ;;
+    (10.136.0.*|10.136.1.*) 
+        BASTION=itbbastiontdc01
+        ;;
+    (10.136.28.*)           
+        BASTION=itbbastionb1201
+        ;;
+    (10.136.35.*)           
+        BASTION=itbbastionbay01  
+        ;;
+    (*) 
+        echo "ERROR: our crude network matching code failed on '$address'"
+        exit 1
+        ;;
+esac
+
+if [[ -z $BASTION ]] ; then
+    echo "ERROR: Could not determine a bastion host for '$address'"
+    exit 1
+fi
+
+# Look for and kill any previous port forwarding...
+# Grep - was originally -v grep (avoid the grep itself) but jmacs /sublime might be running
+# That sed in the count - thats to remove the "blank" line if there are NO hits from the listing
+
+# listing=$(ps -ef | grep 'bmcconsole=true' | grep -e ssh)
+# count=$(sed '/^\s*$/d' <<< $listing | wc -l )
+# if [[ $count -eq 1 ]]; then 
+#     # find its PID and kill it
+#     pidof=$(cut -f2 -d' ' <<< $listing)
+#     kill $pidof
+# fi
+pkill -x -f '^ssh.*bmcconsole=true$'
+
+# Setup our port forwarding
+#ssh -N itbnetgwtdc -L 1443:${ip}:443 -L 5900:${ip}:5900  bmcconsole=true &
+ssh -N $BASTION -L 1443:${address}:443 -L 5900:${address}:5900  bmcconsole=true &
+
+# This is clearly mac specific -- here's a nickel kid - get a real computer.
+if [[ $(uname) = 'Darwin' ]] ; then
+    open -n -W https://localhost:1443
+else
+    xdg-open https://localhost:1443
+fi
+
+## END OF LINE ##
+
+

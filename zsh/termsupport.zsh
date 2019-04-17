@@ -14,28 +14,38 @@ function title {
   fi
 }
 
-ZSH_THEME_TERM_TAB_TITLE_IDLE="%15<..<%~%<<" #15 char left truncated PWD
-ZSH_THEME_TERM_TITLE_IDLE="%n@%m: %~"
+function badge {
+  # only iterm supports badges, so anyting else is silly
 
-#Appears when you have the prompt
-function omz_termsupport_precmd {
-  title $ZSH_THEME_TERM_TAB_TITLE_IDLE $ZSH_THEME_TERM_TITLE_IDLE
+  if [[ "$TERM_PROGRAM" == "iTerm.app" ]]; then
+    printf "\e]1337;SetBadgeFormat=%s\a" $(echo -n "$@" | base64)
+  fi
 }
 
-#Appears at the beginning of (and during) of command execution
-function omz_termsupport_preexec {
-  emulate -L zsh
-  setopt extended_glob
 
-  # cmd name only, or if this is sudo or ssh, the next cmd
-  local CMD=${1[(wr)^(*=*|sudo|ssh|rake|-*)]:gs/%/%%}
-  local LINE="${2:gs/%/%%}"
 
-  title '$CMD' '%100>...>$LINE%<<'
-}
+# ZSH_THEME_TERM_TAB_TITLE_IDLE="%15<..<%~%<<" #15 char left truncated PWD
+# ZSH_THEME_TERM_TITLE_IDLE="%n@%m: %~"
+
+# #Appears when you have the prompt
+# function omz_termsupport_precmd {
+#   title $ZSH_THEME_TERM_TAB_TITLE_IDLE $ZSH_THEME_TERM_TITLE_IDLE
+# }
+
+# #Appears at the beginning of (and during) of command execution
+# function omz_termsupport_preexec {
+#   emulate -L zsh
+#   setopt extended_glob
+
+#   # cmd name only, or if this is sudo or ssh, the next cmd
+#   local CMD=${1[(wr)^(*=*|sudo|ssh|rake|-*)]:gs/%/%%}
+#   local LINE="${2:gs/%/%%}"
+
+#   title '$CMD' '%100>...>$LINE%<<'
+# }
 
 ## Deactivate this sorry mess 
-## I never use/rely on the titles and it just makes using tmux stupid
+## (I set mine manually on the rare occasion when I want something there for remembering whats going on)
 ## 
 #precmd_functions+=(omz_termsupport_precmd)
 #preexec_functions+=(omz_termsupport_preexec)
