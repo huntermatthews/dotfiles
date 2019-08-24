@@ -1,4 +1,0 @@
-#!/bin/bash
-emacsclient -e "(kill-emacs)"
-
-## END OF LINE ##

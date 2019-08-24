@@ -1,4 +1,0 @@
-#!/bin/bash
-emacs --daemon
-
-## END OF LINE ##
