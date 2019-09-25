@@ -6,6 +6,7 @@ gpg --encrypt \
     -r Charles.Mbadugha@nih.gov \
     -r ainsley.gibson@nih.gov \
     -r jordan.robertson@nih.gov \
+    -r john.macdowall@nih.gov \
     $*
-    
+
 ## END OF LINE ##
