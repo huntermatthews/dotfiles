@@ -1,9 +1,11 @@
 #! /bin/bash
+
 gpg --encrypt \
+    -r gabriel.eggleston@nih.gov \
     -r hunter.matthews@nih.gov \
     -r Charles.Mbadugha@nih.gov \
     -r ainsley.gibson@nih.gov \
-    -r gabriel.eggleston@nih.gov \
-    -r Derek.Jones@nih.gov $*
-
+    -r jordan.robertson@nih.gov \
+    $*
+    
 ## END OF LINE ##
