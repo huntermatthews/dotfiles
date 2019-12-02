@@ -10,7 +10,6 @@ is_mac || return
 # Install brew itself
 if ! which brew >/dev/null ; then
     echo "installing brew"
-    #ruby -e "$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)" | tee /tmp/brew-install.log
     ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)" | tee /tmp/brew-install.log
 fi
 
@@ -22,50 +21,34 @@ pkgs=(
 tmux 
 tree
 figlet
+joe
+no-more-secrets
+pyenv 
+pyenv-virtualenv
+pyenv-which-ext
+python
+pipx
+xz
 )
 
 for pkg in $pkgs ; do 
     brew install $pkg
 done
 
-#FIXME: whats the right freaking way to do this with zsh
-brew install --with-cocoa --srgb emacs
+#pkgs=(
+#1password
+#appcleaner
+#iterm2
+#mou
+#sublime-text
+#the-unarchiver
+#totalspaces
+#vlc
+#)
 
-brew install caskroom/cask/brew-cask
-brew tap caskroom/versions
-
-pkgs=(
-1password
-alinof-timer
-adobe-photoshop-lightroom
-appcleaner
-busycal
-google-drive
-google-earth
-iterm2
-jettison
-mou
-sublime-text
-the-unarchiver
-totalspaces
-transmission
-virtualbox
-vlc
-)
-
-for pkg in $pkgs ; do 
-    brew cask install $pkg 2> /dev/null
-done
-
-# Packages that $work handles for me - so I need these at home...
-work_pkgs=(
-caffeine
-dropbox
-firefox               # not sure about this one 
-google-chrome         # not sure about this one 
-skype
-yubikey-personalization-gui
-)
+#for pkg in $pkgs ; do 
+#    brew cask install $pkg 2> /dev/null
+#done
 
 # Remove outdated versions from the cellar
 brew cleanup
