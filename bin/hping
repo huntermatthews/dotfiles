@@ -1,0 +1,57 @@
+#! /bin/zsh
+
+# I dont like this program, but it does what I want.
+
+# Ok, not really ping. Status? command for both DNS and ping.
+
+print_usage() {
+    echo "Usage: $(basename ${(%):-%x}) [-h|--help] hostname|ip"
+    echo "    -h       Print this help message"
+    echo "    --help   Print this help message"
+}
+
+lookup() {
+    # Given ip, get hostname ; given hostname, get ip
+    # the sed strips the trailing period from DNS lookups
+    echo $(host $1 | grep -oE '[^ ]+$' | sed 's/\.$//')
+}
+
+ping_host() {
+    # Multiple OS compatibility - dangit
+    if [[ $OSTYPE == darwin* ]]; then
+        wait="-t"
+    else
+        wait="-w"
+    fi
+
+    # Ping it
+    if ping -c 1 $wait 2 $1 >/dev/null 2>&1 ; then
+        echo online
+    else
+        echo offline
+    fi
+}
+
+if [[ $# -ne 1 || $1 == '-h' || $1 == '--help' ]]; then
+    print_usage
+    exit 1
+fi
+
+if [[ $1 =~ ^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+    # we got an IP address
+    NAME=$(lookup $1)
+    IP=$(lookup $NAME)
+else
+    # assume we got a name - short or FQDN
+    IP=$(lookup $1)
+    NAME=$(lookup $IP)
+fi
+STATUS=$(ping_host $1)
+
+echo "$NAME == $IP == $STATUS"
+
+
+## END OF LINE ##
+
+
+

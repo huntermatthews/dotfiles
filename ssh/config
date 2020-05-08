@@ -7,10 +7,16 @@ Host *
   RemoteForward 58962 127.0.0.1:52698
   LogLevel=ERROR
   ForwardAgent yes
+#  GSSAPIAuthentication no
+#  PreferredAuthentications=publickey
+
 
 host hermes.nhgri.nih.gov hermes 156.40.242.17
   port 2222 
 
+Host storform*
+        ProxyJump matthewsht@trek.nhgri.nih.gov
+        User root
 #
 # Personal Hacks
 #

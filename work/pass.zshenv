@@ -1,0 +1,2 @@
+PASSWORD_STORE_ENABLE_EXTENSIONS=true
+PASSWORD_STORE_EXTENSIONS_DIR=/usr/local/lib/password-store/extensions

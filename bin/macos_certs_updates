@@ -1,0 +1,20 @@
+#! /bin/bash
+
+# NHGRI ITB is keeping the HHS (and related) certs updated in the keychain.
+# (Which makes sense for maximum macos compatibility)
+# 
+# We need those certs in a .pem file format for add-on / programming languages to use.
+# Point (environment variable) or symlink your tools cacerts.pem location to here.
+#
+# NOTE: This is a system location so you will need sudo to run this script.
+
+security find-certificate -a -p /System/Library/Keychains/SystemRootCertificates.keychain > /etc/ssl/cacerts.pem
+security find-certificate -a -p /Library/Keychains/System.keychain >> /etc/ssl/cacerts.pem
+
+# This is a system location, but if you needed your individual users keychain added to this 
+# security find-certificate -a -p ~/Library/Keychains/login.keychain-db > /etc/ssl/cacerts.pem
+
+# Make certain all users can access this updated cacert bundle.
+chmod ugo+r /etc/ssl/cacerts.pem
+
+## END OF LINE ##
