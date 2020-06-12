@@ -9,14 +9,23 @@ Host *
   ForwardAgent yes
 #  GSSAPIAuthentication no
 #  PreferredAuthentications=publickey
-
+  ServerAliveInterval 300
+  ServerAliveCountMax 2
 
 host hermes.nhgri.nih.gov hermes 156.40.242.17
   port 2222 
 
-Host storform*
-        ProxyJump matthewsht@trek.nhgri.nih.gov
-        User root
+# Treat the trek internal nodes as behind a "bastion" of trek itself...
+Host kcompute* kservice* khead* storform*
+    ProxyJump matthewsht@trek.nhgri.nih.gov
+    User root
+
+# Treat the gryphon internal nodes as behind a "bastion" of gryphon itself...
+host gry-compute* gservice* ghead* gibbcompute*
+    ProxyJump matthewsht@gryphon.nhgri.nih.gov        
+    User root
+
+
 #
 # Personal Hacks
 #
