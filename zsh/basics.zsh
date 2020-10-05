@@ -17,4 +17,8 @@ setopt nolistbeep
 ## Leftover? Do I use this?
 setopt multios 
 
+# Makes negative globs work
+# ls -l id_*~*.pub     ## List all ssh private keys (IE, anything not ending in .pub)
+setopt extendedglob
+
 ## END OF LINE ##

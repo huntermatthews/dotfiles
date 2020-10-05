@@ -35,9 +35,11 @@ host gry-compute* gservice* ghead* gibbcompute*
 #  ControlPath ~/.ssh/masters/%r@%h:%p
 #  ControlPersist 10m
 
-Host irc
-    HostName grimeyes.huntermatthews.com
-    LocalForward 6030 irc.cuckoo.com:6667
+Host jett jett.huntermatthews.com
+    HostName jett.huntermatthews.com
+    Port 3015
+    LocalForward 6030 chat.freenode.net:6697
+
     User hunter
 
 host desktop deskside grimeyes

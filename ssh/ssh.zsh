@@ -8,3 +8,7 @@ if command -v pkcs15-tool >/dev/null 2>&1 ; then
 else
     alias ssh-card-list="ssh-keygen -D /usr/lib/ssh-keychain.dylib | head -n 1 "
 fi
+
+alias ssh-add-all="ssh-add ~/.ssh/id_*~*.pub"
+
+## END OF LINE ##
