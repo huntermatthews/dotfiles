@@ -1,12 +1,40 @@
 #! /bin/zsh
 
+# This is a real dogs breakfast - shell var replacement, python parsing program, unicorns, golems.
+
+###################################################################################################
+## Deal with my VPN IP address changing all the time - figure out current setting and remember it.
+###################################################################################################
+# BUG - what if I'm not on the VPN?
+# TODO: move call vpn stats into the python script and switch on connected/disconnected
+vpn_bin=/opt/cisco/anyconnect/bin/vpn
+
+# FIX: 2nd awk is world cheesiest whitespace removal
+vpn_ip="$($vpn_bin stats | grep 'Client Address (IPv4):' | awk -F : '{print $2}' | awk '{print $1}')"
+
+###################################################################################################
 # concatenate all the bits and pieces into one config file for ssh client.
+###################################################################################################
+cat <<- EOF > ~/.ssh/config
+###################################################################################################
+# WARNING - GENERATED FILE - DO NOT EDIT
+# SEE ssh-config script
+###################################################################################################
+EOF
 
-cat ~/.ssh/config.d/*.conf > ~/.ssh/newconfig
-cat ~/.ssh/config.d/*.host >> ~/.ssh/newconfig
 
-sed -i -e "/^ *#.*$/d" -e "/^ *$/d" ~/.ssh/newconfig
+cat ~/.dotfiles/ssh/config.d/*.conf >> ~/.ssh/config
+#cat ~/.dotfiles/ssh/config.d/*.host >> ~/.ssh/config
 
-mv -f ~/.ssh/newconfig ~/.ssh/config
+###################################################################################################
+# Grab all the VM port forwards and add them to the file
+###################################################################################################
+ssh-parallels-port-forwards >> ~/.ssh/config
+
+###################################################################################################
+## Now actually apply the VPN IP to the intermediate config
+###################################################################################################
+sed -i ''  -e "s/VPN_IP/$vpn_ip/g" ~/.ssh/config
+
 
 ## END OF LINE ##

@@ -1,0 +1,159 @@
+#! /usr/bin/env python3
+
+# Script to figure out which port fowards to which VM, so that I can automate 
+# updating my .ssh/config to get into my VMs. Stupid VPN.
+
+# prlsrvctl and prlctl are  the command line tools included with Parallels
+# Reference: https://download.parallels.com/desktop/v13/docs/en_US/
+#            Parallels%20Desktop%20Pro%20Edition%20Command-Line%20Reference.pdf
+
+# prlsrvctl net list    [ --json works, but its NOT valid json]
+# TCP rules:
+#      source port=2022 destination IP/VM id={2f216b08-306f-4e95-9a6c-428d22b4581f} destination port=22
+#      source port=2021 destination IP/VM id={2118533b-41dc-483c-be69-47c9f122620b} destination port=22
+#      source port=2020 destination IP/VM id={9939facd-be86-4f62-9b01-ae50274823e2} destination port=22
+#      source port=2023 destination IP/VM id={ffe0cb81-accf-4e57-9d93-7fb26f62574e} destination port=22
+#      source port=2026 destination IP/VM id={abf70e02-499c-4d2e-a84c-474ce5f774a3} destination port=22
+#      source port=2024 destination IP/VM id={ca72155a-4472-4130-8122-c5bf5e5c260d} destination port=22
+#      source port=2027 destination IP/VM id={9211ec07-99cc-42ef-b7b0-6322bac7199d} destination port=22
+
+# prlctl list --all [--json works, looks valid, remove {} from around uuid because....]
+# UUID                                    STATUS       IP_ADDR         NAME
+# {abf70e02-499c-4d2e-a84c-474ce5f774a3}  suspended    -               c6-saltclient1
+# {ca72155a-4472-4130-8122-c5bf5e5c260d}  stopped      -               c6-saltclient2
+# {9211ec07-99cc-42ef-b7b0-6322bac7199d}  suspended    -               c6-saltclient3
+# {9939facd-be86-4f62-9b01-ae50274823e2}  running      -               c7-saltclient1
+# {2f216b08-306f-4e95-9a6c-428d22b4581f}  running      -               c7-saltmaster1
+# {ffe0cb81-accf-4e57-9d93-7fb26f62574e}  running      -               c8-saltclient1
+# {2118533b-41dc-483c-be69-47c9f122620b}  running      -               u18-saltclient1
+
+###
+### Desired output
+### 
+
+# Host c7-saltmaster1
+#   Port 2022
+#   Hostname VPN_IP
+#   ProxyJump itbbastionb1201
+
+# Host c7-saltclient1
+#   Port 2020
+#   Hostname VPN_IP
+#   ProxyJump itbbastionb1201
+
+import argparse
+import json
+import shlex
+import subprocess
+import pprint
+
+## These two stupid functions are here to deal with the broken JSON we get back
+## from prlsrvctl net list --json
+# Copied straight out of https://stackoverflow.com/questions/29321677/python-json-parser-allow-duplicate-keys
+def make_unique(key, dct):
+    counter = 0
+    unique_key = key
+
+    while unique_key in dct:
+        counter += 1
+        unique_key = '{}_{}'.format(key, counter)
+    return unique_key
+
+
+def parse_object_pairs(pairs):
+    dct = {}
+    for key, value in pairs:
+        if key in dct:
+            key = make_unique(key, dct)
+        dct[key] = value
+    return dct
+
+def _subprocess_run(cmdline):
+    # TODO: Should this simply be merged into read_simple_program() ?
+    result = subprocess.run(shlex.split(cmdline),
+                            check=False,
+                            stdout=subprocess.PIPE,
+                            stderr=subprocess.PIPE,
+                            encoding='UTF-8')
+    return result
+
+def read_simple_program(cmdline):
+    # This cheesy wrapper should only be used on "small" things - you've been warned.
+    # BUG: obviously we should verify the program is there (exist)
+    # BUG: we can excute it (perms)
+    try:
+        result = _subprocess_run(cmdline)
+    except FileNotFoundError as ex:
+        # BUG: log this
+        return None
+    if result.returncode != 0:
+        return None
+    return result.stdout
+
+def read_prlctl_output():
+    output = read_simple_program('prlctl list --all --output uuid,name --json')
+    return json.loads(output)
+
+def get_vm_uuids():
+    tmp = read_prlctl_output()
+    vms={}
+    for elem in tmp:
+        vms[elem['uuid']]=elem['name']
+    return vms
+
+def read_prlsrvctl_output():
+    output = read_simple_program('prlsrvctl net list --json')
+    decoder = json.JSONDecoder(object_pairs_hook=parse_object_pairs)
+    return decoder.decode(output)
+
+def get_vm_source_ports():
+    tmp = read_prlsrvctl_output()
+    return tmp[0]['NAT server']['TCP rules']
+
+def match_vm_sport_to_vm_uuids(vm_uuids, ports):
+    matchs = []
+
+    for key in ports:
+        vm = {}
+        uuid = ports[key]['destination IP/VM id'].strip('{}')
+        # print('uuid =', uuid)
+        vm['sport'] = ports[key]['source port']
+        # print('sport = ', vm['sport'])
+        # print(vm_uuids.keys())
+        vm['name'] = vm_uuids[uuid]
+        matchs.append(vm)
+
+    return matchs
+
+def output_ssh_config(matches, vpn_ip, jumphost):
+    for match in matches:
+        print(f"Host {match['name']}")        
+        print(f"  Port {match['sport']}")
+        print(f"  Hostname {vpn_ip}")
+        print(f"  ProxyJump {jumphost}")
+
+
+
+def main():
+#    pprint.pprint(get_vm_uuids()) 
+#    pprint.pprint(get_vm_source_ports())
+#    pprint.pprint(match_vm_sport_to_vm_uuid())
+
+## Command line again:
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--vpn-ip', default='VPN_IP',
+                        help='output actual VPN IP address rather than placeholder VPN_IP')
+    parser.add_argument('--jumphost', default='itbbastionb1201',
+                        help='output given jumphost rather than default of itbbastionb1201')
+    args = parser.parse_args()
+
+    uuids = get_vm_uuids()
+    ports = get_vm_source_ports()
+    matches = match_vm_sport_to_vm_uuids(uuids, ports)
+    output_ssh_config(matches, args.vpn_ip, args.jumphost)
+
+if __name__ == '__main__':
+    main()
+
+
+

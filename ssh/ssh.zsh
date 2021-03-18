@@ -6,9 +6,9 @@ alias ssh-card-remove="ssh-add -e /usr/lib/ssh-keychain.dylib"
 if command -v pkcs15-tool >/dev/null 2>&1 ; then
     alias ssh-card-list="pkcs15-tool --read-ssh-key 01"
 else
-    alias ssh-card-list="ssh-keygen -D /usr/lib/ssh-keychain.dylib | head -n 1 "
+    alias ssh-card-list="ssh-keygen -D /usr/lib/ssh-keychain.dylib 2>/dev/null | head -n 1 "
 fi
 
-alias ssh-add-all="ssh-add ~/.ssh/id_*~*.pub"
+alias ssh-add-all="ssh-add -K ~/.ssh/id_*~*.pub"
 
 ## END OF LINE ##
