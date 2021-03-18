@@ -1,0 +1,10 @@
+#! /bin/bash
+
+# echo out the needed lines to get root configured on logged in machines. 
+# replaces three keys in iterm
+
+# MUST be written from the _servers_ point of view - not the mac.
+echo 'sudo -i'
+echo 'source ~matthewsht/bin/rootrc.sh'
+
+## END OF LINE ##
