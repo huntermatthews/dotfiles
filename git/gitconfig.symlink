@@ -27,7 +27,7 @@
 
 [core]
         excludesfile = ~/.gitignore
-        editor = subl
+        editor = subl --wait
         pager = less -FMRiX
 
 [apply]
