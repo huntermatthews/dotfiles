@@ -1,3 +1,9 @@
+# I use direnv -- make sure these don't leak.
+.direnv
+.envrc
+
+# I'm a mac-head
 .DS_Store
+
+# Jmacs (joe) - I still sometimes use this editor
 *~
-*.swp

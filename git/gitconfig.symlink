@@ -26,7 +26,7 @@
         ui = true
 
 [core]
-	excludesfile = /Users/matthewsht/.gitignore
+	excludesfile = /Users/matthewsht/.dotfiles/git/gitignore.symlink
         editor = subl --wait
         pager = less -FMRiX
 
@@ -61,3 +61,5 @@
 [mergetool "sourcetree"]
 	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
 	trustExitCode = true
+[commit]
+	template = /Users/matthewsht/.stCommitMsg

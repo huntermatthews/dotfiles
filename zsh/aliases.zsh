@@ -31,4 +31,9 @@ alias diff='diff -u'
 
 alias tsize='echo $LINES x $COLUMNS'
 
+# Could _not_ figure out the quoting on this one - so I gave up.
+vms() {
+    grep "prl" /etc/hosts | cut -f1 -d'#' | awk '{print $NF}' | sort | uniq
+}
+
 ## END OF LINE ##
