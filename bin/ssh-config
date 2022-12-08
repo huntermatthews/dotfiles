@@ -1,5 +1,7 @@
 #! /bin/zsh
 
+# THIS FILE REQUIRES TABS 
+
 # concatenate all the bits and pieces into one config file for ssh client, with a top level warning.
 
 cat <<- EOF > ~/.ssh/config
@@ -9,7 +11,17 @@ cat <<- EOF > ~/.ssh/config
 ###################################################################################################
 EOF
 
+for file in  ~/.dotfiles/ssh/config.d/*.conf ; do
+	cat <<- EOF >> ~/.ssh/config
 
-cat ~/.dotfiles/ssh/config.d/*.conf >> ~/.ssh/config
+	 
+		###################################################################################################
+		# Included from $file
+		###################################################################################################
+
+EOF
+
+	cat $file >> ~/.ssh/config
+done
 
 ## END OF LINE ##
