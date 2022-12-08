@@ -7,7 +7,6 @@ typeset -U path      # force the array to only have unique values (no more tests
 path=()   # empty things out
 path=(
 $HOME/bin
-/usr/local/bin
 /usr/bin
 /bin
 /usr/sbin
