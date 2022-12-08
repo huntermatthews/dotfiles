@@ -4,7 +4,7 @@
 #      I have to double the commnad. I emailed the author, we'll see what comes of it.
 # BUG2: I can't even seem to put this in a loop to handle multiple files... :(
 
-subl --command 'toggle_readonly { }' $1
+subl -n --command 'toggle_readonly { }' $1
 subl --command 'toggle_readonly { }' $1
 
 
