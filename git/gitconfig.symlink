@@ -5,6 +5,7 @@
 [user]
 	name = Hunter Matthews
 	email = hunter.matthews@nih.gov
+	signingkey = ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDend5DNFPg+DYMCkVCCU3dmYtpUwaOAloKhQZ95Jp3TqaiEY48s2eFfQpUWEODV+X5kk6IPbl6QV9jgxIOaJKe20t38zAQOKzm2pdiGUT9qyXyYAEVJV42HhQsKRQKXIHgeKsh5uYF4wNZznbWxQxDC9/h8CYHcqPIUZB3mfGovYMOTEFMU7KP1pAJVoLZcO3B5MSbYyF0nGRHjZ1rpFR6CuHVyKXNEvcshOwufKrRkzneYP6Cek/JgKC0deaUVBdb94StDPaj4szI/Bse2Gkkd0ewifMt9xhoy17AIlPMWkV93Mnwng/rNIEgbhNkQtm5qFOfdQyhB/r5Ke7q/gKn /usr/lib/ssh-keychain.dylib
 
 #[credential]
 #        helper = osxkeychain
@@ -48,6 +49,7 @@
         #
         # Setting to git 2.0 default to surpress warning message
         default = simple
+	followTags = true
 [pull]
 	rebase = true
 [filter "lfs"]
@@ -63,3 +65,10 @@
 	trustExitCode = true
 [commit]
 	template = /Users/matthewsht/.stCommitMsg
+	gpgsign = true
+[init]
+	defaultBranch = main
+[gpg]
+	format = ssh
+[gpg "ssh"]
+	allowedSignersFile = /Users/matthewsht/.ssh/allowed_signers
