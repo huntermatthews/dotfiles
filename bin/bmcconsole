@@ -41,6 +41,9 @@ case $address in
     (10.136.35.*)           
         BASTION=itbbastionbay01  
         ;;
+    (10.181.25.*)
+        BASTION=itbkvmstg01
+        ;;
     (*) 
         echo "ERROR: our crude network matching code failed on '$address'"
         exit 1
@@ -59,7 +62,7 @@ pkill -x -f '^ssh.*bmcconsole=true$'
 #ssh -N itbbastiontdc01 -L 1443:itbkvmtdc01.mgmt.nhgri.nih.gov:443 -J itbkvmtdc01 -- working naked command
 #echo ssh -N $BASTION -J itbkvmb1201  -L 1443:${address}:443 -L 5900:${address}:5900  bmcconsole=true 
 #ssh -N $BASTION -J itbkvmb1201 -L 1443:${address}:443 -L 5901:${address}:5900  bmcconsole=true  &
-ssh -N $BASTION -J itbkvmb1201 -L 1443:${address}:443 bmcconsole=true  &
+ssh -N $BASTION -L 1443:${address}:443 -L 5901:${address}:5900  bmcconsole=true  &
 
 # Lookup BMC credentials in pass
 # TODO: make this more sophisticated - not do it, copy to clipboard...
