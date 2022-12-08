@@ -1,3 +1,7 @@
+# I use sublime text as my main editor
+# *.sublime-project    ## can't make up my mind.
+*.sublime-workspace
+
 # I use direnv -- make sure these don't leak.
 .direnv
 .envrc
@@ -7,3 +11,5 @@
 
 # Jmacs (joe) - I still sometimes use this editor
 *~
+
+
