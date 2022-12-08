@@ -1,0 +1,40 @@
+#! /usr/bin/env bash
+
+#------------------------------- GLOBALS -----------------------------------------
+SERVER=itbrepo02.nhgri.nih.gov
+PREFIX=/srv/webroot/python_repo
+
+# only argument is the filename of the package: ~/projects/nih/npmp/npmp-0.9.1-py3-none-any.whl
+if [[ $# -ne 1 ]]; then
+    # figure out the package file from logical assumptions:
+    # we're in the package dev directory (~/projects/something)
+    # and the package wheel file is in dist/*.whl
+    arg=dist/*.whl
+else
+    arg=$1
+fi
+
+package_path=$arg
+package_file=$(basename $package_path)
+package_name=$(echo $package_file | cut -f1 -d'-')
+
+# SO, this requires some explanation
+# The package is named foo-bar
+# the wheel created by build will be foo_bar
+# (due to https://www.python.org/dev/peps/pep-0427/#escaping-and-unicode)
+# HOWEVER, we still install (pip install foo-bar) so the directory name must be foo-bar
+# This isn't my fault and I'm sure the python people know what they're doing... ;)
+package_dir_name=$(echo $package_name | tr '_' '-')
+
+# Instead of a ssh, scp, ssh sequence, we cheat with a single ssh at the cost of sanity.
+# Being utterly insane hardly slows me down anymore....
+cat $package_path | ssh ${SERVER} \
+"cd $PREFIX ; 
+mkdir -p $package_dir_name ;
+cat - > $package_dir_name/$package_file ;
+chgrp -R unixteam $package_dir_name ;  
+chmod -R ug+rwX,o+rX $package_dir_name"
+
+
+
+## END OF LINE ##
