@@ -8,7 +8,7 @@ alias printenv="/usr/bin/env  | sort"
 # I prefer the old sort order -capitals at the top, then everything else. Mac/BSD goes this. Fake it
 alias ll='LANG=C ls -lhH'
 alias la='LANG=C ls -lahH'
-alias ld='LANG=C ls -lhHd */'
+alias lls='ll -tr'
 
 # Remove commnets and whitespace only /blank lines from input (to be used in a pipeline)
 alias nocomment="sed -e 's/#.*$//' -e '/^\s*$/d'"
@@ -30,6 +30,10 @@ alias rfcdate='date +%FT%T%z'
 alias diff='diff -u'
 
 alias tsize='echo $LINES x $COLUMNS'
+
+# did the last command (which foo or something) print out a single filename? Edit it.
+alias subl!='subl $(fc -e -)'
+alias subln='subl -n'
 
 # Could _not_ figure out the quoting on this one - so I gave up.
 vms() {
