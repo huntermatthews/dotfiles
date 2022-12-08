@@ -49,3 +49,12 @@ zstyle ':completion:*:*:*:users' ignored-patterns \
 # ... unless we really want to.
 zstyle '*' single-ignored show
 
+## BREW SUPPORT
+if type brew &>/dev/null ; then
+  FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
+fi
+
+# God this is slow...
+autoload -Uz compinit
+compinit
+
