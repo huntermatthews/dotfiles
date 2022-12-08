@@ -1,9 +1,7 @@
 PASSWORD_STORE_ENABLE_EXTENSIONS=true
-PASSWORD_STORE_EXTENSIONS_DIR=/usr/local/lib/password-store/extensions
-PASSWORD_STORE_DIR=~/projects/setecastronomy
+#PASSWORD_STORE_EXTENSIONS_DIR=/usr/local/lib/password-store/extensions
 
 export PASSWORD_STORE_ENABLE_EXTENSIONS
-export PASSWORD_STORE_EXTENSIONS_DIR
-export PASSWORD_STORE_DIR
+#export PASSWORD_STORE_EXTENSIONS_DIR
 
 
