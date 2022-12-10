@@ -1,4 +1,4 @@
-alias ssh-card-add="ssh-add -s /usr/lib/ssh-keychain.dylib"
+alias ssh-card-add="ssh-card-remove ; ssh-add -s /usr/lib/ssh-keychain.dylib"
 alias ssh-card-remove="ssh-add -e /usr/lib/ssh-keychain.dylib"
 # TODO: write an "isloaded" using ssh-add -l or something
 
@@ -9,6 +9,6 @@ else
     alias ssh-card-list="ssh-keygen -D /usr/lib/ssh-keychain.dylib 2>/dev/null | head -n 1 "
 fi
 
-alias ssh-add-all="ssh-add -K ~/.ssh/id_*~*.pub"
+alias ssh-add-all="ssh-add --apple-load-keychain ~/.ssh/id_*~*.pub"
 
 ## END OF LINE ##
