@@ -42,4 +42,6 @@ unset zshenv_files zshenv_cleanup_files file
 # Last second cleanup of path elements that don't exist (shouldn't happen but meh)
 path=($^path(N))
 
+dotfiles_path=$PATH
+
 ## END OF LINE ##

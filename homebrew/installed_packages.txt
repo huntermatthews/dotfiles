@@ -1,0 +1,10 @@
+direnv
+pass
+python
+ripgrep 
+salt-lint
+tree
+wallpaper
+
+yamllint
+opensc

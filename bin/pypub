@@ -1,5 +1,8 @@
 #! /usr/bin/env bash
 
+set -euo pipefail
+
+
 #------------------------------- GLOBALS -----------------------------------------
 SERVER=itbrepo02.nhgri.nih.gov
 PREFIX=/srv/webroot/python_repo
@@ -35,6 +38,6 @@ cat - > $package_dir_name/$package_file ;
 chgrp -R unixteam $package_dir_name ;  
 chmod -R ug+rwX,o+rX $package_dir_name"
 
-
+echo "Your package was uploaded..."
 
 ## END OF LINE ##

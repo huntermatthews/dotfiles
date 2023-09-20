@@ -14,30 +14,25 @@ alias lls='ll -tr'
 alias nocomment="sed -e 's/#.*$//' -e '/^\s*$/d'"
 alias wsstrip="sed -e 's/^[ \t]*//' -e 's/[ \t]*$//' -e 's/[ \t][ \t]*/ /'"
 
-# Kerberos 4 has been obsolete for since 1993 <sigh>
-alias klist='klist -5'
 alias mkpasswd='mkpasswd -l 30 -c 5 -d 5 -C 5 -s 5'
 
 # is your environment sudo heavy?
 # alias fuck='sudo $(history \!\!)' is the bash equivalent.
 alias fuck='sudo $(fc -ln -1)'
 
-# web handy
-alias urldecode='python -c "import sys, urllib as ul; print ul.unquote_plus(sys.argv[1])"'
-alias urlencode='python -c "import sys, urllib as ul; print ul.quote_plus(sys.argv[1])"'
-
 alias rfcdate='date +%FT%T%z'
 alias diff='diff -u'
 
 alias tsize='echo $LINES x $COLUMNS'
 
-# did the last command (which foo or something) print out a single filename? Edit it.
-alias subl!='subl $(fc -e -)'
-alias subln='subl -n'
+# this formats shell scripts "correctly"
+alias shfmt='shfmt -i 4 -bn -ci -sr'
 
-# Could _not_ figure out the quoting on this one - so I gave up.
-vms() {
-    grep "prl" /etc/hosts | cut -f1 -d'#' | awk '{print $NF}' | sort | uniq
+# terraform is too much to spell
+alias tf=terraform
+
+# colorized less
+cless() {
+    pygmentize $@ | less
 }
-
 ## END OF LINE ##
