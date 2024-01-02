@@ -15,6 +15,7 @@ alias nocomment="sed -e 's/#.*$//' -e '/^\s*$/d'"
 alias wsstrip="sed -e 's/^[ \t]*//' -e 's/[ \t]*$//' -e 's/[ \t][ \t]*/ /'"
 
 alias mkpasswd='mkpasswd -l 30 -c 5 -d 5 -C 5 -s 5'
+alias pwgen='pwgen --secure 30 1'
 
 # is your environment sudo heavy?
 # alias fuck='sudo $(history \!\!)' is the bash equivalent.

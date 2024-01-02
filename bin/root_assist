@@ -5,6 +5,8 @@
 
 # MUST be written from the _servers_ point of view - not the mac.
 echo 'sudo -i'
-echo 'source ~matthewsht/bin/rootrc.sh'
+echo '[ -f ~matthewsht/bin/rootrc.sh ] && source ~matthewsht/bin/rootrc.sh'
+echo '[ ! -z "${DISPLAY}" ] && xauth add $(xauth -f  ~matthewsht/.Xauthority list | tail -1)'
+
 
 ## END OF LINE ##

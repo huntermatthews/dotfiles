@@ -73,6 +73,6 @@
 [gpg]
 	format = ssh
 [gpg "ssh"]
-	allowedSignersFile = /Users/matthewsht/.ssh/git_allowed_signers
+	allowedSignersFile = ~/.ssh/id_smartcard.pub
 [tag]
 	gpgsign = true
