@@ -11,17 +11,13 @@ dotfiles_debug ZSHRC FIXED PATH $path
 typeset -U config_files
 config_files=($DOTFILES/**/*.zsh)
 
-# Remember that all the former "path" files are now handled in zshenv  and friends
-
 # load everything but the path and completion files
 for file in ${config_files:#*/completion.zsh} ; do 
     dotfiles_debug sourcing $file
     source $file
 done
 
-# initialize autocomplete here, otherwise functions won't be loaded
-autoload -U compinit
-compinit
+
 
 # load every completion after autocomplete loads
 for file in ${(M)config_files:#*/completion.zsh} ; do

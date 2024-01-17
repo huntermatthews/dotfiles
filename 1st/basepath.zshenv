@@ -1,3 +1,5 @@
+# -*- mode: sh -*-
+
 # 
 # No one can consistently and reliably set the damn path. So I do it myself.
 #

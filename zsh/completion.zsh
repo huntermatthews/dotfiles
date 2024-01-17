@@ -1,4 +1,8 @@
-# fixme - the load process here seems a bit bizarre
+# fixme - this is an unmitigated cargo culted mess.
+
+# initialize autocomplete here, otherwise functions won't be loaded
+autoload -U compinit
+compinit
 
 unsetopt menu_complete   # do not autoselect the first completion entry
 unsetopt flowcontrol
