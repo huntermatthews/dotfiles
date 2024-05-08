@@ -3,10 +3,9 @@ LESS="RiX"
 PAGER=less
 READNULLCMD=less
 
-EDITOR="subl -n -w"
-REQUESTS_CA_BUNDLE="/etc/ssl/cacerts.pem"
+EDITOR="cot -n -w"
 
-export LESS PAGER READNULLCMD EDITOR REQUESTS_CA_BUNDLE
+export LESS PAGER READNULLCMD EDITOR
 
 
 ## END OF LINE ##
