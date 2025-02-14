@@ -25,12 +25,14 @@ alias tsize='echo $LINES x $COLUMNS'
 alias shfmt='shfmt -i 4 -bn -ci -sr'
 
 # terraform is too much to spell
-alias tf=terraform
+alias tf=$HOME/projects/ssa-terraform/bin/ssa-terraform
 
 # colorized less
 cless() {
     pygmentize $@ | less
 }
+
+alias lessn="less -N"
 
 # Need a command name for all time thats editor independant.
 alias edit=cot
