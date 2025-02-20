@@ -1,6 +1,6 @@
 #
 # Gitconfig
-#
+# -*- mode: gitconfig -*-
 
 [user]
 	name = Hunter Matthews
