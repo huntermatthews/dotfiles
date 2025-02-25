@@ -1,8 +1,10 @@
 # -*- mode: sh -*-
 
-# 
+#
 # No one can consistently and reliably set the damn path. So I do it myself.
 #
+
+dotfiles_debug "HOME = ${HOME}"
 
 ## NEW STYLE ZSH PATH MADNESS
 typeset -U path      # force the array to only have unique values (no more tests everywhere!)
@@ -16,5 +18,6 @@ $HOME/bin
 /usr/local/bin
 )
 
+dotfiles_debug "basepath path == ${path}"
 ## END OF LINE ##
 
