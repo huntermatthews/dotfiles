@@ -27,7 +27,7 @@
 	ui = true
 	
 [core]
-	excludesfile = /Users/matthewsht/.dotfiles/git/gitignore.symlink
+	excludesfile = /Users/matthewsht/.dotfiles/git/gitignore.work.symlink
 	editor = cot  --new --wait
 	pager = less -FMRiX
 	
