@@ -1,6 +1,10 @@
 {
     "cSpell.words": [
+        "argparse",
         "awsauth",
-        "ENAME"
+        "ENAME",
+        "nonopt",
+        "subcmd",
+        "subcmds"
     ]
 }
