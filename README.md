@@ -38,5 +38,4 @@ dotfiles were an easy way to get into bash customization, and then to jump ship
 to zsh a bit later. A decent amount of the code in these dotfiles stem or are
 inspired from Ryan's original project.
 
-I forked Holman's excellent start and then made it private for Corporate reasons.
-
+Hunter forked Holman's excellent start and then made it my own.
