@@ -37,6 +37,7 @@ alias lessn "less -N"
 # Need a command name for all time thats editor independent.
 alias edit cot
 
-
+# TODO : convert to abbr ???
+#brew info --json cf-terraforming globstar gotz hishtory immich-go kapp kirimase org-formation ov pivy punktf rattler-index semver sequoia-sqv sttr tml yoke ytt | jq -r '.[] | "####",.name,.desc,.homepage,"\n"'
 
 ## EOF ##
