@@ -1,0 +1,69 @@
+#! /usr/bin/env fish
+
+set -g HELP "
+Usage: $(status basename) NONE
+
+DESCRIPTION HERE
+
+Optional Arguments
+        --debug              Print debug information
+    -h, --help               Print this help
+"
+
+set -g DOTS_LIBEXEC $DOTS/libexec/dots
+
+# FIXME: check for DOTS before using
+source $DOTS_LIBEXEC/common-lib.fish
+or begin
+    echo "FATAL: could not source common-lib.fish -- exiting program..."
+    exit 11
+end
+
+# check the rest of our minimal config assumptions
+dots_require_base_config
+
+function blocker
+    set hashes '##################################################'
+    echo $hashes
+    for line in $argv
+        echo "## $line"
+    end
+    echo $hashes
+    echo
+end
+
+function main
+    argparse --name (status basename) debug h/help -- $argv
+    or begin
+        echo $HELP
+        exit 1
+    end
+
+    # Get ALL the pattern matched files - including ALL the profiles
+    set files $DOTS/*/*zshenv
+
+    # Dumb but effective - remove ALL the profile related files
+    set files (string match --entire --invert _profile $files)
+
+    set profile_files $DOTS/{$DOTS_PROFILE}_profile/*zshenv
+
+    set files $profile_files $files
+
+    # cat them all
+    set OUT ~/scratch/zshenv.symlink
+    blocker dots-builder $(date) "Generated file - do not edit!" >$OUT
+
+    for file in $files
+        [ $DOTS_DEBUG = 1 ] && blocker "original file: $file" >>$OUT
+        cat $file >>$OUT
+        [ $DOTS_DEBUG = 1 ] && echo \n\n >>$OUT
+    end
+
+    blocker "end of file" >>$OUT
+
+end
+
+# Call main
+main $argv
+
+# END OF LINE #
