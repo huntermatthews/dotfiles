@@ -1,0 +1,6 @@
+#! /usr/bin/env bash
+
+echo "bash pypub says hi!"
+
+
+# END OF LINE #
