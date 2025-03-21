@@ -1,0 +1,9 @@
+#! /usr/bin/env fish
+
+# Keep this simple - one argument, turn it lowercase and dashes become underscores.
+
+for arg in $argv
+    echo $arg | tr '[:upper:]-' '[:lower:]_' | tr -d '()'
+end
+
+# END OF LINE #
