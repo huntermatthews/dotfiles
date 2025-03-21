@@ -1,0 +1,6 @@
+brew install switchaudio-osx
+
+
+SwitchAudioSource -a
+
+shorten this and add aliases
