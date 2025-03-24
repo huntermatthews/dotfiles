@@ -1,0 +1,24 @@
+#! /usr/bin/env fish  
+
+set help "
+Usage: dots builder [options] suffix target_file
+Options:
+  -d, --debug        Enable debug mode
+  -h, --help         Show this help
+"
+
+source $DOTS/libexec/dots/lib-common.fish
+or begin
+	echo "FATAL: Unable to source lib-common.fish library" 
+	exit 10
+end
+
+echo "ERROR: This script is not yet implemented."
+exit 1
+
+Consider this, or just moving the ssh configs around a bit
+mostly in the work_profile....
+
+dots builder --dir $DOTS/ssh/config.d --no-profile .conf .$DOTS_L/ssh%config.symlink
+
+# END OF LINE  #

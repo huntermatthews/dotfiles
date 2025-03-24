@@ -1,0 +1,19 @@
+#! /usr/bin/env fish  
+
+set help "
+Usage: dots builder [options] suffix target_file
+Options:
+  -d, --debug        Enable debug mode
+  -h, --help         Show this help
+"
+
+source $DOTS/libexec/dots/lib-common.fish
+or begin
+	echo "FATAL: Unable to source lib-common.fish library" 
+	exit 10
+end
+
+echo "ERROR: This script is not yet implemented."
+exit 1
+
+Use holmans?
