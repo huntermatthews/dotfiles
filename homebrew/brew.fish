@@ -13,6 +13,7 @@ if brew list make 1>/dev/null 2>&1
     fish_add_path --global --move --path /opt/homebrew/opt/make/libexec/gnubin
 end
 
+# TODO: I think this should be an abbrev
 function brew-about
     open -g (brew info --json make | jq .[0].homepage)
 end

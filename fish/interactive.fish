@@ -2,6 +2,7 @@
 
 # TODO: Review the pragmas
 
+# BUG: This needs a interactive test / exit
 # TODO: Enable ls colors
 set -gx LSCOLORS ExGxFxDxCxDxDxHbaDaCec
 
@@ -18,8 +19,6 @@ set -gx LSCOLORS ExGxFxDxCxDxDxHbaDaCec
 # else
 #     PROMPT_HOST_COLOR="$fg[white]"
 # fi
-
-
-
+set -U __fish_git_prompt_showdirtystate yes
 
 ## EOF ##

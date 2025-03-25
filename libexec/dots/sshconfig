@@ -1,24 +1,24 @@
-#! /usr/bin/env fish  
+#! /usr/bin/env fish
 
 set help "
 Usage: dots builder [options] suffix target_file
 Options:
-  -d, --debug        Enable debug mode
-  -h, --help         Show this help
+    -d, --debug        Enable debug mode
+    -h, --help         Show this help
 "
 
-source $DOTS/libexec/dots/lib-common.fish
+source $DOTS/libexec/dots/common-lib.fish
 or begin
-	echo "FATAL: Unable to source lib-common.fish library" 
-	exit 10
+    echo "FATAL: Unable to source common-lib.fish library"
+    exit 10
 end
 
 echo "ERROR: This script is not yet implemented."
 exit 1
 
-Consider this, or just moving the ssh configs around a bit
-mostly in the work_profile....
+# Consider this, or just moving the ssh configs around a bit
+# mostly in the work_profile....
 
-dots builder --dir $DOTS/ssh/config.d --no-profile .conf .$DOTS_L/ssh%config.symlink
+dots builder .conf $DOTS_LOCAL/ssh%config.symlink
 
 # END OF LINE  #
