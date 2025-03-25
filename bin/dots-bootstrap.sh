@@ -3,6 +3,8 @@
 
 # shellcheck disable=SC2312
 
+# TODO: one day, we might want to allow dots, dots_local and debug customization...
+
 if [ "$1" = "-v" -o "$1" = "--verbose" ]; then
     VERBOSE=1
 elif [ "$1" = "-h" -o "$1" = "--help" ]; then
@@ -25,7 +27,7 @@ verbose() {
 
 ##
 ## This script is intended only for macOS
-##  
+##
 verbose "Checking OS being MacOS..."
 if [ "$(uname)" != "Darwin" ]; then
     panic "Sorry, this script is intended only for macOS."
@@ -70,7 +72,7 @@ else
     fi
 fi
 
-## 
+##
 ## Grab the dots repo
 ##
 verbose "Checking for git repo for dots..."
@@ -118,9 +120,17 @@ if ! brew info iterm2  > /dev/null 2>&1 ; then
     fi
 fi
 
+##
+## Initialize the 3 fish universal variables that everything in dots relies on
+## Makes sense to do it here since we know everything here...
+##
+hash -r      # just in case...
+fish -c "set -U DOTS ~/.dots ; set -U DOTS_LOCAL ~/.dots_local ; set -U DOTS_PROFILE work"
+
+
 echo "\n\n"
 echo "*** The bootstrap is complete. ***"
-echo "*** Now you can run iterm2 and run the 'dots setup' command to install the rest of the dot stuff. ***"
+echo "*** Now you can run iterm2 and run the 'dots setup' command to install the rest of the dots stuff. ***"
 echo "*** Enjoy! ***"
 
 ## EOF ##
