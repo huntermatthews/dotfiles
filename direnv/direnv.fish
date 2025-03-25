@@ -1,8 +1,9 @@
 # -*- mode: fish -*-
 
-# Don't continue if direnv is not found
-command -v direnv &>/dev/null || return
+# Don't do anything if direnv isn't installed...
+# remember, we aren't in source context, we're in one big config file context...
+if command -v direnv &>/dev/null
+    direnv hook fish | source
+end
 
-direnv hook fish | source
-
-# EOF
+# END OF LINE #
