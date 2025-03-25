@@ -66,8 +66,10 @@ function main
         debug "subcmd_args: $subcmd_args"
 
         # check for the subcmd in $DOTS_LIBEXEC
+        # TODO: figure out what we need here to make exec work
         if test -f $subcmd -a -x $subcmd
-            exec $subcmd $subcmd_args
+            debug "about to run subcmd program"
+            $subcmd $subcmd_args
         else
             panic "subcommand '$argv[1]' not found in $DOTS_LIBEXEC"
         end
