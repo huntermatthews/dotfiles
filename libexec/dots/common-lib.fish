@@ -26,6 +26,8 @@ function dots_require_base_config
     # Require certain directories exist
     dots_require_directories $DOTS $DOTS_LOCAL $DOTS/$DOTS_PROFILE $DOTS/libexec/dots
 
+    # TODO: Make sure that the profile is set to an actual _profile dir in $DOTS
+
 end
 
 function debug -S
@@ -33,10 +35,23 @@ function debug -S
     # Its NOT all powerful - note that debugging "argv" from other functions WILL fail if you attempt to use it here.
     # Instead >> debug "argv == '$argv'" << is required. Sorry.
     if set -q FLAG_DEBUG; and test "$FLAG_DEBUG" = true
-        # BUG - test for "argv" itself and report the user is a moron.
+        # BUG: - test for "argv" itself and report the user is a moron.
         if test $argv[1] = --var
+            echo here
             echo "DEBUG: variable $argv[2] == '$$argv[2]'"
+        else if test $argv[1] = --var-spaces
+            echo there
+            set -l count (count $$argv[2])
+            if test $count -eq 0
+                echo "DEBUG: variable $argv[2] of length $count == '$$argv[2]'"
+            else
+                echo "DEBUG: variable $argv[2] of length $count:"
+                for i in (seq (count $$argv[2]))
+                    echo "     debug: index: $i, Value: $$argv[2][$i]"
+                end
+            end
         else
+            echo nowhere
             echo "DEBUG: $argv"
         end
     end
