@@ -1,0 +1,3 @@
+
+# Created in fish 4.0/4.0.1
+set -Ua fish_features remove-percent-self test-require-arg
