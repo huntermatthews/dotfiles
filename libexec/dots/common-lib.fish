@@ -62,4 +62,13 @@ function panic
     exit 1
 end
 
+##
+## Future
+##
+
+# TODO: write an is_true/is_false that allows 1/0 true/false True/False etc
+
+# TODO: dots_require_programs - check for the existence of programs in $PATH
+# isn't that just command -v? Yes, but I want to be able to check for multiple programs at once.
+
 # END OF LINE #
