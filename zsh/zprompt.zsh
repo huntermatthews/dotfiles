@@ -24,3 +24,4 @@ PROMPT2="%{$fg_bold[black]%}%_> %{$reset_color%}"
 
 ZSH_THEME_SCM_PROMPT_PREFIX="%{$fg[green]%}["
 
+## END OF LINE ##

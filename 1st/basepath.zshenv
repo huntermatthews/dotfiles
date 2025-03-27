@@ -1,4 +1,4 @@
-# -*- mode: sh -*-
+## -*- mode: sh -*- ##
 
 #
 # No one can consistently and reliably set the damn path. So I do it myself.
@@ -19,5 +19,6 @@ $HOME/bin
 )
 
 dotfiles_debug "basepath path == ${path}"
+
 ## END OF LINE ##
 

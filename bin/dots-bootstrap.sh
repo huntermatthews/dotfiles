@@ -1,5 +1,4 @@
 #! /bin/sh
-# -*- mode: sh -*-
 
 # shellcheck disable=SC2312
 
@@ -133,4 +132,4 @@ echo "*** The bootstrap is complete. ***"
 echo "*** Now you can run iterm2 and run the 'dots setup' command to install the rest of the dots stuff. ***"
 echo "*** Enjoy! ***"
 
-## EOF ##
+## END OF LINE ##

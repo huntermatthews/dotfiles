@@ -71,4 +71,4 @@ end
 # TODO: dots_require_programs - check for the existence of programs in $PATH
 # isn't that just command -v? Yes, but I want to be able to check for multiple programs at once.
 
-# END OF LINE #
+## END OF LINE ##

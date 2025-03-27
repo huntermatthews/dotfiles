@@ -6,4 +6,4 @@ set -gx READNULLCMD less
 
 set -gx EDITOR "cot -n -w"
 
-## EOF ##
+## END OF LINE ##

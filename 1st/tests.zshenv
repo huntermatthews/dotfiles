@@ -10,6 +10,4 @@ is_linux() { [[ $OSTYPE == linux* ]] }
 is_work() { [[ ${HOSTNAME} == 'HG-02254242-LM' ]] }
 
 
-
-
 ## END OF LINE ##

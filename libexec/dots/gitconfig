@@ -38,3 +38,5 @@ exit 1
 #     success 'gitconfig'
 #   fi
 # }
+
+## END OF LINE ##

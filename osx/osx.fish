@@ -9,4 +9,4 @@ if brew list make 1>/dev/null 2>&1
     fish_add_path --global --move --path /opt/homebrew/opt/make/libexec/gnubin
 end
 
-## EOF ##
+## END OF LINE ##

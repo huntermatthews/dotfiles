@@ -21,4 +21,4 @@ exit 1
 
 dots builder .conf $DOTS_LOCAL/ssh%config.symlink
 
-# END OF LINE  #
+## END OF LINE ##

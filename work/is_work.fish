@@ -9,4 +9,4 @@ set -gx EMAIL "hunter.matthews@nih.gov"
 set -gx DCS TDCA B12 STG AWS
 set -gx dcs tdca b12 stg aws
 
-## EOF ##
+## END OF LINE ##

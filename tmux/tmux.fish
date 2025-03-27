@@ -13,4 +13,4 @@ if [ -n $TMUX ]
 
 end
 
-## EOF ##
+## END OF LINE ##

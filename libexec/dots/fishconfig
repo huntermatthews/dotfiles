@@ -14,3 +14,5 @@ or begin
 end
 
 dots builder .fish $DOTS_LOCAL/config%fish%config.fish.symlink
+
+## END OF LINE ##

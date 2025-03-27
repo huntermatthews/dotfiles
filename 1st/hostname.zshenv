@@ -1,4 +1,4 @@
-# -*- mode: sh -*-
+## -*- mode: fish -*- ##
 
 # in zsh HOST is set but not HOSTNAME (linux sometimes gets it anyway, not sure from where)
 if [[ -z $HOSTNAME ]] ; then 

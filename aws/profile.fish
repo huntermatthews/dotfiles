@@ -1,4 +1,4 @@
-# -*- mode: fish -*-
+## -*- mode: fish -*- ##
 
 function awsauth
     set creds (echo $argv | sed -e 's/^[ \t]*//' -e 's/[ \t]*$//')
@@ -11,4 +11,4 @@ function awsauth
     aws sts get-caller-identity | cat
 end
 
-# EOF
+## END OF LINE ##

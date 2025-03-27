@@ -21,4 +21,4 @@ set -gx LSCOLORS ExGxFxDxCxDxDxHbaDaCec
 # fi
 set -U __fish_git_prompt_showdirtystate yes
 
-## EOF ##
+## END OF LINE ##

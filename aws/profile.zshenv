@@ -7,3 +7,4 @@ awsauth() {
     aws sts get-caller-identity | cat
 }
 
+## END OF LINE ##

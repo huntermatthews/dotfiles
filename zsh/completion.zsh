@@ -62,3 +62,4 @@ fi
 autoload -Uz compinit
 compinit
 
+## END OF LINE ##

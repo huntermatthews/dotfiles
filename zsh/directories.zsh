@@ -9,3 +9,5 @@ alias d='dirs -v | head -10'
 
 function md() { mkdir -p $1 && cd $1 }
 alias rd=rmdir
+
+## END OF LINE ##

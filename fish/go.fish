@@ -3,4 +3,4 @@
 # TODO: move to work profile
 set -gx GOPRIVATE github.com/NHGRI
 
-## EOF ##
+## END OF LINE ##

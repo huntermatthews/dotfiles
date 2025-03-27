@@ -67,3 +67,4 @@ bindkey '\C-x\C-e' edit-command-line
 bindkey '^i' expand-or-complete-prefix
 #bindkey -M menuselect '^o' accept-and-infer-next-history
 
+## END OF LINE ##

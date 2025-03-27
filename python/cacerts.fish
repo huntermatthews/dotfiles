@@ -9,4 +9,4 @@ if [ -r /etc/ssl/cacerts.pem ]
     set -gx SSL_CERT_FILE /etc/ssl/cacerts.pem
 end
 
-## EOF ##
+## END OF LINE ##

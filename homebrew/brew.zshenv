@@ -15,3 +15,5 @@ fi
 export HOMEBREW_GITHUB_API_TOKEN='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'
 
 PATH="/opt/homebrew/opt/make/libexec/gnubin:$PATH"
+
+## END OF LINE ##

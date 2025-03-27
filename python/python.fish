@@ -8,4 +8,4 @@ set -gx PIP_REQUIRE_VIRTUALENV true
 fish_add_path --global --move --path ~/.local/bin
 
 
-## EOF ##
+## END OF LINE ##

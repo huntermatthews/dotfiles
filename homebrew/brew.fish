@@ -18,4 +18,4 @@ function brew-about
     open -g (brew info --json make | jq .[0].homepage)
 end
 
-## EOF ##
+## END OF LINE ##

@@ -6,4 +6,4 @@ for arg in $argv
     echo $arg | tr '[:upper:]-' '[:lower:]_' | tr -d '()'
 end
 
-# END OF LINE #
+## END OF LINE ##
