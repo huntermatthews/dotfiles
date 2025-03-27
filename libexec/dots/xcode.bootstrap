@@ -1,6 +1,0 @@
-#! /bin/sh
-
-echo "sh xcode.bootstrap says hi!"
-
-
-## END OF LINE ##
