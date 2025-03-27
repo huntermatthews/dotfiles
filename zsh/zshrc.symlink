@@ -1,29 +1,83 @@
-# -*- mode: sh -*-
+## -*- mode: sh -*- ##
 
-# DOTFILES is set in zshenv
-dotfiles_debug running .zshrc
+# 
+# Aliases
+#
+
+# I prefer the old sort order -capitals at the top, then everything else. Mac/BSD goes this. Fake it
+alias ll='LANG=C ls -lhH'
+alias la='LANG=C ls -lahH'
+
+alias tsize='echo $LINES x $COLUMNS'
+
+# Need a command name for all time thats editor independant.
+alias edit=cot
+
+#
+# Colors
+#
+autoload -U colors && colors
+
+#
+# Environment Variables
+# 
+
+LESS="RiX"
+PAGER=less
+
+EDITOR="cot -n -w"
+
+export LESS PAGER EDITOR
 
 
+#
+# Functions
+#
+awsauth() {
+    creds=$(echo "$@" | sed -e 's/^[ \t]*//' -e 's/[ \t]*$//')
+    echo "${creds}" > ~/.aws/credentials
+    # GRab first line and assign that to AWS_PROFILE to allow easy-ish switching
+    export AWS_PROFILE=$(echo ${creds} | sed -n 1p | sed -e 's/\[\(.*\)\]$/\1/')
+    echo $AWS_PROFILE
+    aws sts get-caller-identity | cat
+}
 
-# all of our zsh files
-typeset -U config_files
-config_files=($DOTFILES/**/*.zsh)
 
-# load everything but the path and completion files
-for file in ${config_files:#*/completion.zsh} ; do 
-    dotfiles_debug sourcing $file
-    source $file
-done
+#
+# Homebrew
+#
+eval $(/opt/homebrew/bin/brew shellenv)
+
+if [[ -z $HOMEBREW_PREFIX ]]; then
+    echo "ERROR: did not setup homebrew corerctly"
+fi
 
 
+# 
+# ZSH itself
+#
 
-# load every completion after autocomplete loads
-for file in ${(M)config_files:#*/completion.zsh} ; do
-    dotfiles_debug sourcing $file
-    source $file
-done
+# Store command location for speed
+setopt hash_cmds
 
-unset config_files file
+# Beeping is the work of the devil
+setopt no_beep
+setopt nolistbeep
 
+## Command history configuration
+if [ -z $HISTFILE ]; then
+    HISTFILE=$HOME/.zsh_history
+fi
+HISTSIZE=10000
+SAVEHIST=10000
+
+setopt extended_history
+setopt hist_expire_dups_first
+setopt hist_ignore_dups # ignore duplication command history list
+setopt hist_ignore_space
+setopt hist_verify
+setopt inc_append_history
+
+bindkey -e                              # Use emacs key bindings
 
 ## END OF LINE ##
