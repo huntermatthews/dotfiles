@@ -19,12 +19,9 @@ set -g DOTS_LIBEXEC $DOTS/libexec/dots
 # FIXME: check for DOTS before using
 source $DOTS_LIBEXEC/common-lib.fish
 or begin
-    echo "FATAL: could not source common-lib.fish -- exiting program..."
+    echo "FATAL: could not source common-lib.fish -- exiting program..." 1>&2
     exit 11
 end
-
-# check the rest of our minimal config assumptions
-dots_require_base_config
 
 # all this script does is serve as a front-end to others
 # we can assume that dots-bootstrap.sh has already run.
@@ -54,9 +51,12 @@ function main
     end
 
     if set -q _flag_version
-        echo (status basename) v$VERSION
+        echo (status basename) v$DOTS_VERSION
         exit 0
     end
+
+    # check the rest of our minimal config assumptions
+    dots_require_base_config
 
     if set -q argv[1]
         # First arg is a subcmd - it needs to exist in $DOTS_LIBEXEC

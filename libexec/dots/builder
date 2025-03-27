@@ -46,23 +46,18 @@ function main
     if test (count $argv) -ne 2
         panic "missing required arguments"
     end
-    set -l outfile $argv[1]
-    set -l pattern $argv[2]
-    debug --var outfile
+    set pattern $argv[1]
+    set outfile $argv[2]
+
     debug --var pattern
+    debug --var outfile
 
-    # Get ALL the pattern matched files - including ALL the profiles
-    set files $DOTS/*/*$pattern
+    # TODO: switch to split0 to allow spaces...
+    set files (string split ' ' (dots_files_with_active_profile $pattern))
     debug --var-spaces files
 
-    # Dumb but effective - remove ALL the profile related files
-    set files (string match --entire --invert _profile $files)
-    debug --var-spaces files
-
-    set profile_files $DOTS/{$DOTS_PROFILE}_profile/*$pattern
-    debug --var-spaces profile_files
-
-    set files $profile_files $files
+    # We also need the "local" files (tokens, machine specific %^!@) from .dots_local
+    set files $files $DOTS_LOCAL/*.fish
     debug --var-spaces files
 
     # cat them all together

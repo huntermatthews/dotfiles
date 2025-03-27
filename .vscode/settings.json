@@ -6,5 +6,8 @@
         "nonopt",
         "subcmd",
         "subcmds"
+    ],
+    "cSpell.ignoreWords": [
+        "Iseconds"
     ]
 }

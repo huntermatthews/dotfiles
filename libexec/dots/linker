@@ -19,17 +19,21 @@ end
 # FIXME: check for DOTS before using
 source $DOTS_LIBEXEC/common-lib.fish
 or begin
-    echo "FATAL: could not source common-lib.fish -- exiting program..."
+    echo "FATAL: could not source common-lib.fish -- exiting program..." 1>&2
     exit 11
 end
 
 function install_dotfiles
     # info 'installing dotfiles'
 
-    for src in (find -H "$DOTS" "$DOTS_LOCAL" -maxdepth 2 -name '*.symlink' -not -path '*.git*')
+    #    for src in (find -H "$DOTS" "$DOTS_LOCAL" -maxdepth 2 -name '*.symlink' -not -path '*.git*')
+    set symlinks (string split ' ' (dots_files_with_active_profile .symlink )) $DOTS_LOCAL/*.symlink
+    for src in $symlinks
+        # Convert the src roughly into the dest
+        set dst $HOME/.(string replace -r '\.symlink$' '' (basename $src))
 
-        # dst="$HOME/.$(basename "${src%.*}")"
-        set -l dst $HOME/.(string replace -r '\.symlink$' '' (basename $src))
+        # Sadly, we can't just dump everything in $HOME anymore ... ~/.config is a thing and so is ~/.ssh
+        set dst (string replace -a % / $dst)
         echo ln -s $src $dst
 
     end
@@ -37,10 +41,22 @@ function install_dotfiles
 end
 
 function main
-    install_dotfiles
+    argparse --name (status basename) debug h/help -- $argv
+    or begin
+        echo $HELP
+        exit 1
+    end
 
-    echo ''
-    echo '  All installed!'
+    if set -q _flag_debug
+        set -g FLAG_DEBUG true
+    end
+
+    if set -q _flag_help
+        echo $HELP
+        exit 0
+    end
+
+    install_dotfiles
 end
 
 main $argv
