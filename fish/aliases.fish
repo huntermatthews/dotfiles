@@ -29,10 +29,10 @@ alias tf $HOME/projects/terraform/bin/ssa-terraform
 
 # colorized less
 function cless
-    pygmentize $argv | less
+    echo "Nope"
 end
 
-alias lessn "less -N"
+alias nless "less -N"
 
 # Need a command name for all time thats editor independent.
 alias edit cot
