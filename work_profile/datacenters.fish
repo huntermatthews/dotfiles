@@ -1,7 +1,5 @@
 ## -*- mode: fish -*- ##
 
-set -gx EMAIL "hunter.matthews@nih.gov"
-
 # These should query our inventory system
 # Til that reality strikes, some vars.
 #
