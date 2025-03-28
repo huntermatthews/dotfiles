@@ -10,8 +10,8 @@ alias la 'LANG=C ls -lahH'
 
 # Remove comments and whitespace only /blank lines from input (to be used in a pipeline)
 # @fish-lsp-disable-next-line
-alias nocomment 'sed -e "s/#.*$//" -e "/^\s*$/d"'
-alias wsstrip 'sed -e "s/^[ \t]*//" -e "s/[ \t]*$//" -e "s/[ \t][ \t]*/ /"'
+alias nocomment 'sed -e "s/#.*\$//" -e "/^\s*\$/d"'
+alias wsstrip 'sed -e "s/^[ \t]*//" -e "s/[ \t]*\$//" -e "s/[ \t][ \t]*/ /"'
 
 # Create a randomized password good enough to actually use.
 alias pwgen 'pwgen --secure 30 1'
