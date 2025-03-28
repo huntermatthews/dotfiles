@@ -1,4 +1,5 @@
 #! /usr/bin/env fish
+# -*- mode: fish -*-
 
 set help "\
 Usage: dots gitconfig [options]
@@ -46,12 +47,12 @@ if not test -f $DOTS_LOCAL/gitconfig.symlink
     cp $DOTS/git/gitconfig.orig $DOTS_LOCAL/gitconfig.symlink
 end
 
-if test (git config --file $DOTS_LOCAL/gitconfig.symlink --get user.name $ENAME) != $ENAME
+if test (git config --file $DOTS_LOCAL/gitconfig.symlink --get user.name) != $ENAME
     git config --file $DOTS_LOCAL/gitconfig.symlink --replace-all user.name $ENAME
     or panic "Unable to set user.name in gitconfig"
 end
 
-if test (git config --file $DOTS_LOCAL/gitconfig.symlink --get user.email $EMAIL) != $EMAIL
+if test (git config --file $DOTS_LOCAL/gitconfig.symlink --get user.email) != $EMAIL
     git config --file $DOTS_LOCAL/gitconfig.symlink --replace-all user.email $EMAIL
     or panic "Unable to set user.email in gitconfig"
 end
