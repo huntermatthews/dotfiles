@@ -1,6 +1,6 @@
 ## -*- mode: sh -*- ##
 
-# 
+#
 # Aliases
 #
 
@@ -10,7 +10,7 @@ alias la='LANG=C ls -lahH'
 
 alias tsize='echo $LINES x $COLUMNS'
 
-# Need a command name for all time thats editor independant.
+# Need a command name for all time thats editor independent.
 alias edit=cot
 
 #
@@ -20,7 +20,7 @@ autoload -U colors && colors
 
 #
 # Environment Variables
-# 
+#
 
 LESS="RiX"
 PAGER=less
@@ -49,11 +49,11 @@ awsauth() {
 eval $(/opt/homebrew/bin/brew shellenv)
 
 if [[ -z $HOMEBREW_PREFIX ]]; then
-    echo "ERROR: did not setup homebrew corerctly"
+    echo "ERROR: did not setup homebrew correctly"
 fi
 
 
-# 
+#
 # ZSH itself
 #
 

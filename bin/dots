@@ -67,7 +67,7 @@ function main
 
         # check for the subcmd in $DOTS_LIBEXEC
         # TODO: figure out what we need here to make exec work
-        if test -x $subcmd 
+        if test -x $subcmd
             debug "about to run subcmd program"
             $subcmd $subcmd_args
         else if test -f $subcmd
