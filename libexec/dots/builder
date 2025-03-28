@@ -33,11 +33,12 @@ function blocker
 end
 
 function main
-    argparse --name (status basename) debug h/help -- $argv
+    argparse --name (status basename) debug h/help fish -- $argv
     or begin
         echo $HELP
         exit 1
     end
+
     if set -q _flag_debug
         set -g FLAG_DEBUG true
     end
@@ -56,17 +57,27 @@ function main
     set files (string split ' ' (dots_files_with_active_profile $pattern))
     debug --var-spaces files
 
-    # We also need the "local" files (tokens, machine specific %^!@) from .dots_local
+    # We also need the "local" files (tokens, host specific stuff) from .dots_local
     set files $files $DOTS_LOCAL/*.fish
     debug --var-spaces files
 
     # cat them all together
     blocker dots-builder $(date -Iseconds) "Generated file - do not edit!" >$outfile
 
+    if set -q _flag_fish
+        echo 'if status --is-interactive' >>$outfile
+    end
+
+    # The contents of all these (fish) files _won't_ be indented properly, but we don't care - because fish doesn't.
     for file in $files
-        [ $DOTS_DEBUG = 1 ] && blocker "original file: $file" >>$outfile
-        cat $file >>$outfile
-        [ $DOTS_DEBUG = 1 ] && echo \n\n >>$outfile
+
+        #        [ $DOTS_DEBUG = 1 ] && blocker "original file: $file" >>$outfile
+        cat $file | sed -e 's/#.*$//g' | sed -e '/^[[:space:]]*$/d' >>$outfile
+        #       [ $DOTS_DEBUG = 1 ] && echo \n\n >>$outfile
+    end
+
+    if set -q _flag_fish
+        echo end >>$outfile
     end
 
     blocker "end of file" >>$outfile

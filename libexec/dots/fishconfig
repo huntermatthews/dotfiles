@@ -7,7 +7,7 @@ Usage: dots fishconfig
 echo "==> Building the fish shell configuration..."
 
 # BUGFIX: we might not have a path yet just immediately after bootstrapping
-$DOTS/bin/dots builder .fish $DOTS_LOCAL/config%fish%config.fish.symlink
+$DOTS/bin/dots builder --fish .fish $DOTS_LOCAL/config%fish%config.fish.symlink
 or begin
     echo "FATAL: could not build fishconfig -- exiting program..." 1>&2
     exit 11
