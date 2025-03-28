@@ -1,6 +1,6 @@
 #! /usr/bin/env fish
 
-set -g HELP "
+set -g HELP "\
 Usage: $(status basename) [options...]
 
 make symlinks for *.symlink files.
@@ -11,10 +11,6 @@ Optional Arguments
 "
 
 set -g DOTS_LIBEXEC $DOTS/libexec/dots
-# TODO: migrate this to the common-lib ...
-function fish_command_not_found
-    exit 12
-end
 
 # FIXME: check for DOTS before using
 source $DOTS_LIBEXEC/common-lib.fish
@@ -23,42 +19,42 @@ or begin
     exit 11
 end
 
-function install_dotfiles
-    # info 'installing dotfiles'
+argparse --name (status basename) debug h/help -- $argv
+or begin
+    echo $HELP
+    exit 1
+end
 
-    #    for src in (find -H "$DOTS" "$DOTS_LOCAL" -maxdepth 2 -name '*.symlink' -not -path '*.git*')
-    set symlinks (string split ' ' (dots_files_with_active_profile .symlink )) $DOTS_LOCAL/*.symlink
-    for src in $symlinks
-        # Convert the src roughly into the dest
-        set dst $HOME/.(string replace -r '\.symlink$' '' (basename $src))
+if set -q _flag_debug
+    set -g FLAG_DEBUG true
+end
 
-        # Sadly, we can't just dump everything in $HOME anymore ... ~/.config is a thing and so is ~/.ssh
-        set dst (string replace -a % / $dst)
-        echo ln -s $src $dst
+if set -q _flag_help
+    echo $HELP
+    exit 0
+end
 
+echo "==> Building the symlinks..."
+
+set symlinks (string split ' ' (dots_files_with_active_profile .symlink )) $DOTS_LOCAL/*.symlink
+for src in $symlinks
+    # Convert the src roughly into the dest
+    set dst $HOME/.(string replace -r '\.symlink$' '' (basename $src))
+
+    # Sadly, we can't just dump everything in $HOME anymore ... ~/.config is a thing and so is ~/.ssh
+    set dst (string replace --all % / $dst)
+    if test -L $dst
+        echo "-> $dst already exists, skipping..."
+        continue
+    else if test -e $dst
+        echo "-> WARNING: $dst exists..."
+        continue
+    else
+        echo "-> $dst does not exist, creating..."
+        ln -s $src $dst
     end
 
 end
 
-function main
-    argparse --name (status basename) debug h/help -- $argv
-    or begin
-        echo $HELP
-        exit 1
-    end
-
-    if set -q _flag_debug
-        set -g FLAG_DEBUG true
-    end
-
-    if set -q _flag_help
-        echo $HELP
-        exit 0
-    end
-
-    install_dotfiles
-end
-
-main $argv
 
 ## END OF LINE ##

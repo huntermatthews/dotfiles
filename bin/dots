@@ -1,6 +1,6 @@
 #! /usr/bin/env fish
 
-set -g HELP "
+set -g HELP "\
 Usage: $(status basename) [options...] [--list | XXX ] <subcmd>
 
 DESCRIPTION HERE
@@ -67,9 +67,11 @@ function main
 
         # check for the subcmd in $DOTS_LIBEXEC
         # TODO: figure out what we need here to make exec work
-        if test -f $subcmd -a -x $subcmd
+        if test -x $subcmd 
             debug "about to run subcmd program"
             $subcmd $subcmd_args
+        else if test -f $subcmd
+            panic "subcommand '$argv[1]' found in $DOTS_LIBEXEC, but it is not executable -- you dolt!"
         else
             panic "subcommand '$argv[1]' not found in $DOTS_LIBEXEC"
         end

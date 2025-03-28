@@ -96,6 +96,10 @@ function dots_files_with_active_profile
     echo $files
 end
 
+function fish_command_not_found
+    exit 12
+end
+
 ##
 ## Future
 ##

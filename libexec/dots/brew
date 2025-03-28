@@ -1,0 +1,22 @@
+#! /usr/bin/env fish
+
+set -g HELP "\
+Usage: $(status basename)
+
+Tell brew to update and upgrade all the things.
+"
+
+source $DOTS/libexec/dots/common-lib.fish
+or begin
+    echo "FATAL: Unable to source common-lib.fish library"
+    exit 10
+end 
+
+# brew is installed via the bootstrap script, so we can assume it's there.
+HOMEBREW_NO_ENV_HINTS=true brew update
+or panic "brew update failed"
+
+HOMEBREW_NO_ENV_HINTS=true brew upgrade
+or panic "brew upgrade failed"
+
+## END OF LINE ##

@@ -13,6 +13,7 @@ or begin
     exit 10
 end
 
+echo "==> Building the SSH configuration..."
 echo "ERROR: This script is not yet implemented."
 exit 1
 

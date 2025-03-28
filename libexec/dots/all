@@ -1,0 +1,45 @@
+#! /usr/bin/env fish
+
+set -g HELP "\
+Usage: $(status basename)
+
+Run all of the needed dots configuration scripts in the appropriate order.
+The individual scripts _should_ be idempotent, so running this script multiple times should be safe.
+"
+set -g DOTS_LIBEXEC $DOTS/libexec/dots
+
+# FIXME: check for DOTS before using
+source $DOTS_LIBEXEC/common-lib.fish
+or begin
+    echo "FATAL: could not source common-lib.fish -- exiting program..." 1>&2
+    exit 11
+end
+
+$DOTS_LIBEXEC/check
+or panic "check failed"
+
+# brew always goes first, so the others get the fresh stuff.
+$DOTS_LIBEXEC/brew
+or panic "brew failed"
+
+$DOTS_LIBEXEC/fishconfig
+or panic "fishconfig failed"  
+
+$DOTS_LIBEXEC/gitconfig
+or panic "gitconfig failed"
+
+# $DOTS_LIBEXEC/sshconfig
+# or panic "sshconfig failed"
+
+$DOTS_LIBEXEC/chrome
+or panic "chrome failed"
+
+$DOTS_LIBEXEC/macos
+or panic "macos failed"
+
+# Linker _always_ goes last..
+$DOTS_LIBEXEC/linker
+or panic "linker failed"
+
+
+## END OF LINE ##

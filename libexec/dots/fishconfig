@@ -1,13 +1,16 @@
 #! /usr/bin/env fish
 
-set help "
-Usage: dots builder [options] suffix target_file
-Options:
-    -d, --debug        Enable debug mode
-    -h, --help         Show this help
+set help "\
+Usage: dots fishconfig
 "
+
+echo "==> Building the fish shell configuration..."
 
 # BUGFIX: we might not have a path yet just immediately after bootstrapping
 $DOTS/bin/dots builder .fish $DOTS_LOCAL/config%fish%config.fish.symlink
+or begin
+    echo "FATAL: could not build fishconfig -- exiting program..." 1>&2
+    exit 11
+end
 
 ## END OF LINE ##

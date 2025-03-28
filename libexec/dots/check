@@ -1,7 +1,7 @@
 #! /usr/bin/env fish
 
 set help "
-Usage: dots builder [options] suffix target_file
+Usage: dots check
 Options:
     -d, --debug        Enable debug mode
     -h, --help         Show this help
@@ -14,6 +14,7 @@ or begin
 end
 
 # this script exists solely to call the dots_verify_base_config function in lib-common.fish
-dots_verify_base_config
+echo "==> Checking base config..."
+dots_require_base_config
 
 ## END OF LINE ##

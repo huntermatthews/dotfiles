@@ -1,7 +1,10 @@
 #! /usr/bin/env fish
 
-set help "
-Usage: dots builder [options] suffix target_file
+set help "\
+Usage: dots gitconfig [options]
+
+Update the gitconfig file with the current user's name and email.
+
 Options:
     -d, --debug        Enable debug mode
     -h, --help         Show this help
@@ -13,14 +16,48 @@ or begin
     exit 10
 end
 
-echo "ERROR: This script is not yet implemented."
-exit 1
+# main()
+argparse --name (status basename) debug h/help -- $argv
+or begin
+    echo $help
+    exit 1
+end
 
-# rename gitconfig.symlink to .... gitconfig.original
-# COPY original to $DOTS_LOCAL
-# git config $FILENAME set name and email and whatnot
-# NOW the linker runs.
+if set -q _flag_debug
+    set -g FLAG_DEBUG true
+end
 
-# Meh.
+if set -q _flag_help
+    echo $help
+    exit 0
+end
+
+echo "==> Building the git configuration..."
+
+# We set the EMAIL and ENAME variables in the profile, so we can use them here.
+# BUT, we might be in a bootstrap situation, so we need to source them here.
+source $DOTS/{$DOTS_PROFILE}_profile/email.fish
+or panic "Unable to source email.fish"
+debug --var EMAIL
+debug --var ENAME
+
+# We need to check for the existence of the target file, and if it doesn't exist, we need to create it.
+if not test -f $DOTS_LOCAL/gitconfig.symlink
+    cp $DOTS/git/gitconfig.orig $DOTS_LOCAL/gitconfig.symlink
+end
+
+if test (git config --file $DOTS_LOCAL/gitconfig.symlink --get user.name $ENAME) != $ENAME
+    git config --file $DOTS_LOCAL/gitconfig.symlink --replace-all user.name $ENAME
+    or panic "Unable to set user.name in gitconfig"
+end
+
+if test (git config --file $DOTS_LOCAL/gitconfig.symlink --get user.email $EMAIL) != $EMAIL
+    git config --file $DOTS_LOCAL/gitconfig.symlink --replace-all user.email $EMAIL
+    or panic "Unable to set user.email in gitconfig"
+end
+
+return 0
+
+# This ain't great, but ... meh
 
 ## END OF LINE ##

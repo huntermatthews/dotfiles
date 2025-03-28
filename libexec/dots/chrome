@@ -1,5 +1,9 @@
 #! /bin/sh
 
+echo "==> Updating Chrome configuration..."
+echo "chrome not implemented yet"
+exit 0
+
 defaults write com.google.Chrome DisablePrintPreview -boolean true
 
 ## END OF LINE ##
