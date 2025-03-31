@@ -20,7 +20,8 @@ alias diff 'diff -u'
 
 alias tsize 'echo $LINES x $COLUMNS'
 
-# this formats shell scripts "correctly"
+# this formats shell scripts (bash / zsh) "correctly"
+# fish uses fish_indent.
 alias shfmt 'shfmt -i 4 -bn -ci -sr'
 
 # terraform is too much to spell
@@ -32,9 +33,6 @@ function cless
 end
 
 alias nless "less -N"
-
-# Need a command name for all time thats editor independent.
-alias edit cot
 
 # TODO : convert to abbr ???
 #brew info --json cf-terraforming globstar gotz hishtory immich-go kapp kirimase org-formation ov pivy punktf rattler-index semver sequoia-sqv sttr tml yoke ytt | jq -r '.[] | "####",.name,.desc,.homepage,"\n"'
