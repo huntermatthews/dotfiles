@@ -10,13 +10,21 @@ source $DOTS/libexec/dots/common-lib.fish
 or begin
     echo "FATAL: Unable to source common-lib.fish library"
     exit 10
-end 
+end
+
+# I'm not ready to make this universal yet, so let's just assume we're on macOS
+set -gx HOMEBREW_NO_ENV_HINTS true
 
 # brew is installed via the bootstrap script, so we can assume it's there.
-HOMEBREW_NO_ENV_HINTS=true brew update
+brew update
 or panic "brew update failed"
 
-HOMEBREW_NO_ENV_HINTS=true brew upgrade
+# Brew install/upgrade all the Brewfile things
+brew bundle --file $DOTS/brew/Brewfile
+or panic "brew bundle install/upgrade failed"
+
+# Brew upgrade all the (other) things
+brew upgrade
 or panic "brew upgrade failed"
 
 ## END OF LINE ##

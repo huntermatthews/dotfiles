@@ -1,0 +1,20 @@
+#! /usr/bin/env fish
+
+# The mas command can let us talk to the apple store from the CLI
+
+# "mas list" gives us a good list -- but we really want it in brew bundle Brewfile format
+# mas "Bear", id: 1091189122
+
+if not command -v mas
+    echo "ERROR: mas needs to be installed via brew for this to work"
+    exit 1
+end
+
+while read line
+    #echo debug line == $line
+    set id (echo $line | cut -c1-12 | string trim)
+    set name (echo $line | cut -c13-38 | string trim)
+    echo mas \"$name\", id: $id
+end <(mas list)
+
+## END OF LINE ##
