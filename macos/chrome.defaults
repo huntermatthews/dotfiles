@@ -1,5 +1,0 @@
-#! /usr/bin/env fish
-
-defaults write com.google.Chrome DisablePrintPreview -boolean true
-
-## END OF LINE ##
