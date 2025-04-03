@@ -1,38 +1,33 @@
 #! /usr/bin/env fish
+# -*- mode: fish -*- #
 
 set -g HELP "\
 Usage: $(status basename) [options...] [--list | XXX ] <subcmd>
 
-DESCRIPTION HERE
+$(status basename) is Hunter's over-engineered dotfiles management / installation / update system.
 
 Optional Arguments
         --debug              Print debug information
     -h, --help               Print this help
-        --key <key>          Print the data for key in plain text, one line per item, format.
-                             If you need actual json, just give no arguments and program will print
-                             the whole JSON response.
         --list               List the categories/keys of the GitHUB api's IP addresses
 "
 
+if not set -q DOTS; and test -d ~/.dots
+    # something likely went wrong in bootstrapping
+    # NOTE: if you're going to change the default dots dir here, you must match it to dots-bootstrap.sh
+    set -U DOTS ~/.dots
+end
 set -g DOTS_LIBEXEC $DOTS/libexec/dots
 
-# FIXME: check for DOTS before using
 source $DOTS_LIBEXEC/common-lib.fish
 or begin
     echo "FATAL: could not source common-lib.fish -- exiting program..." 1>&2
     exit 11
 end
 
-# all this script does is serve as a front-end to others
-# we can assume that dots-bootstrap.sh has already run.
-#
-# dots <subcmd> looks in $DOTS/libexec/dots to find its subcmds and runs them.
-# dots --help show list of subcommands as does "list" or maybe "--list"
-# dots --version / version subcmd shows version for dots itself
 # v2.0 dots --requires (or --assure --demand ?) shows requirements (files or programs) that are required to function?
 # dots <subcmd> --help shows only help output for that subcmd -- so --help MUST exist.
-# dots <subcmd> --version shows only version?  No - invalid, target scripts can be SIMPLE - besides, what am I versioning?
-# v2.0 dots setup runs all setup* prefixed subcmds   -- tricky....
+#
 
 function main
     argparse --name (status basename) --stop-nonopt --ignore-unknown debug h/help l/list version -- $argv
@@ -58,6 +53,11 @@ function main
     # check the rest of our minimal config assumptions
     dots_require_base_config
 
+    if set -q _flag_list
+        cat $DOTS_LIBEXEC/description.txt
+        exit 0
+    end
+
     if set -q argv[1]
         # First arg is a subcmd - it needs to exist in $DOTS_LIBEXEC
         set -l subcmd $DOTS_LIBEXEC/$argv[1]
@@ -66,7 +66,6 @@ function main
         debug "subcmd_args: $subcmd_args"
 
         # check for the subcmd in $DOTS_LIBEXEC
-        # TODO: figure out what we need here to make exec work
         if test -x $subcmd
             debug "about to run subcmd program"
             $subcmd $subcmd_args
