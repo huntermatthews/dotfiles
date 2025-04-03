@@ -1,0 +1,12 @@
+    - all          Run (nearly) all the other steps
+    - brew         Brew Update/upgrade/bundler run.
+    - builder      Support Tool - concats files together with profiles implemented.
+    - check        Runs the basic assumption checks as standalone tool.
+    - chrome       Configure Google Chrome from command line.
+    - fishconfig   Configure fish shell (builder run)
+    - gitconfig    Configure git (not a builder run)
+    - linker       Link all the .symlink files to the right place.
+    - macos        Configure MacOS itself to be less dumb.
+    - sshconfig    Configure SSH (builder run?)
+
+Why are some *config and others not? Mystery!
