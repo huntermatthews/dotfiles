@@ -8,7 +8,6 @@ The individual scripts _should_ be idempotent, so running this script multiple t
 "
 set -g DOTS_LIBEXEC $DOTS/libexec/dots
 
-# FIXME: check for DOTS before using
 source $DOTS_LIBEXEC/common-lib.fish
 or begin
     echo "FATAL: could not source common-lib.fish -- exiting program..." 1>&2
@@ -23,7 +22,7 @@ $DOTS_LIBEXEC/brew
 or panic "brew failed"
 
 $DOTS_LIBEXEC/fishconfig
-or panic "fishconfig failed"  
+or panic "fishconfig failed"
 
 $DOTS_LIBEXEC/gitconfig
 or panic "gitconfig failed"
@@ -40,6 +39,5 @@ or panic "macos failed"
 # Linker _always_ goes last..
 $DOTS_LIBEXEC/linker
 or panic "linker failed"
-
 
 ## END OF LINE ##

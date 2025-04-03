@@ -12,7 +12,6 @@ Optional Arguments
 
 set -g DOTS_LIBEXEC $DOTS/libexec/dots
 
-# FIXME: check for DOTS before using
 source $DOTS_LIBEXEC/common-lib.fish
 or begin
     echo "FATAL: could not source common-lib.fish -- exiting program..."
@@ -53,7 +52,6 @@ function main
     debug --var pattern
     debug --var outfile
 
-    # TODO: switch to split0 to allow spaces...
     set files (string split ' ' (dots_files_with_active_profile $pattern))
     debug --var-spaces files
 
