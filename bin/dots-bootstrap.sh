@@ -2,8 +2,6 @@
 
 # shellcheck disable=SC2312
 
-# TODO: one day, we might want to allow dots, dots_local and debug customization...
-
 if [ "$1" = "-v" -o "$1" = "--verbose" ]; then
     VERBOSE=1
 elif [ "$1" = "-h" -o "$1" = "--help" ]; then
@@ -29,7 +27,7 @@ verbose() {
 ##
 verbose "Checking OS being MacOS..."
 if [ "$(uname)" != "Darwin" ]; then
-    panic "Sorry, this script is intended only for macOS."
+    panic "Sorry, this script is (currently) intended only for macOS."
 fi
 
 ##
@@ -56,14 +54,14 @@ if ! command -v brew >/dev/null; then
         panic "Failed to install Homebrew."
     fi
 else
-    # Update Homebrew recipes -- in case we didn't install homebrew, we need to update it.
+    # Update Homebrew recipes -- in case we didn't install homebrew, we need to update/upgrade it.
     echo "Updating Homebrew..."
     brew update
     if [ $? -ne 0 ]; then
         panic "Failed to update Homebrew."
         exit 1
     fi
-    echo "Updating Homebrew..."
+    echo "Upgrading Homebrew packages..."
     brew upgrade
     if [ $? -ne 0 ]; then
         panic "Failed to upgrade Homebrew packages."
@@ -129,7 +127,7 @@ fish -c "set -U DOTS ~/.dots ; set -U DOTS_LOCAL ~/.dots_local ; set -U DOTS_PRO
 
 echo "\n\n"
 echo "*** The bootstrap is complete. ***"
-echo "*** Now you can run iterm2 and run the 'dots setup' command to install the rest of the dots stuff. ***"
+echo "*** Now you can run iterm2 and run the 'dots all' command to install the rest of the dots stuff. ***"
 echo "*** Enjoy! ***"
 
 ## END OF LINE ##
