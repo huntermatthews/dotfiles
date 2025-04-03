@@ -6,31 +6,35 @@ DEFAULT_KEY=id_hostlogin.pub
 usage() {
     echo "Copy an ssh key to a remote host, putting it in the authorized_keys file"
     echo "Will make a .ssh and fix up perms for you"
+    echo "Also copies subl-remote as subl to remote ~/bin directory."
     echo "usage: $(basename $0) [-k | --key SSH_KEY ] [-h | --help] host1 [host...]"
 }
 
 if [ $# -ne 1 -a $# -ne 3 ] ; then
     usage
-    exit 1 
+    exit 1
 fi
 
 if [ $1 = "-h" -o $1 = "--help" ] ; then
     usage
-    exit 0 
+    exit 0
 fi
 
-# FIXME: check that file exists.
 if [ $1 = "-k" -o $1 = "--key" ] ; then
-   KEY=$2
+   KEY=~/.ssh/$2
    shift 2
 else
-   KEY=$DEFAULT_KEY
+   KEY=~/.ssh/$DEFAULT_KEY
 fi
 
-for host in $* ; do 
-    cat ~/.ssh/$KEY | ssh $host 'mkdir -p ~/.ssh ; cat >> ~/.ssh/authorized_keys ; chmod -R go-rwx .ssh '
+if [ ! -f $KEY ] ; then
+    echo "ERROR: SSH key '$KEY' does not exist! Exiting..."
+    exit 1
+fi
+
+for host in $* ; do
+    cat $KEY | ssh $host 'mkdir -p ~/.ssh ; cat >> ~/.ssh/authorized_keys ; chmod -R go-rwx .ssh '
     cat ~/bin/subl-remote | ssh $host 'mkdir -p ~/bin ; cat >> ~/bin/subl ; chmod u+x ~/bin/subl '
 done
 
 ## END OF LINE ##
-
