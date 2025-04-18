@@ -3,7 +3,7 @@
 # Helper aliases for SSH. Should only need on reboots...
 alias ssh-card-add "ssh-add -s /usr/lib/ssh-keychain.dylib"
 alias ssh-card-remove "ssh-add -e /usr/lib/ssh-keychain.dylib"
-alias ssh-add-all "ssh-add --apple-load-keychain ~/.ssh/id_*~*.pub ; ssh-card-add"
+alias ssh-add-all "ssh-add --apple-load-keychain ; ssh-card-add"
 
 # Its _almost_ always the first key. If pkcs15-tool says "PIV Auth pubkey" you got it right.
 if command -v pkcs15-tool >/dev/null 2>&1
