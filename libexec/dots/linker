@@ -55,4 +55,9 @@ for src in $symlinks
 
 end
 
+# Future
+
+# Check for existing links in homedir + .local +  .config that point INTO the dots repo that aren't valid and
+# remove them. This is a bit of a pain, but it would be nice to have a clean slate.
+
 ## END OF LINE ##
