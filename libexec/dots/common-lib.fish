@@ -163,17 +163,11 @@ function is_false_or_empty
 end
 
 function dots_profile_list
-    echo path filter --type dir $DOTS/libexec/dots/*_profile | string _profile ''
+    echo path filter --type dir $DOTS/*_profile | string _profile ''
 end
 
 ##
 ## Future
 ##
-
-# TODO: rewrite the existing debug to be:
-# debug --var might be fine
-# debug_var ???
-# format_spaces
-#    but definitely get spaces OUT of the debug function. too complex
 
 ## END OF LINE ##
