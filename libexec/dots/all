@@ -27,9 +27,6 @@ or panic "fishconfig failed"
 $DOTS_LIBEXEC/gitconfig
 or panic "gitconfig failed"
 
-# $DOTS_LIBEXEC/sshconfig
-# or panic "sshconfig failed"
-
 $DOTS_LIBEXEC/chrome
 or panic "chrome failed"
 
