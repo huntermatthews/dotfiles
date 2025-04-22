@@ -1,0 +1,51 @@
+UseKeychain yes
+AddKeysToAgent yes
+IdentitiesOnly yes
+StrictHostKeyChecking accept-new
+
+# VPN will terminate long idle connections. Keep them alive.
+ServerAliveInterval 300
+ServerAliveCountMax 55555
+
+# Treat the trek internal nodes as behind a "bastion" of trek itself...
+Host kcompute* kservice* khead* storform* kstorage* kdatabase*
+  ProxyJump matthewsht@trek.nhgri.nih.gov
+  ForwardAgent yes
+  IdentityFile ~/.ssh/id_smartcard.pub
+
+Host github.com-personal
+  HostName github.com
+  CanonicalizeHostname no
+  CanonicalizeFallbackLocal yes
+  IdentityFile ~/.ssh/id_github_personal
+  User git
+
+Host github.com
+  HostName github.com
+  CanonicalizeHostname no
+  CanonicalizeFallbackLocal yes
+  IdentityFile ~/.ssh/id_github_nhgri
+  User git
+
+Host *.nhgri.nih.gov
+  IdentityFile ~/.ssh/id_smartcard.pub
+  ForwardAgent yes
+  # subl hack
+  RemoteForward 58962 127.0.0.1:52698
+  LogLevel=ERROR
+
+# Questionable - commented out for now
+# Host 10.240.1* *.aws.nhgri.nih.gov
+# #  CanonicalizeHostname no
+#   StrictHostKeyChecking no
+#   ForwardAgent yes
+#   UserKnownHostsFile /dev/null
+#   Loglevel QUIET
+#   IdentityFile ~/.ssh/hgssaadmin
+#   User hgssaadmin
+
+Host *
+  CanonicalizeHostname yes
+  CanonicalDomains nhgri.nih.gov
+  # Attempt to avoid non-NHGRI systems unless being explicit about it
+  CanonicalizeFallbackLocal no
