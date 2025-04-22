@@ -11,5 +11,3 @@ if command -v pkcs15-tool >/dev/null 2>&1
 else
     alias ssh-card-list "ssh-keygen -D /usr/lib/ssh-keychain.dylib 2>/dev/null | head -n 1 "
 end
-
-## END OF LINE ##
