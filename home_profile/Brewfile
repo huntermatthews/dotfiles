@@ -2,6 +2,9 @@
 tap "homebrew/bundle"
 brew "mas"
 
+#
+# Homebrew
+#
 
 # Modern shell world
 brew "fish"
@@ -13,7 +16,6 @@ brew "jq"
 brew "ripgrep"
 brew "pwgen"
 brew "figlet"
-brew "pass"
 
 
 # MacOS Compatibility
@@ -26,12 +28,8 @@ brew "pinentry-mac"
 brew "gnu-sed"
 brew "zlib"
 
-
 # Enhance MacOS
-brew "opensc"
 brew "switchaudio-osx"
-# brew "wallpaper"   manage MacOS wallpapers from CLI
-
 
 # General Development
 brew "direnv"
@@ -39,8 +37,6 @@ brew "gh"
 brew "git"
 brew "git-who"
 brew "minisign"
-brew "pkgconf"
-brew "pandoc"
 brew "signify-osx"
 brew "yamllint"
 
@@ -48,11 +44,6 @@ brew "yamllint"
 # Diffing hell
 brew "tkdiff"
 brew "diffoscope"
-
-
-# Bash / ZSH Development
-brew "shellcheck"
-brew "shfmt"
 
 
 # Go Development
@@ -65,81 +56,82 @@ brew "docutils"
 brew "isort"
 brew "pipx"
 brew "pygments"
-brew "python@3.10"
 brew "python@3.11"
 brew "virtualenv"
 
 
-# Cloud
-brew "awscli"
-
-
-# Hashicorp - add ons to the cloud
-tap "hashicorp/tap"
-brew "hashicorp/tap/packer"
-brew "hashicorp/tap/terraform"
-brew "hashicorp/tap/vault"
-brew "tflint"
-brew "packer-completion"
-
-## Still need to organize everything below.
+#
+# Cask: MacOS GUI Apps
+#
 cask "appcleaner"
-cask "basictex"
 
-vscode "4ops.packer"
-vscode "aaron-bond.better-comments"
-vscode "azemoh.one-monokai"
-vscode "bierner.markdown-preview-github-styles"
-vscode "bmalehorn.vscode-fish"
-vscode "chrislajoie.vscode-modelines"
-vscode "davidanson.vscode-markdownlint"
+
+#
+# VSCode Stuff
+#
+
+# General
 vscode "editorconfig.editorconfig"
-vscode "eliostruyf.vscode-hide-comments"
+vscode "chrislajoie.vscode-modelines"
+vscode "aaron-bond.better-comments"
+vscode "gruntfuggly.todo-tree"
+vscode "npxms.hide-gitignored"
+vscode "pdconsec.vscode-print"
+vscode "rslfrkndmrky.rsl-vsc-focused-folder"
+vscode "stkb.rewrap"
+vscode "wdawson.better-kill-ring"
+vscode "streetsidesoftware.code-spell-checker"
+
+# Markdown
+vscode "bierner.markdown-preview-github-styles"
+vscode "davidanson.vscode-markdownlint"
+
 vscode "emmanuelbeziat.vscode-great-icons"
 vscode "equinusocio.vsc-material-theme-icons"
 vscode "github.copilot"
 vscode "github.copilot-chat"
 vscode "github.github-vscode-theme"
-vscode "github.vscode-github-actions"
+vscode "pkief.material-icon-theme"
+vscode "vscode-icons-team.vscode-icons"
+
+# Go
 vscode "golang.go"
-vscode "gruntfuggly.todo-tree"
-vscode "hashicorp.hcl"
-vscode "hashicorp.terraform"
-vscode "korekontrol.saltstack"
+
+# Fish
+vscode "bmalehorn.vscode-fish"
+vscode "ndonfris.fish-lsp"
+
+# Python
 vscode "ms-python.debugpy"
 vscode "ms-python.pylint"
 vscode "ms-python.python"
 vscode "ms-python.vscode-pylance"
-vscode "ms-vscode.makefile-tools"
-vscode "ndonfris.fish-lsp"
-vscode "npxms.hide-gitignored"
-vscode "pdconsec.vscode-print"
-vscode "pkief.material-icon-theme"
-vscode "redhat.vscode-yaml"
-vscode "rslfrkndmrky.rsl-vsc-focused-folder"
-vscode "stkb.rewrap"
-vscode "streetsidesoftware.code-spell-checker"
-vscode "vscode-icons-team.vscode-icons"
-vscode "wdawson.better-kill-ring"
-vscode "wholroyd.jinja"
 
+# YAML
+vscode "redhat.vscode-yaml"
+
+
+#
+# MAS: Mac App Store Apps
+#
+
+# Basic MacOS Apps
 mas "Things", id: 904280696
-mas "MarkEdit", id: 1669953820
-mas "Smart Card Utility", id: 1444710309
-mas "Timeless", id: 1017047129
-mas "Menubar Countdown", id: 1485343244
-mas "Keynote", id: 409183694
-mas "Klokki Slim", id: 1459795140
-mas "CompareMerge2", id: 1459748650
-mas "Password Factory", id: 888806818
-mas "Dropzone 3", id: 695406827
 mas "DaisyDisk", id: 411643860
-mas "Numbers", id: 409203825
-mas "Pages", id: 409201541
-mas "SubnetCalc", id: 412946682
+mas "Password Factory", id: 888806818
+
+# Time Management
+mas "Timeless", id: 1017047129
+mas "AS TimerPRO", id: 1486015273
+
+# Development
+mas "MarkEdit", id: 1669953820
+mas "CompareMerge2", id: 1459748650
 mas "Get Plain Text", id: 508368068
 mas "Compare Folders", id: 816042486
-mas "Countdowns", id: 926707738
-mas "Microsoft Remote Desktop", id: 1295203466
 mas "CotEditor", id: 1024640650
-mas "AS TimerPRO", id: 1486015273
+
+# Apple Productivity
+mas "Keynote", id: 409183694
+mas "Numbers", id: 409203825
+mas "Pages", id: 409201541
