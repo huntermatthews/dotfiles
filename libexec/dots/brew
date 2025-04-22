@@ -20,7 +20,7 @@ brew update
 or panic "brew update failed"
 
 # Brew install/upgrade all the Brewfile things
-brew bundle --file $DOTS/brew/Brewfile
+brew bundle --file $DOTS/{$DOTS_PROFILE}_profile/Brewfile
 or panic "brew bundle install/upgrade failed"
 
 # Brew upgrade all the (other) things

@@ -163,7 +163,7 @@ function is_false_or_empty
 end
 
 function dots_profile_list
-    echo path filter --type dir $DOTS/*_profile | string _profile ''
+    echo path filter --type dir $DOTS/*_profile | string replace _profile ''
 end
 
 ##
