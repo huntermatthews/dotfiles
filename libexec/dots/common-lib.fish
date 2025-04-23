@@ -166,6 +166,16 @@ function dots_profile_list
     echo path filter --type dir $DOTS/*_profile | string replace _profile ''
 end
 
+function vpn_on
+    string match -q -e ">> state: Connected" (/opt/cisco/anyconnect/bin/vpn status)
+    return $status
+end
+
+function vpn_off
+    string match -q -e ">> state: Disconnected" (/opt/cisco/anyconnect/bin/vpn status)
+    return $status
+end
+
 ##
 ## Future
 ##

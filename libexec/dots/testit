@@ -1,0 +1,15 @@
+#! /usr/bin/env fish
+
+source $DOTS/libexec/dots/common-lib.fish
+or begin
+    echo "FATAL: could not source common-lib.fish -- exiting program..." 1>&2
+    exit 11
+end
+
+if vpn_on
+    echo "vpn is on"
+end
+
+if vpn_off
+    echo "vpn is off"
+end
