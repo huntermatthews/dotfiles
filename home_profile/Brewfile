@@ -79,7 +79,7 @@ vscode "npxms.hide-gitignored"
 vscode "pdconsec.vscode-print"
 vscode "rslfrkndmrky.rsl-vsc-focused-folder"
 vscode "stkb.rewrap"
-vscode "wdawson.better-kill-ring"
+#vscode "wdawson.better-kill-ring"
 vscode "streetsidesoftware.code-spell-checker"
 
 # Markdown
