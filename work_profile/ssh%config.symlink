@@ -24,7 +24,7 @@ Host github.com
   HostName github.com
   CanonicalizeHostname no
   CanonicalizeFallbackLocal yes
-  IdentityFile ~/.ssh/id_github_nhgri
+  IdentityFile ~/.ssh/id_smartcard.pub
   User git
 
 Host *.nhgri.nih.gov
