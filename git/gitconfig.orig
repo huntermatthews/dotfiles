@@ -11,14 +11,16 @@
 	# Remember you don't need aliases to ~/bin or ~/.dotfiles/git here - those are found via PATH
 	co = checkout
 	ci = commit
-	st = status -s
+	st = status
 	
+	all = add -A
+	amend = commit --amend -C HEAD
 	bprune = fetch --all --tags --prune
-	count   = !git shortlog -sn
+	count = !git shortlog -sn
 	dag = log --graph --format='format:%C(yellow)%h%C(reset) %C(blue)\"%an\" <%ae>%C(reset) %C(green)%cr%C(reset)%C(auto)%d%C(reset)%n%s' --date-order
 	diffi = diff --cached
 	pr = "!f() { git fetch -fu ${2:-upstream} refs/pull/$1/head:pr/$1 && git checkout pr/$1; }; f"
-	
+	undo = git reset --soft HEAD^
 	
 [color]
 	diff = auto

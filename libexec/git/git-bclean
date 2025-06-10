@@ -1,0 +1,12 @@
+#! /usr/bin/env fish
+
+# Some older repos still have a "master" -- everything new-ish uses "main"
+# Note: there's an optional asterisk at the front for the "current" branch - ignore that bit.
+set primary (git branch --list master main | string split --fields 2 ' ')
+
+set merged_list (git branch --merged=$primary | grep -v $primary)
+if test -n "$merged_list"
+    git branch -d $merged_list
+end
+
+git fetch --prune

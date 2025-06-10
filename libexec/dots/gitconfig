@@ -43,9 +43,8 @@ debug --var EMAIL
 debug --var ENAME
 
 # We need to check for the existence of the target file, and if it doesn't exist, we need to create it.
-if not test -f $DOTS_LOCAL/gitconfig.symlink
-    cp $DOTS/git/gitconfig.orig $DOTS_LOCAL/gitconfig.symlink
-end
+## FIX: we always cp the file - in case orig got updated...
+cp $DOTS/git/gitconfig.orig $DOTS_LOCAL/gitconfig.symlink
 
 if test (git config --file $DOTS_LOCAL/gitconfig.symlink --get user.name) != $ENAME
     git config --file $DOTS_LOCAL/gitconfig.symlink --replace-all user.name $ENAME
