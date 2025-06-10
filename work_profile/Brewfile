@@ -111,7 +111,6 @@ vscode "hashicorp.terraform"
 # Theme Junk
 vscode "azemoh.one-monokai"
 vscode "emmanuelbeziat.vscode-great-icons"
-vscode "equinusocio.vsc-material-theme-icons"
 vscode "github.github-vscode-theme"
 vscode "pkief.material-icon-theme"
 
@@ -169,6 +168,5 @@ mas "SubnetCalc", id: 412946682
 mas "Get Plain Text", id: 508368068
 mas "Compare Folders", id: 816042486
 mas "Countdowns", id: 926707738
-mas "Microsoft Remote Desktop", id: 1295203466
 mas "CotEditor", id: 1024640650
 mas "AS TimerPRO", id: 1486015273
