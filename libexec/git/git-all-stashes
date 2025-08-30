@@ -1,0 +1,68 @@
+#! /usr/bin/env fish
+
+set help "
+Usage: $(status basename) [options...] 
+
+XXXXX
+"
+
+set -g SCAN_TREE ~/code
+set -g FLAG_DEBUG false
+
+function debug -S
+    # The -S is magic that allows this debug function to peer into other functions private variables...
+    # Its NOT all powerful - note that debugging "argv" from other functions WILL fail if you attempt to use it here.
+    # Instead >> debug "argv == '$argv'" << is required. Sorry.
+    if set -q FLAG_DEBUG; and test "$FLAG_DEBUG" = true
+        if test $argv[1] = --var
+            echo "DEBUG: variable $argv[2] == '$$argv[2]'"
+        else
+            echo "DEBUG: $argv"
+        end
+    end
+end
+
+function print_help
+    echo $help
+    exit $argv[1]
+end
+
+function panic
+    echo "FATAL: $argv"
+    exit 1
+end
+
+argparse -n (status basename) -X 0 -N 0 h/help debug list key= -- $argv
+or print_help 1
+
+if set -q _flag_debug
+    set -g FLAG_DEBUG true
+end
+
+debug --var _flag_help
+debug --var _flag_debug
+
+if set -q _flag_help
+    print_help 0
+end
+
+debug --var SCAN_TREE
+
+set git_dirs (fd -H '\.git$' $SCAN_TREE)
+
+for dir in $git_dirs
+    debug "Found git directory: $dir"
+
+    set repo (path dirname $dir)
+    debug "Found git repository: $repo"
+
+    set stashes (git -C $repo stash list)
+    if test -n "$stashes"
+        echo ----
+        echo "Found stashes in $(string replace $SCAN_TREE '~/code' $repo):"
+        echo "$stashes"
+        echo
+    end
+end
+
+exit 0
