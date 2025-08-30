@@ -4,10 +4,18 @@ eval (/opt/homebrew/bin/brew shellenv)
 
 # TODO: I think this should be an abbrev
 function brew-about
-    open -g (brew info --json make | jq .[0].homepage)
-end
+    set do_url 0
 
-# TODO : convert to abbr ???
-#brew info --json cf-terraforming globstar gotz hishtory immich-go kapp kirimase org-formation ov pivy punktf rattler-index semver sequoia-sqv sttr tml yoke ytt | jq -r '.[] | "####",.name,.desc,.homepage,"\n"'
+    if test $argv[1] = -u
+        set do_url 1
+        set argv $argv[2..-1]
+    end
+
+    brew info --json $argv | jq -r -c '.[] | "\(.name): \(.desc)"'
+
+    if test $do_url = 1
+        open -g $(brew info --json $argv | jq -r .[].homepage)
+    end
+end
 
 ## END OF LINE ##
