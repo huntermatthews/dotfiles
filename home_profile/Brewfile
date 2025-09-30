@@ -94,7 +94,6 @@ vscode "vscode-icons-team.vscode-icons"
 
 # Fish
 vscode "bmalehorn.vscode-fish"
-vscode "ndonfris.fish-lsp"
 
 # Python
 vscode "ms-python.debugpy"

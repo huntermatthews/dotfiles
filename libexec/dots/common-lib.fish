@@ -167,12 +167,12 @@ function dots_profile_list
 end
 
 function vpn_on
-    string match -q -e ">> state: Connected" (/opt/cisco/anyconnect/bin/vpn status)
+    string match -q -e ">> state: Connected" (/opt/cisco/secureclient/bin/vpn status)
     return $status
 end
 
 function vpn_off
-    string match -q -e ">> state: Disconnected" (/opt/cisco/anyconnect/bin/vpn status)
+    string match -q -e ">> state: Disconnected" (/opt/cisco/secureclient/bin/vpn status)
     return $status
 end
 

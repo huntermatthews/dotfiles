@@ -5,7 +5,7 @@
 # "mas list" gives us a good list -- but we really want it in brew bundle Brewfile format
 # mas "Bear", id: 1091189122
 
-if not command -v mas
+if not command -q mas
     echo "ERROR: mas needs to be installed via brew for this to work"
     exit 1
 end

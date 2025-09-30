@@ -33,6 +33,9 @@ or panic "chrome failed"
 $DOTS_LIBEXEC/macos
 or panic "macos failed"
 
+$DOTS_LIBEXEC/known-hosts
+or panic "known-hosts failed"
+
 # Linker _always_ goes last..
 $DOTS_LIBEXEC/linker
 or panic "linker failed"

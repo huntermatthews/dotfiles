@@ -2,6 +2,9 @@ UseKeychain yes
 AddKeysToAgent yes
 IdentitiesOnly yes
 StrictHostKeyChecking accept-new
+# This is pulled down via `dots known-hosts`
+
+
 
 # VPN will terminate long idle connections. Keep them alive.
 ServerAliveInterval 300
@@ -27,12 +30,13 @@ Host github.com
   IdentityFile ~/.ssh/id_smartcard.pub
   User git
 
-Host *.nhgri.nih.gov
-  IdentityFile ~/.ssh/id_smartcard.pub
-  ForwardAgent yes
-  # subl hack
-  RemoteForward 58962 127.0.0.1:52698
-  LogLevel=ERROR
+# Host *.nhgri.nih.gov
+#   IdentityFile ~/.ssh/id_smartcard.pub
+#   ForwardAgent yes
+#   # subl hack
+#   RemoteForward 58962 127.0.0.1:52698
+#   LogLevel=ERROR
+#   UserKnownHostsFile ~/.ssh/nhgri_known_hosts ~/.ssh/known_hosts
 
 # Questionable - commented out for now
 # Host 10.240.1* *.aws.nhgri.nih.gov
@@ -43,9 +47,18 @@ Host *.nhgri.nih.gov
 #   Loglevel QUIET
 #   IdentityFile ~/.ssh/hgssaadmin
 #   User hgssaadmin
+# 6cf42080d2a10984d907ca6fa44e8acd nhgri_known_hosts
+
+# Host *
+#  CanonicalizeHostname yes
+#  CanonicalDomains nhgri.nih.gov
+#  # Attempt to avoid non-NHGRI systems unless being explicit about it
+#  CanonicalizeFallbackLocal no
 
 Host *
-  CanonicalizeHostname yes
-  CanonicalDomains nhgri.nih.gov
-  # Attempt to avoid non-NHGRI systems unless being explicit about it
-  CanonicalizeFallbackLocal no
+  IdentityFile ~/.ssh/id_smartcard.pub
+  ForwardAgent yes
+  # subl hack
+  RemoteForward 58962 127.0.0.1:52698
+  LogLevel=ERROR
+  UserKnownHostsFile ~/.ssh/nhgri_known_hosts ~/.ssh/known_hosts

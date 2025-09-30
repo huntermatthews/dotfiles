@@ -19,9 +19,11 @@
     count = !git shortlog -sn
     dag = log --graph --format='format:%C(yellow)%h%C(reset) %C(blue)\"%an\" <%ae>%C(reset) %C(green)%cr%C(reset)%C(auto)%d%C(reset)%n%s' --date-order
     diffi = diff --cached
+    root = rev-parse --show-toplevel
     pr = "!f() { git fetch -fu ${2:-upstream} refs/pull/$1/head:pr/$1 && git checkout pr/$1; }; f"
     undo = git reset --soft HEAD^
-
+    
+    
 [color]
     diff = auto
     status = auto
