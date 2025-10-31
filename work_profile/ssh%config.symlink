@@ -5,7 +5,6 @@ StrictHostKeyChecking accept-new
 # This is pulled down via `dots known-hosts`
 
 
-
 # VPN will terminate long idle connections. Keep them alive.
 ServerAliveInterval 300
 ServerAliveCountMax 55555
@@ -47,7 +46,6 @@ Host github.com
 #   Loglevel QUIET
 #   IdentityFile ~/.ssh/hgssaadmin
 #   User hgssaadmin
-# 6cf42080d2a10984d907ca6fa44e8acd nhgri_known_hosts
 
 # Host *
 #  CanonicalizeHostname yes
@@ -61,4 +59,5 @@ Host *
   # subl hack
   RemoteForward 58962 127.0.0.1:52698
   LogLevel=ERROR
-  UserKnownHostsFile ~/.ssh/nhgri_known_hosts ~/.ssh/known_hosts
+  UserKnownHostsFile ~/.ssh/known_hosts
+  GlobalKnownHostsFile ~/.ssh/nhgri_known_hosts
