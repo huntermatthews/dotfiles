@@ -1,0 +1,15 @@
+#! /usr/bin/env bash
+
+set -euo pipefail
+
+SOURCE_DIR="${HOME}/code"
+DEST_DIR="${HOME}/Documents/code_backup"
+EXCLUDE_PATTERNS=(
+    --exclude '.venv/'
+    --exclude '.direnv/'
+)
+
+
+echo "Starting backup from $SOURCE_DIR to $DEST_DIR"
+/usr/bin/rsync -a --delete "${EXCLUDE_PATTERNS[@]}" "$SOURCE_DIR/" "$DEST_DIR/"
+echo "Backup completed from $SOURCE_DIR to $DEST_DIR"

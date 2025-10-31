@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+  <dict>
+    <key>Label</key>
+    <string>matthewsht.rsync-backup-code</string>
+    <key>ProgramArguments</key>
+    <array>
+      <string>sh</string>
+      <string>-c</string>
+      <string>mkdir -p /Users/matthewsht/.local/state/rsync-backup</string>
+      <string>/Users/matthewsht/.dotfiles/bin/rsync-backup-code</string>
+    </array>
+    <key>StandardErrorPath</key>
+    <string>/Users/matthewsht/.local/state/rsync-backup/rsync-backup.stderr</string>
+    <key>StandardOutPath</key>
+    <string>/Users/matthewsht/.local/state/rsync-backup/rsync-backup.stdout</string>
+    <key>StartCalendarInterval</key>
+    <array>
+      <dict>
+        <key>Minute</key>
+        <integer>30</integer>
+      </dict>
+    </array>
+    <key>WorkingDirectory</key>
+    <string>/Users/matthewsht</string>
+  </dict>
+</plist>
