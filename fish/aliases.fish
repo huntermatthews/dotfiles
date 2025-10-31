@@ -2,8 +2,16 @@
 
 alias diff 'diff -u'
 
-# Editor shenanigans
-alias e subl
+# # Editor shenanigans
+# function e --wraps='cot' --description 'fix whats wrong in cot'
+
+#     if test -n "$root"
+#         code -n "$root"
+#     else
+#         code -n
+#     end
+
+# end
 
 function ee --wraps='code' --description 'try and deal with git repos'
     set -l root (git root)
