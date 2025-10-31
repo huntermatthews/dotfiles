@@ -9,8 +9,6 @@
 
 [alias]
     # Remember you don't need aliases to ~/bin or ~/.dotfiles/git here - those are found via PATH
-    co = checkout
-    ci = commit
     st = status
 
     all = add -A
@@ -22,7 +20,10 @@
     root = rev-parse --show-toplevel
     pr = "!f() { git fetch -fu ${2:-upstream} refs/pull/$1/head:pr/$1 && git checkout pr/$1; }; f"
     undo = git reset --soft HEAD^
-    
+
+    wta = "!f() { git worktree add -b \"$1\" \"../$1\"; }; f"
+    wtr = "!f() { git worktree remove \"../$1\"; }; f"
+    wtl = "!f() { git worktree list; }; f"
     
 [color]
     diff = auto
