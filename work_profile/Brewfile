@@ -63,7 +63,6 @@ brew "hashicorp/tap/vault"
 cask "appcleaner"
 cask "basictex"
 mas "AS TimerPRO", id: 1486015273
-mas "Compare Folders", id: 816042486
 mas "CompareMerge2", id: 1459748650
 mas "CopyClip", id: 595191960
 mas "CotEditor", id: 1024640650
@@ -75,7 +74,6 @@ mas "Keynote", id: 409183694
 mas "Klokki Slim", id: 1459795140
 mas "MarkEdit", id: 1669953820
 mas "Menubar Countdown", id: 1485343244
-mas "Microsoft Remote Desktop", id: 1295203466
 mas "Numbers", id: 409203825
 mas "Pages", id: 409201541
 mas "Password Factory", id: 888806818
