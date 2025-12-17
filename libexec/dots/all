@@ -35,6 +35,8 @@ or panic "macos failed"
 
 $DOTS_LIBEXEC/known-hosts
 or panic "known-hosts failed"
+$DOTS_LIBEXEC/backup
+or panic "backup failed"
 
 # Linker _always_ goes last..
 $DOTS_LIBEXEC/linker

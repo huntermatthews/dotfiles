@@ -11,5 +11,7 @@ EXCLUDE_PATTERNS=(
 
 
 echo "Starting backup from $SOURCE_DIR to $DEST_DIR"
-/usr/bin/rsync -a --delete "${EXCLUDE_PATTERNS[@]}" "$SOURCE_DIR/" "$DEST_DIR/"
+
+# TODO: dots needs a verbose flag that propagates here.
+/usr/bin/rsync -a  --delete "${EXCLUDE_PATTERNS[@]}" "$SOURCE_DIR/" "$DEST_DIR/"
 echo "Backup completed from $SOURCE_DIR to $DEST_DIR"

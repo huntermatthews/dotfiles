@@ -1,4 +1,5 @@
     - all          Run (nearly) all the other steps
+    - backup       Rsync the ~/code dir to ~/Documents for one drive.
     - brew         Brew Update/upgrade/bundler run.
     - builder      Support Tool - concats files together with profiles implemented.
     - check        Runs the basic assumption checks as standalone tool.
