@@ -176,8 +176,22 @@ function vpn_off
     return $status
 end
 
-##
-## Future
-##
+function vpn_disconnect
+    if vpn_off
+        return 0
+    end
 
-## END OF LINE ##
+    /opt/cisco/secureclient/bin/vpn disconnect
+    return $status
+end
+
+## Sadly, we don't have a way to connect automatically -
+## NHGRI requires the pin for the smartcard, which is GUI only.
+# function vpn_connect
+#     if vpn_on
+#         return 0
+#     end
+#
+#     /opt/cisco/secureclient/bin/vpn connect
+#     return $status
+# end

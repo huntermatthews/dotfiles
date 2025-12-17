@@ -12,6 +12,12 @@ or begin
     exit 10
 end
 
+# FIX: dodge our MITM vpn if it's on.
+if vpn_on
+    echo "VPN is on; you need to disconnect to allow brew to work..."
+    return 0
+end
+
 # I'm not ready to make this universal yet, so let's just assume we're on macOS
 set -gx HOMEBREW_NO_ENV_HINTS true
 

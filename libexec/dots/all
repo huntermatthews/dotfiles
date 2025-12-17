@@ -17,7 +17,15 @@ end
 $DOTS_LIBEXEC/check
 or panic "check failed"
 
-# brew always goes first, so the others get the fresh stuff.
+# FIX: known-hosts goes first, so that IF we're on vpn it will work and 
+# we can then drop OFF the vpn so the internet works correctly.
+$DOTS_LIBEXEC/known-hosts
+or panic "known-hosts failed"
+
+vpn_disconnect
+or panic "vpn_disconnect failed"
+
+# brew always goes second, so the others get the fresh stuff.
 $DOTS_LIBEXEC/brew
 or panic "brew failed"
 
@@ -33,8 +41,6 @@ or panic "chrome failed"
 $DOTS_LIBEXEC/macos
 or panic "macos failed"
 
-$DOTS_LIBEXEC/known-hosts
-or panic "known-hosts failed"
 $DOTS_LIBEXEC/backup
 or panic "backup failed"
 
