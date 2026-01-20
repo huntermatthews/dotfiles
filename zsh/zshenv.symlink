@@ -1,0 +1,29 @@
+## -*- mode: sh -*- ##
+
+#
+# Environment Variables
+# This file is sourced for ALL zsh invocations (interactive, non-interactive, login, non-login)
+#
+
+LESS="RiX"
+PAGER=less
+EDITOR="cot -n -w"
+
+export LESS PAGER EDITOR
+
+
+#
+# Homebrew
+#
+eval $(/opt/homebrew/bin/brew shellenv)
+
+if [[ -z $HOMEBREW_PREFIX ]]; then
+    echo "ERROR: did not setup homebrew correctly"
+fi
+
+
+#
+# Go Configuration
+#
+export GOPRIVATE=github.com/NHGRI
+

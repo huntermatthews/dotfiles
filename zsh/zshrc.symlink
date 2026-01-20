@@ -19,33 +19,6 @@ alias edit=cot
 autoload -U colors && colors
 
 #
-# Environment Variables
-#
-
-LESS="RiX"
-PAGER=less
-
-EDITOR="cot -n -w"
-
-export LESS PAGER EDITOR
-
-
-#
-# Functions
-#
-
-
-#
-# Homebrew
-#
-eval $(/opt/homebrew/bin/brew shellenv)
-
-if [[ -z $HOMEBREW_PREFIX ]]; then
-    echo "ERROR: did not setup homebrew correctly"
-fi
-
-
-#
 # ZSH itself
 #
 
@@ -71,5 +44,3 @@ setopt hist_verify
 setopt inc_append_history
 
 bindkey -e                              # Use emacs key bindings
-
-## END OF LINE ##
