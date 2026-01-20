@@ -2,6 +2,8 @@
 
 eval (/opt/homebrew/bin/brew shellenv)
 
+set -gx HOMEBREW_NO_ENV_HINTS true
+
 # TODO: I think this should be an abbrev
 function brew-about
     set do_url 0
