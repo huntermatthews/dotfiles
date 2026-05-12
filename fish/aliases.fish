@@ -2,27 +2,6 @@
 
 alias diff 'diff -u'
 
-# # Editor shenanigans
-# function e --wraps='cot' --description 'fix whats wrong in cot'
-
-#     if test -n "$root"
-#         code -n "$root"
-#     else
-#         code -n
-#     end
-
-# end
-
-function ee --wraps='code' --description 'try and deal with git repos'
-    set -l root (git root)
-    if test -n "$root"
-        code -n "$root"
-    else
-        code -n
-    end
-
-end
-
 # Show the thing I want anyways
 alias forks "fork status"
 
@@ -53,5 +32,8 @@ alias shfmt 'shfmt -i 4 -bn -ci -sr'
 alias tf $HOME/code/cloud/ssa-terraform/bin/ssa-terraform
 
 alias tsize 'echo $LINES x $COLUMNS'
+
+alias vs 'code --new-window '
+alias ee vs
 
 ## END OF LINE ##

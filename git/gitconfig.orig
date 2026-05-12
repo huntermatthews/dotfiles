@@ -19,7 +19,7 @@
     diffi = diff --cached
     root = rev-parse --show-toplevel
     pr = "!f() { git fetch -fu ${2:-upstream} refs/pull/$1/head:pr/$1 && git checkout pr/$1; }; f"
-    undo = git reset --soft HEAD^
+    undo = git reset --soft HEAD~1
 
     wta = "!f() { git worktree add -b \"$1\" \"../$1\"; }; f"
     wtr = "!f() { git worktree remove \"../$1\"; }; f"

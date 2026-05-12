@@ -44,3 +44,6 @@ setopt hist_verify
 setopt inc_append_history
 
 bindkey -e                              # Use emacs key bindings
+
+# Use Homebrew GNU make (required by projects using GNU make features)
+export PATH="/opt/homebrew/opt/make/libexec/gnubin:$PATH"
