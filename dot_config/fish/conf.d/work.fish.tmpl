@@ -1,0 +1,24 @@
+{{- if .is_work }}
+## -*- mode: fish -*- ##
+
+# ---------------------------------------------------------------------
+# What are our datacenters (dcs) 
+# upper and lowercase versions
+# ---------------------------------------------------------------------
+# This is in order of easiest to repair.
+set -gx DCS TDCA B12 STG AWS
+set -gx dcs tdca b12 stg aws
+
+
+# ---------------------------------------------------------------------
+# Go needs help with private repos
+# ---------------------------------------------------------------------
+set -gx GOPRIVATE github.com/NHGRI
+
+# ---------------------------------------------------------------------
+# We use pass at work (still)
+# ---------------------------------------------------------------------
+set -gx PASSWORD_STORE_ENABLE_EXTENSIONS true
+
+
+{{- end }}
