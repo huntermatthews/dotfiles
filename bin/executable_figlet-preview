@@ -1,0 +1,56 @@
+#!/usr/bin/env fish
+
+set font_dir (figlet -I 2)
+set term_width (tput cols)
+
+set favourites banner banner3 basic big \
+    colossal cyberlarge cybermedium digital \
+    double epic nancyj roman standard \
+    univers
+
+# Parse args: -H flag and optional text
+set highlights_only false
+set sample_text "Hello World 123!~"
+set remaining_args
+for arg in $argv
+    if test "$arg" = -H
+        set highlights_only true
+    else
+        set remaining_args $remaining_args $arg
+    end
+end
+if test (count $remaining_args) -gt 0
+    set sample_text (string join " " $remaining_args)
+end
+
+if $highlights_only
+    echo "########################################"
+    echo "# FAVOURITE FONTS"
+    echo "########################################"
+    echo
+    for font_name in $favourites
+        set font_file $font_dir/$font_name.flf
+        if test -f $font_file
+            echo "=== $font_name ==="
+            figlet -W -w $term_width -f $font_name "$sample_text" 2>/dev/null
+            echo
+        else
+            echo "=== $font_name (not found) ==="
+            echo
+        end
+    end
+    exit 0
+else
+    echo "########################################"
+    echo "# ALL FONTS"
+    echo "########################################"
+    echo
+
+    for font_file in $font_dir/*.flf
+        set font_name (basename $font_file .flf)
+        echo "=== $font_name ==="
+        figlet -W -w $term_width -f $font_name "$sample_text" 2>/dev/null
+        echo
+    end
+
+end
