@@ -1,13 +1,5 @@
-# I use direnv -- make sure these don't leak.
-.direnv
-.envrc
+# I'm a mac-head
+.DS_Store
 
 # Jmacs (joe) - I still sometimes use this editor
 *~
-
-# sometime I need readme files to remind me of things that should not be pushed/commited
-HUNTER-ONLY-*
-
-# I'm a mac-head
-.DS_Store
-HUNTER-ONLY-README

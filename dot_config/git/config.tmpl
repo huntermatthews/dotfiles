@@ -1,14 +1,18 @@
-#
 # Gitconfig
-## -*- mode: gitconfig -*- ##
+# -*- mode: gitconfig -*- 
 
 [user]
 	name = Hunter Matthews
-	email = hunter.matthews@nih.gov
-    signingKey = ~/.ssh/id_smartcard.pub
+	email = {{ .email }}
+
+{{- if .is_work }}
+	signingKey = ~/.ssh/id_smartcard.pub
+{{- else }}
+	signingKey = ~/.ssh/TBD.pub
+{{- end }}
 
 [alias]
-    # Remember you don't need aliases to ~/bin or ~/.dotfiles/git here - those are found via PATH
+    # Remember you don't need aliases to ~/bin here - those are found via PATH
     st = status
 
     all = add -A
@@ -32,8 +36,7 @@
     ui = true
 
 [core]
-    excludesfile = /Users/matthewsht/.dotfiles/git/gitignore.symlink
-    editor = cot  --new --wait
+    editor = zed  --new --wait
     pager = less -FMRiX
 
 [apply]
@@ -66,14 +69,6 @@
     process = git-lfs filter-process
     required = true
 
-[difftool "sourcetree"]
-    cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-    path =
-
-[mergetool "sourcetree"]
-    cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
-    trustExitCode = true
-
 [commit]
     template = /Users/matthewsht/.stCommitMsg
     gpgsign = true
@@ -90,5 +85,7 @@
 [tag]
     gpgsign = true
 
+{{ if .is_work -}}
 [url "git@github.com:NHGRI"]
     insteadOf = https://github.com/NHGRI
+{{- end }}
