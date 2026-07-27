@@ -1,0 +1,7 @@
+# ~/.local/share/chezmoi/.chezmoi.toml.tmpl
+{{- $fqdn := output "hostname" "-f" | trim }}
+{{- $is_work := hasSuffix ".nih.gov" $fqdn }}
+
+[data]
+    is_work = {{ $is_work }}
+    email = {{ if $is_work }}"hunter.matthews@nih.gov"{{ else }}"hunter@huntermatthews.net"{{ end }}

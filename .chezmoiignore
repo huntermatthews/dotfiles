@@ -1,2 +1,14 @@
+# -*- mode: gitignore -*-
 LICENSE.md
 README.md
+
+{{ if .is_work }}
+# ignore personal scripts
+bin/personal-script-one
+{{ else }}
+# ignore work scripts
+bin/dots-known-hosts
+bin/macos_certs_updates
+bin/bmcconsole
+.config/fish/functions/awsauth.fish
+{{ end }}
