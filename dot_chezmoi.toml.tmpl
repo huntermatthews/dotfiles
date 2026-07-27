@@ -1,6 +1,7 @@
 # ~/.local/share/chezmoi/.chezmoi.toml.tmpl
 {{- $fqdn := output "hostname" "-f" | trim }}
-{{- $is_work := hasSuffix ".nih.gov" $fqdn }}
+{{- $work_profile := stat (joinPath .chezmoi.homeDir ".dotfiles_is_work") }}
+{{- $is_work := or (hasSuffix ".nih.gov" $fqdn) (not (empty $work_profile)) }}
 
 [data]
     is_work = {{ $is_work }}
