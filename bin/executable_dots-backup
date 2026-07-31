@@ -4,6 +4,7 @@ set -euo pipefail
 
 SOURCE_DIR="${HOME}/code"
 DEST_DIR="${HOME}/Documents/code_backup"
+
 EXCLUDE_PATTERNS=(
     --exclude '.venv/'
     --exclude '.direnv/'

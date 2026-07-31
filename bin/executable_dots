@@ -1,86 +1,64 @@
 #! /usr/bin/env fish
 
 set -g HELP "\
-Usage: $(status basename) [options...] [--list | XXX ] <subcmd>
+Usage: $(status basename) [options...] [--list | <subcmd>]
 
-$(status basename) is Hunter's over-engineered dotfiles management / installation / update system.
+'dots' is Hunter's dotfiles script system.
 
 Optional Arguments
         --debug              Print debug information
     -h, --help               Print this help
-        --list               ???
+        --list               List all subcommands and their descriptions
 "
 
-if not set -q DOTS; and test -d ~/.dots
-    # something likely went wrong in bootstrapping
-    # NOTE: if you're going to change the default dots dir here, you must match it to dots-bootstrap.sh
-    set -U DOTS ~/.dots
-end
-set -g DOTS_LIBEXEC $DOTS/libexec/dots
-
-source $DOTS_LIBEXEC/common-lib.fish
+set -gx DOTS_LIBEXEC (status dirname)
+source $DOTS_LIBEXEC/dots.fishlib
 or begin
-    echo "FATAL: could not source common-lib.fish -- exiting program..." 1>&2
+    echo "FATAL: could not source dots.fishlib -- exiting program..." 1>&2
     exit 11
 end
 
-# v2.0 dots --requires (or --assure --demand ?) shows requirements (files or programs) that are required to function?
-# dots <subcmd> --help shows only help output for that subcmd -- so --help MUST exist.
-#
-
-function main
-    argparse --name (status basename) --stop-nonopt --ignore-unknown debug h/help l/list version -- $argv
-    or begin
-        echo $HELP
-        exit 1
-    end
-
-    if set -q _flag_debug
-        set -g FLAG_DEBUG true
-    end
-
-    if set -q _flag_help
-        echo $HELP
-        exit 0
-    end
-
-    if set -q _flag_version
-        echo (status basename) v$DOTS_VERSION
-        exit 0
-    end
-
-    # check the rest of our minimal config assumptions
-    dots_require_base_config
-
-    if set -q _flag_list
-        cat $DOTS_LIBEXEC/description.txt
-        exit 0
-    end
-
-    if set -q argv[1]
-        # First arg is a subcmd - it needs to exist in $DOTS_LIBEXEC
-        set -l subcmd $DOTS_LIBEXEC/$argv[1]
-        set -l subcmd_args $argv[2..-1]
-        debug "subcmd: $subcmd"
-        debug "subcmd_args: $subcmd_args"
-
-        # check for the subcmd in $DOTS_LIBEXEC
-        if test -x $subcmd
-            debug "about to run subcmd program"
-            $subcmd $subcmd_args
-        else if test -f $subcmd
-            panic "subcommand '$argv[1]' found in $DOTS_LIBEXEC, but it is not executable -- you dolt!"
-        else
-            panic "subcommand '$argv[1]' not found in $DOTS_LIBEXEC"
-        end
-    else
-        echo "No subcommand given."
-        echo $HELP
-        exit 1
-    end
+argparse --name (status basename) --stop-nonopt --ignore-unknown debug h/help list -- $argv
+or begin
+    echo $HELP
+    exit 1
 end
 
-# Call main
-main $argv
+if set -q _flag_debug
+    set -g FLAG_DEBUG true
+end
 
-## END OF LINE ##
+if set -q _flag_help
+    echo $HELP
+    exit 0
+end
+
+# check the rest of our minimal config assumptions
+dots_require_base_config
+
+if set -q _flag_list
+    echo "not implemented yet"
+    exit 0
+end
+
+if set -q argv[1]
+    # First arg is a subcmd - it needs to exist in $DOTS_LIBEXEC
+    set -l subcmd $DOTS_LIBEXEC/dots-$argv[1]
+    set -l subcmd_args $argv[2..-1]
+    debug "subcmd: $subcmd"
+    debug "subcmd_args: $subcmd_args"
+
+    # check for the subcmd in $DOTS_LIBEXEC
+    if test -x $subcmd
+        debug "about to run subcmd program"
+        $subcmd $subcmd_args
+    else if test -f $subcmd
+        panic "subcommand '$argv[1]' found in $DOTS_LIBEXEC, but it is not executable -- you dolt!"
+    else
+        panic "subcommand '$argv[1]' not found in $DOTS_LIBEXEC"
+    end
+else
+    echo "No subcommand given."
+    echo $HELP
+    exit 1
+end

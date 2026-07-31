@@ -6,10 +6,10 @@ Usage: $(status basename)
 Tell brew to update and upgrade all the things.
 "
 
-source $DOTS/libexec/dots/common-lib.fish
+source $DOTS_LIBEXEC/dots.fishlib
 or begin
-    echo "FATAL: Unable to source common-lib.fish library"
-    exit 10
+    echo "FATAL: could not source dots.fishlib -- exiting program..." 1>&2
+    exit 11
 end
 
 # FIX: dodge our MITM vpn if it's on.
@@ -18,15 +18,12 @@ if vpn_on
     return 0
 end
 
-# I'm not ready to make this universal yet, so let's just assume we're on macOS
-set -gx HOMEBREW_NO_ENV_HINTS true
-
 # brew is installed via the bootstrap script, so we can assume it's there.
 brew update
 or panic "brew update failed"
 
 # Brew install/upgrade all the Brewfile things
-brew bundle --file $DOTS/{$DOTS_PROFILE}_profile/Brewfile
+brew bundle --file $HOMEBREW_BUNDLE_FILE
 or panic "brew bundle install/upgrade failed"
 
 # Brew upgrade all the (other) things

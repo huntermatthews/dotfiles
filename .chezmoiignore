@@ -1,6 +1,9 @@
 # -*- mode: gitignore -*-
 LICENSE.md
 README.md
+.chezmoi.toml
+
+
 
 {{ if .is_work }}
 # ignore personal scripts

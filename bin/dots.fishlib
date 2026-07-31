@@ -1,8 +1,5 @@
 # -*- mode: fish -*-
 
-# This applies to DOTS as a whole - not just one script - so we set it in the common library.
-set -g DOTS_VERSION "0.80"
-set -g DOTS_COMMON_REQUIRED_PROGRAMS
 
 # FIXME: This should NOT panic, but return false
 function dots_require_universal_variables
