@@ -6,9 +6,6 @@ alias cz 'chezmoi'
 
 alias diff 'diff -u'
 
-alias ee 'zed -n'
-alias e 'zed'
-
 # Show the thing I want anyways
 alias forks "fork status"
 

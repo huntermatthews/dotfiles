@@ -5,7 +5,7 @@
 set -gx LESS RiX
 set -gx PAGER less
 
-set -gx EDITOR "zed"
+set -gx EDITOR "zed -n -w"
 set -gx LSCOLORS ExGxFxDxCxDxDxHbaDaCec
 
 # Get our dotfiles bin directory into the path

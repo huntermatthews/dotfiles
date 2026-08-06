@@ -7,7 +7,7 @@
 
 LESS="RiX"
 PAGER=less
-EDITOR="cot -n -w"
+EDITOR="zed -n -w"
 
 export LESS PAGER EDITOR
 

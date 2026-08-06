@@ -1,8 +1,6 @@
 function ee
-    set -l root (git rev-parse --show-toplevel 2>/dev/null)
-    if test -n "$root"
-        $EDITOR -n $root
-    else
-        $EDITOR -n .
-    end
+    set -l target $argv[1]
+    test -z "$target"; and set target (git rev-parse --show-toplevel 2>/dev/null)
+    test -z "$target"; and set target .
+    zed -n $target
 end
