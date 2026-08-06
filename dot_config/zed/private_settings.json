@@ -9,7 +9,8 @@
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
   "title_bar": {
-    "show_menus": false
+    "show_menus": false,
+    "show_sign_in": false
   },
   "agent": {
     "default_model": {
@@ -22,15 +23,6 @@
     "sidebar_side": "right",
     "favorite_models": [],
     "model_parameters": []
-  },
-  "file_types": {
-    "plaintext": [
-      "LICENSE"
-    ],
-    "just": [
-      "justfile",
-      "Justfile"
-    ]
   },
   "agent_servers": {
     "github-copilot-cli": {
@@ -53,38 +45,39 @@
     }
   },
   "edit_predictions": {
-    "provider": "copilot",
+    "provider": "copilot"
   },
   "session": {
-    "trust_all_worktrees": true,
+    "trust_all_worktrees": true
   },
   "minimap": {
-    "show": "never",
+    "show": "never"
   },
   "autosave": {
     "after_delay": {
-      "milliseconds": 1000,
+      "milliseconds": 1000
     },
   },
   "base_keymap": "VSCode",
   "project_panel": {
     "hide_gitignore": true,
-    "dock": "left",
+    "dock": "left"
   },
+  "status_bar": {"line_endings_button": true },
   "outline_panel": {
     "button": false,
-    "dock": "left",
+    "dock": "left"
   },
   "collaboration_panel": {
-    "dock": "left",
+    "dock": "left"
   },
   "git_panel": {
-    "dock": "left",
+    "dock": "left"
   },
   "icon_theme": {
     "mode": "system",
-    "light": "Material Icon Theme",
-    "dark": "VSCode Icons for Zed (Dark Official Icons)",
+    "light": "JetBrains New UI Icons (Dark)",
+    "dark": "JetBrains New UI Icons (Dark)"
   },
   "when_closing_with_no_tabs": "close_window",
   "disable_ai": false,
@@ -93,6 +86,6 @@
   "theme": {
     "mode": "dark",
     "light": "One Light",
-    "dark": "JetBrains Islands Dark",
-  },
+    "dark": "JetBrains Islands Dark"
+  }
 }

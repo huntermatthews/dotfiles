@@ -5,7 +5,7 @@
 set -gx LESS RiX
 set -gx PAGER less
 
-set -gx EDITOR "cot -n -w"
+set -gx EDITOR "zed"
 set -gx LSCOLORS ExGxFxDxCxDxDxHbaDaCec
 
 # Get our dotfiles bin directory into the path
@@ -18,7 +18,7 @@ set fish_greeting ""
 ###########################
 # BINDINGS
 ###########################
- 
+
 # Got this from Gillian's dotfiles
 bind ctrl-c __fish_cancel_commandline
 
