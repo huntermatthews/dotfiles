@@ -1,4 +1,5 @@
 // Zed settings
+// -*- mode: jsonc -*-
 //
 // For information on how to configure Zed, see the Zed
 // documentation: https://zed.dev/docs/configuring-zed
@@ -82,7 +83,7 @@
   },
   "icon_theme": {
     "mode": "system",
-    "light": "JetBrains New UI Icons (Dark)",
+    "light": "Material Icon Theme",
     "dark": "VSCode Icons for Zed (Dark Official Icons)",
   },
   "when_closing_with_no_tabs": "close_window",

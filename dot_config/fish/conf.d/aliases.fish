@@ -42,6 +42,3 @@ alias tf $HOME/code/cloud/ssa-terraform/main/bin/ssa-terraform
 
 alias tsize 'echo $LINES x $COLUMNS'
 
-# Remove comments and whitespace only /blank lines from input (to be used in a pipeline)
-# alias nocomment 'sed -e "s/#.*\$//" -e "/^\s*\$/d"'
-# alias wsstrip 'sed -e "s/^[ \t]*//" -e "s/[ \t]*\$//" -e "s/[ \t][ \t]*/ /"'
