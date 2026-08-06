@@ -5,11 +5,9 @@
 #
 # We need those certs in a .pem file format for add-on / programming languages to use.
 # Point (environment variable) or symlink your tools cacerts.pem location to here.
-#
-# NOTE: This is a system location so you will need sudo to run this script.
 
-sudo security find-certificate -a -p /System/Library/Keychains/SystemRootCertificates.keychain > /etc/ssl/cacerts.pem
-sudo security find-certificate -a -p /Library/Keychains/System.keychain >> /etc/ssl/cacerts.pem
+security find-certificate -a -p /System/Library/Keychains/SystemRootCertificates.keychain | sudo tee /etc/ssl/cacerts.pem > /dev/null
+security find-certificate -a -p /Library/Keychains/System.keychain | sudo tee -a /etc/ssl/cacerts.pem > /dev/null
 
 # This is a system location, but if you needed your individual users keychain added to this
 # security find-certificate -a -p ~/Library/Keychains/login.keychain-db > /etc/ssl/cacerts.pem
@@ -17,4 +15,4 @@ sudo security find-certificate -a -p /Library/Keychains/System.keychain >> /etc/
 # Make certain all users can access this updated cacert bundle.
 sudo chmod ugo+r /etc/ssl/cacerts.pem
 
-## END OF LINE ##
+echo "foo" >> /dev/null
