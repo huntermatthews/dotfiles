@@ -76,7 +76,7 @@
   },
   "icon_theme": {
     "mode": "system",
-    "light": "JetBrains New UI Icons (Dark)",
+    "light": "Material Icon Theme",
     "dark": "Material Icon Theme"
   },
   "when_closing_with_no_tabs": "close_window",
