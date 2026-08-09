@@ -12,11 +12,13 @@ or begin
     exit 11
 end
 
-# FIX: dodge our MITM vpn if it's on.
+{{ if .is_work }}
+# FIXED: dodge our MITM vpn if it's on.
 if vpn_on
     echo "VPN is on; you need to disconnect to allow brew to work..."
     return 0
 end
+{{ end }}
 
 # brew is installed via the bootstrap script, so we can assume it's there.
 brew update
