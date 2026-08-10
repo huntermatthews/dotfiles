@@ -1,26 +1,14 @@
 tap "amber-lang/amber", trusted: true
-# Simple, modern, secure file encryption
-brew "age"
 # Text processor and publishing toolchain for AsciiDoc
 brew "asciidoctor"
-# Official Amazon AWS command-line interface
-brew "awscli"
 # Encode and decode base64 files
 brew "base64"
-# Clone of cat(1) with syntax highlighting and Git integration
-brew "bat"
-# Parser generator
-brew "bison"
-# Python code formatter
-brew "black"
 # Resource monitor. C++ version and continuation of bashtop and bpytop
 brew "btop"
 # Manage your dotfiles across multiple diverse machines, securely
 brew "chezmoi"
 # In-depth comparison of files, archives, and directories
 brew "diffoscope"
-# Load/unload environment variables based on $PWD
-brew "direnv"
 # Text processing system for reStructuredText
 brew "docutils"
 # More intuitive version of du in rust
@@ -41,8 +29,6 @@ brew "git"
 brew "git-who"
 # GNU implementation of the famous stream editor
 brew "gnu-sed"
-# GNU Privacy Guard (OpenPGP)
-brew "gnupg"
 # Open source programming language to build simple/reliable/efficient software
 brew "go"
 # Converts markdown into roff (man pages)
@@ -51,58 +37,30 @@ brew "go-md2man"
 brew "grep"
 # Configurable static site generator
 brew "hugo"
-# Sort Python imports automatically
-brew "isort"
 # Full featured terminal-based screen editor
 brew "joe"
 # Lightweight and flexible command-line JSON processor
 brew "jq"
 # Handy way to save and run project-specific commands
 brew "just"
-# Easy way to access the system keyring service from python
-brew "keyring"
-# Powerful, lightweight programming language
-brew "lua"
-# Lua-based environment modules system to modify PATH variable
-brew "lmod"
 # Utility for directing compilation
 brew "make"
 # Mac App Store command-line interface
 brew "mas"
-# Sign files & verify signatures. Works with signify in OpenBSD
-brew "minisign"
-# Create, run, and share large language models (LLMs)
-brew "ollama"
 # OpenBSD freely-licensed SSH connectivity tools
 brew "openssh"
 # Display directories as trees (with optional color/HTML output)
 brew "tree"
-# Password manager
-brew "pass"
-# Pinentry for GPG on Mac
-brew "pinentry-mac"
-# Execute binaries from Python packages in isolated environments
-brew "pipx"
 # Password generator
 brew "pwgen"
-# Python version management
-brew "pyenv"
 # Generic syntax highlighter
 brew "pygments"
 # Search tool like grep and The Silver Searcher
 brew "ripgrep"
-# Cryptographically sign and verify files
-brew "signify-osx"
-# Organize software neatly under a single directory tree (e.g. /usr/local)
-brew "stow"
 # Change macOS audio source from the command-line
 brew "switchaudio-osx"
-# Graphical side by side diff utility
-brew "tkdiff"
 # Extremely fast Python package installer and resolver, written in Rust
 brew "uv"
-# Tool for creating isolated virtual python environments
-brew "virtualenv"
 # Linter for YAML files
 brew "yamllint"
 # Process YAML, JSON, XML, CSV and properties documents from the CLI
@@ -111,8 +69,6 @@ brew "yq"
 brew "zlib"
 # Programming language that compiles to Bash
 brew "amber-lang/amber/amber-lang"
-# Modular developer CLI tool
-brew "modularml/packages/modular"
 # Application uninstaller
 cask "appcleaner"
 # GIT client
@@ -152,31 +108,3 @@ mas "The Unarchiver", id: 425424353
 mas "Things", id: 904280696
 mas "Timeless", id: 1017047129
 mas "UTC Bar", id: 525372278
-vscode "aaron-bond.better-comments"
-vscode "bierner.markdown-preview-github-styles"
-vscode "bmalehorn.vscode-fish"
-vscode "charliermarsh.ruff"
-vscode "chrislajoie.vscode-modelines"
-vscode "davidanson.vscode-markdownlint"
-vscode "editorconfig.editorconfig"
-vscode "emmanuelbeziat.vscode-great-icons"
-vscode "github.github-vscode-theme"
-vscode "golang.go"
-vscode "gruntfuggly.todo-tree"
-vscode "motivesoft.vscode-man-page-syntax"
-vscode "ms-python.debugpy"
-vscode "ms-python.python"
-vscode "ms-python.vscode-pylance"
-vscode "ms-python.vscode-python-envs"
-vscode "ndonfris.fish-lsp"
-vscode "npxms.hide-gitignored"
-vscode "pdconsec.vscode-print"
-vscode "pkief.material-icon-theme"
-vscode "redhat.vscode-yaml"
-vscode "rslfrkndmrky.rsl-vsc-focused-folder"
-vscode "skellock.just"
-vscode "stkb.rewrap"
-vscode "streetsidesoftware.code-spell-checker"
-vscode "tamasfe.even-better-toml"
-vscode "vscode-icons-team.vscode-icons"
-vscode "zainchen.json"
