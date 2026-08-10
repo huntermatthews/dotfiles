@@ -2,7 +2,7 @@
 LICENSE.md
 README.md
 .chezmoi.toml
-
+install.sh
 
 
 {{ if .is_work }}
@@ -11,7 +11,7 @@ bin/personal-script-one
 {{ else }}
 # ignore work scripts
 bin/dots-known-hosts
-bin/macos_certs_updates
+bin/macos-certs-updates
 bin/bmcconsole
 .config/fish/functions/awsauth.fish
 {{ end }}
