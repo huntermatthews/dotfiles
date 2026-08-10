@@ -1,7 +1,13 @@
 # ~/.local/share/chezmoi/.chezmoi.toml.tmpl
-{{- $fqdn := output "hostname" "-f" | trim }}
+
+# NOTE: install.sh must create one (and only one) of these files to indicate whether
+#  this is a work or home machine
 {{- $work_profile := stat (joinPath .chezmoi.homeDir ".dotfiles_is_work") }}
-{{- $is_work := or (hasSuffix ".nih.gov" $fqdn) (not (empty $work_profile)) }}
+{{- $home_profile := stat (joinPath .chezmoi.homeDir ".dotfiles_is_home") }}
+{{- if and (empty $work_profile) (empty $home_profile) }}
+{{-   fail "neither ~/.dotfiles_is_work nor ~/.dotfiles_is_home exists -- please create one" }}
+{{- end }}
+{{- $is_work := not (empty $work_profile) }}
 
 [data]
     is_work = {{ $is_work }}
