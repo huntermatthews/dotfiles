@@ -10,8 +10,12 @@ EXCLUDE_PATTERNS=(
     --exclude '.direnv/'
 )
 
+if [[ "${1:-}" = "--desc" ]]; then
+    echo "Backup code directory to Documents/code_backup"
+    exit 0
+fi
 
-echo "Starting backup from $SOURCE_DIR to $DEST_DIR"
+echo "==> Backup $SOURCE_DIR to $DEST_DIR..."
 
 # TODO: dots needs a verbose flag that propagates here.
 /usr/bin/rsync -a  --delete "${EXCLUDE_PATTERNS[@]}" "$SOURCE_DIR/" "$DEST_DIR/"

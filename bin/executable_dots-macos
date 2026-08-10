@@ -1,17 +1,20 @@
 #! /bin/bash
 
+set -euo pipefail
+
+if [[ "${1:-}" = "--desc" ]]; then
+    echo "Configure macOS settings for the user."
+    exit 0
+fi
+
 echo "==> Updating various MacOS configuration bits..."
-echo "macos not implemented yet"
-exit 0
 
 # Always open everything in Finder's list view. This is important.
-defaults write com.apple.Finder FXPreferredViewStyle Nlsv
-
-# Show the ~/Library folder.
-chflags nohidden ~/Library
+defaults write com.apple.finder FXPreferredViewStyle Nlsv
 
 # Set the Finder prefs for showing a few different volumes on the Desktop.
 defaults write com.apple.finder ShowExternalHardDrivesOnDesktop -bool true
 defaults write com.apple.finder ShowRemovableMediaOnDesktop -bool true
 
-## END OF LINE ##
+# Show the ~/Library folder.
+chflags nohidden ~/Library

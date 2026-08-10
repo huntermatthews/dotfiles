@@ -33,13 +33,20 @@ if set -q _flag_help
     exit 0
 end
 
-# check the rest of our minimal config assumptions
-dots_require_base_config
-
 if set -q _flag_list
-    echo "not implemented yet"
+    echo "Available subcommands:"
+    for subcmd in (ls $DOTS_LIBEXEC/dots-*)
+        set -l subcmd_name (basename $subcmd | string replace -r '^dots-' '')
+        set -l subcmd_desc ($subcmd --desc 2>/dev/null)
+        if test -z "$subcmd_desc"
+            set subcmd_desc "(no description available)"
+        end
+        echo "  $subcmd_name: $subcmd_desc"
+    end
     exit 0
 end
+
+# TODO: Implement --all to run all subcommands in order, skipping any that fail.
 
 if set -q argv[1]
     # First arg is a subcmd - it needs to exist in $DOTS_LIBEXEC

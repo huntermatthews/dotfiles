@@ -1,16 +1,17 @@
 #! /usr/bin/env fish
 
-set -g HELP "\
-Usage: $(status basename)
-
-Tell brew to update and upgrade all the things.
-"
-
 source $DOTS_LIBEXEC/dots.fishlib
 or begin
     echo "FATAL: could not source dots.fishlib -- exiting program..." 1>&2
     exit 11
 end
+
+if set -q argv[1]; and test "$argv[1]" = "--desc"
+    echo "Tell brew to update and upgrade all the things."
+    exit 0
+end
+
+echo "==> Tell brew to update and upgrade all the things..."
 
 {{ if .is_work }}
 # FIXED: dodge our MITM vpn if it's on.
@@ -20,7 +21,6 @@ if vpn_on
 end
 {{ end }}
 
-# brew is installed via the bootstrap script, so we can assume it's there.
 brew update
 or panic "brew update failed"
 

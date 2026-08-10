@@ -6,6 +6,11 @@ or begin
     exit 11
 end
 
+if set -q argv[1]; and test "$argv[1]" = "--desc"
+    echo "Grab a copy of the ssh known hosts."
+    exit 0
+end
+
 echo "==> Grabbing a copy of the ssh known hosts..."
 
 if vpn_on
@@ -14,4 +19,3 @@ if vpn_on
 else
     echo "WARNING: vpn is off"
 end
-
