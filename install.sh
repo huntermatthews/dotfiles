@@ -1,15 +1,20 @@
-#! /bin/sh
+#! /bin/bash
 
 # shellcheck disable=SC2312
 
-if [ "$1" = "-v" -o "$1" = "--verbose" ]; then
-    VERBOSE=1
-elif [ "$1" = "-h" -o "$1" = "--help" ]; then
-    echo "Usage: dots-bootstrap.sh [--help] [--verbose]"
-    echo "  --help    - Display this help message."
-    echo "  --verbose - Display verbose output."
-    exit 0
-fi
+HELP="\
+Usage: install.sh [--help] [--verbose] --work|--home
+  --help     - Display this help message.
+  --verbose  - Display verbose output.
+  --work     - Configure as a work machine.
+  --home     - Configure as a home machine.
+
+One and only one of --work or --home is required.
+"
+
+VERBOSE=0
+PROFILE=""
+DATE_FMT="%Y-%m-%dT%H:%M:%SZ"
 
 panic() {
     echo "FATAL: $1" >&2
@@ -17,10 +22,49 @@ panic() {
 }
 
 verbose() {
-    if [ -n "$VERBOSE" ]; then
+    if [ "$VERBOSE" -eq 1 ]; then
         echo "INFO: $1"
     fi
 }
+
+while [ $# -gt 0 ]; do
+    case "$1" in
+        -v|--verbose)
+            VERBOSE=1
+            ;;
+        -h|--help)
+            echo "$HELP"
+            exit 0
+            ;;
+        --work)
+            PROFILE="work"
+            ;;
+        --home)
+            PROFILE="home"
+            ;;
+        *)
+            panic "Unknown option: $1" >&2
+
+            ;;
+    esac
+    shift
+done
+
+if [ -z "$PROFILE" ]; then
+    panic "one of --work or --home is required"
+fi
+
+if [ "$PROFILE" = "work" ]; then
+    if [ -f "$HOME/.dotfiles_is_home" ]; then
+        panic "~/.dotfiles_is_home already exists -- remove it before switching to --work"
+    fi
+    date -u +"$DATE_FMT" > "$HOME/.dotfiles_is_work"
+else
+    if [ -f "$HOME/.dotfiles_is_work" ]; then
+        panic "~/.dotfiles_is_work already exists -- remove it before switching to --home"
+    fi
+    date -u +"$DATE_FMT" > "$HOME/.dotfiles_is_home"
+fi
 
 ##
 ## This script is intended only for macOS
@@ -70,28 +114,23 @@ else
 fi
 
 ##
-## Grab the dots repo
+## Install chezmoi from brew -
 ##
-verbose "Checking for git repo for dots..."
-if [ ! -d "$HOME/.dots" ]; then
-    # we need a key
-    verbose "Checking for key being available..."
-    if ! ssh-add -L | grep github >/dev/null 2>&1 ; then
-        echo "Adding SSH key to ssh-agent..."
-        ssh-add --apple-use-keychain ~/.ssh/id_rsa.github
-        if [ $? -ne 0 ]; then
-            panic "Failed to add SSH key to ssh-agent."
-        fi
-    fi
-
-    echo "Cloning dots..."
-    git clone git@github.com:huntermatthews/dotfiles.git "$HOME/.dots"
+verbose "Checking for chezmoi (pkg)..."
+if ! brew info chezmoi  > /dev/null 2>&1 ; then
+    echo "Installing chezmoi..."
+    brew install chezmoi
     if [ $? -ne 0 ]; then
-        panic "Failed to clone dots."
+        panic "Failed to 'brew install chezmoi'"
     fi
 fi
 
-## Everything else in dots is dependent on fish and iterm2 makes a nice place to run it.
+##
+## Chezmoi will install the repo in the right place AND apply it.
+##
+# we use the full path because we might just have installed homebrew itself
+# and we don't have working pathing yet.
+/opt/homebrew/bin/chezmoi init huntermatthews/dotfiles --apply
 
 ##
 ## Install the fish shell to make everything else easier
@@ -117,17 +156,8 @@ if ! brew info iterm2  > /dev/null 2>&1 ; then
     fi
 fi
 
-##
-## Initialize the 3 fish universal variables that everything in dots relies on
-## Makes sense to do it here since we know everything here...
-##
-hash -r      # just in case...
-fish -c "set -U DOTS ~/.dots ; set -U DOTS_LOCAL ~/.dots_local ; set -U DOTS_PROFILE work"
-
-
-echo "\n\n"
+echo -e "\n\n"
 echo "*** The bootstrap is complete. ***"
-echo "*** Now you can run iterm2 and run the 'dots all' command to install the rest of the dots stuff. ***"
+echo "*** Now you can start iterm2 and fish should be ready to go. ***"
+echo "*** chezmoi should have created a ~/.dotfiles symlink for easy access. ***"
 echo "*** Enjoy! ***"
-
-## END OF LINE ##
