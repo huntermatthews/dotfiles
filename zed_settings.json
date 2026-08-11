@@ -8,12 +8,26 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
+  "unstable.ui_density": "comfortable",
   "title_bar": {
     "show_menus": false,
     "show_sign_in": false
   },
   "agent": {
-    "default_profile": "write",
+    "tool_permissions": {
+      "tools": {
+        "terminal": {
+          "always_allow": [
+            {
+              "pattern": "^git\\b"
+            },
+            {
+              "pattern": "^grep\\b"
+            }
+          ]
+        }
+      }
+    },
     "default_model": {
       "provider": "copilot_chat",
       "model": "claude-sonnet-4.6",
@@ -88,5 +102,10 @@
     "mode": "dark",
     "light": "One Light",
     "dark": "JetBrains Islands Dark"
+  },
+  "terminal": {
+    "shell": {
+      "program": "/opt/homebrew/bin/fish"
+    }
   }
 }
