@@ -69,6 +69,7 @@ brew "yq"
 brew "zlib"
 # Programming language that compiles to Bash
 brew "amber-lang/amber/amber-lang"
+
 # Application uninstaller
 cask "appcleaner"
 # GIT client
