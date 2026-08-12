@@ -1,14 +1,13 @@
 #! /usr/bin/env fish
 
 set -g HELP "\
-Usage: $(status basename) [options...] [--list | <subcmd>]
+Usage: $(status basename) [options...] [--help | <subcmd>]
 
 'dots' is Hunter's dotfiles script system.
 
 Optional Arguments
         --debug              Print debug information
-    -h, --help               Print this help
-        --list               List all subcommands and their descriptions
+    -h, --help               Print this help, plus list of available subcommands
 "
 
 set -gx DOTS_LIBEXEC (status dirname)
@@ -18,7 +17,7 @@ or begin
     exit 11
 end
 
-argparse --name (status basename) --stop-nonopt --ignore-unknown debug h/help list -- $argv
+argparse --name (status basename) --stop-nonopt --ignore-unknown debug h/help -- $argv
 or begin
     echo $HELP
     exit 1
@@ -30,10 +29,7 @@ end
 
 if set -q _flag_help
     echo $HELP
-    exit 0
-end
 
-if set -q _flag_list
     echo "Available subcommands:"
     for subcmd in (ls $DOTS_LIBEXEC/dots-*)
         set -l subcmd_name (basename $subcmd | string replace -r '^dots-' '')
