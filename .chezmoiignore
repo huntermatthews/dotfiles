@@ -3,7 +3,7 @@ LICENSE.md
 README.md
 .chezmoi.toml
 install.sh
-
+zed_settings.json
 
 {{ if .is_work }}
 # ignore personal scripts
