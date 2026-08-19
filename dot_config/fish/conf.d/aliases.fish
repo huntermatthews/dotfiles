@@ -39,3 +39,4 @@ alias tf $HOME/code/cloud/ssa-terraform/main/bin/ssa-terraform
 
 alias tsize 'echo $LINES x $COLUMNS'
 
+alias visdiff '/Applications/VisualDiffer.app/Contents/Helpers/visdiff --no-warning'
