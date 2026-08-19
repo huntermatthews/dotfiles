@@ -15,7 +15,7 @@ export LESS PAGER EDITOR
 #
 # Homebrew
 #
-eval $(/opt/homebrew/bin/brew shellenv)
+eval "$(/opt/homebrew/bin/brew shellenv)"
 
 if [[ -z $HOMEBREW_PREFIX ]]; then
     echo "ERROR: did not setup homebrew correctly"
@@ -27,4 +27,3 @@ fi
 #
 export GOPRIVATE=github.com/NHGRI
 
-# EXTRA COMMENT HERE

@@ -14,9 +14,21 @@
     "show_sign_in": false
   },
   "agent": {
+    "default_profile": "ask",
+    "sandbox_permissions": {
+      "allow_unsandboxed": true,
+      "write_paths": [
+        {
+          "requested": "/Users/matthewsht/Library/Caches/go-build",
+          "resolved": "/Users/matthewsht/Library/Caches/go-build"
+        }
+      ]
+    },
     "tool_permissions": {
+      "default": "allow",
       "tools": {
         "terminal": {
+          "default": "allow",
           "always_allow": [
             {
               "pattern": "^git\\b"
@@ -30,7 +42,7 @@
     },
     "default_model": {
       "provider": "copilot_chat",
-      "model": "claude-sonnet-4.6",
+      "model": "claude-opus-4.7",
       "enable_thinking": true,
       "effort": "high"
     },
@@ -84,10 +96,15 @@
     "dock": "left"
   },
   "collaboration_panel": {
-    "dock": "left"
+      "button": false
   },
   "git_panel": {
     "dock": "left"
+  },
+  "git": {
+    "show_blame": true,
+    "show_status_bar": true,
+    "worktree_directory": ".git/zed-worktrees"
   },
   "icon_theme": {
     "mode": "system",
