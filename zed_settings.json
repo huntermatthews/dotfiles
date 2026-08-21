@@ -104,7 +104,7 @@
   "git": {
     "show_blame": true,
     "show_status_bar": true,
-    "worktree_directory": ".git/zed-worktrees"
+    // "worktree_directory": ".git/zed-worktrees"
   },
   "icon_theme": {
     "mode": "system",

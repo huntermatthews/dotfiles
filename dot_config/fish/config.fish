@@ -27,8 +27,9 @@ fish_add_path --global --move --path $XDG_BIN_HOME
 # ---------------------------------------------------------------------
 
 # CARGO: Point Cargo binaries directly to your central XDG path
+# the cargo peopel are 'spekcial' and don't follow the XDG spec or play nice. :(
 set -gx CARGO_HOME "$XDG_DATA_HOME/cargo"
-set -gx CARGO_INSTALL_ROOT "$XDG_BIN_HOME"
+set -gx CARGO_INSTALL_ROOT "$HOME/.local/"
 
 # GO: Point Go binaries directly to your central XDG path
 set -gx GOPATH "$XDG_DATA_HOME/go"
