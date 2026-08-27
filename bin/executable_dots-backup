@@ -1,22 +1,36 @@
-#! /usr/bin/env bash
+#!/usr/bin/env fish
 
-set -euo pipefail
-
-SOURCE_DIR="${HOME}/code"
-DEST_DIR="${HOME}/Documents/code_backup"
-
-EXCLUDE_PATTERNS=(
-    --exclude '.venv/'
-    --exclude '.direnv/'
-)
-
-if [[ "${1:-}" = "--desc" ]]; then
+if test "$argv[1]" = "--desc"
     echo "Backup code directory to Documents/code_backup"
     exit 0
-fi
+end
 
-echo "==> Backup $SOURCE_DIR to $DEST_DIR..."
+echo "==> Backup ~/code to ~/Documents/code_backup..."
 
-# TODO: dots needs a verbose flag that propagates here.
-/usr/bin/rsync -a  --delete "${EXCLUDE_PATTERNS[@]}" "$SOURCE_DIR/" "$DEST_DIR/"
-echo "Backup completed from $SOURCE_DIR to $DEST_DIR"
+# This is weird, but I don't want to have to update the script AND
+# the launchd plist if I change something. So the plist is always used.
+
+# check and make sure I didn't bork it.
+plutil ~/Library/LaunchAgents/net.huntermatthews.backup.plist; or exit 1
+
+# update the plist
+launchctl bootout gui/(id -u) ~/Library/LaunchAgents/net.huntermatthews.backup.plist
+launchctl bootstrap gui/(id -u) ~/Library/LaunchAgents/net.huntermatthews.backup.plist
+
+# now kick it off "manually"
+launchctl kickstart -k gui/(id -u)/net.huntermatthews.backup
+
+# Clean up log file if > 5MB (keep last 100KB)
+
+set LOG_FILE "/Users/matthewsht/Library/Logs/net.huntermatthews.backup.log"
+if test -f "$LOG_FILE"
+    set size (stat -f%z "$LOG_FILE")
+    if test $size -gt 5242880
+        echo "Log file exceeds 5MB, truncating..."
+        tail -c 100k "$LOG_FILE" > "$LOG_FILE.tmp"; and mv "$LOG_FILE.tmp" "$LOG_FILE"
+    else
+        echo "Log file size is under 5MB, no truncation needed."
+    end
+end
+
+echo "Backup completed from ~/code to ~/Documents/code_backup"

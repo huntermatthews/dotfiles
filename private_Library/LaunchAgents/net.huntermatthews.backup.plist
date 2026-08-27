@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://apple.com">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>net.huntermatthews.backup</string>
+
+    <key>ProgramArguments</key>
+    <array>
+        <string>/usr/bin/rsync</string>
+        <string>-a</string>
+        <string>--stats</string>
+        <string>--delete</string>
+        <string>/Users/matthewsht/code</string>
+        <string>/Users/matthewsht/Documents/code_backup/</string>
+    </array>
+
+    <key>StartInterval</key>
+    <integer>14400</integer>
+
+    <key>StandardOutPath</key>
+    <string>/Users/matthewsht/Library/Logs/net.huntermatthews.backup.log</string>
+
+    <key>StandardErrorPath</key>
+    <string>/Users/matthewsht/Library/Logs/net.huntermatthews.backup.log</string>
+</dict>
+
+<!--
+    Verify syntax on the plist file:
+    plutil ~/Library/LaunchAgents/net.huntermatthews.backup.plist
+
+    Remove old version of the plist file:
+    launchctl bootout gui/$(id -u) ~/Library/LaunchAgents/net.huntermatthews.backup.plist
+
+    Add new version of the plist file:
+    launchctl bootstrap gui/$(id -u) ~/Library/LaunchAgents/net.huntermatthews.backup.plist
+
+    Start the job immediately:
+    launchctl kickstart -k gui/$(id -u)/net.huntermatthews.backup
+
+-->
+
+
+</plist>
