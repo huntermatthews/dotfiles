@@ -1,8 +1,13 @@
 words = [
     "GOPRIVATE",
     "ISSO",
+    "Libre",
     "NHGRI",
+    "Openssh",
+    "Submatch",
+    "groff",
     "homebrew",
+    "mandoc",
     "markdownlint",
     "openssl",
     "shellcheck",
