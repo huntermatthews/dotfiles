@@ -35,7 +35,7 @@ alias rfcdate 'date +%FT%T%z'
 alias shfmt 'shfmt -i 4 -bn -ci -sr'
 
 # terraform is too much to spell
-alias tf $HOME/code/cloud/ssa-terraform/main/bin/ssa-terraform
+alias tf $HOME/code/cloud/ssa-terraform/bin/ssa-terraform
 
 alias tsize 'echo $LINES x $COLUMNS'
 
