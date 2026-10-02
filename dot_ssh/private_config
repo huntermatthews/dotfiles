@@ -1,3 +1,6 @@
+# Turn on pubkey authentication - and then let the * stanza turn it off.
+PubkeyAuthentication yes
+
 # On a mac, use the keychain
 UseKeychain yes
 
