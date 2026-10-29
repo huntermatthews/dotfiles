@@ -8,11 +8,16 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
+  "agent_servers": {
+    "claude-acp": {
+      "type": "registry"
+    }
+  },
   "cli_default_open_behavior": "existing_window",
   "language_models": {
     "openai_compatible": {
       "Nhgrishell03": {
-        "api_url": "https://nhgrishell03.nhgri.nih.gov/api",
+        "api_url": "https://secureai.nhgri.nih.gov/api",
         "available_models": [
           {
               "name": "mistral-medium-3.5:128b",
@@ -71,10 +76,13 @@
     "show_sign_in": false
   },
   "agent": {
+    "threads_sidebar": {
+      "position": "right"
+    },
     "default_model": {
       "effort": "high",
       "provider": "copilot_chat",
-      "model": "claude-opus-4.7",
+      "model": "claude-opus-5.5",
       "enable_thinking": true
     },
     "default_profile": "write",
@@ -104,7 +112,6 @@
       }
     },
     "dock": "right",
-    "sidebar_side": "right",
 
     "model_parameters": []
   },
@@ -129,19 +136,14 @@
   },
   "status_bar": {"line_endings_button": true },
   "outline_panel": {
-    "button": false,
-    "dock": "left"
+    "button": true,
+    "dock": "right"
   },
   "collaboration_panel": {
       "button": false
   },
   "git_panel": {
     "dock": "left"
-  },
-  "git": {
-    "show_blame": true,
-    "show_status_bar": true,
-    // "worktree_directory": ".git/zed-worktrees"
   },
   "icon_theme": {
     "mode": "system",
@@ -162,5 +164,8 @@
       "program": "/opt/homebrew/bin/fish"
     }
   },
-  "semantic_tokens": "combined"
+  "semantic_tokens": "combined",
+  "buffer_font_features": {
+    "calt": false
+  }
 }

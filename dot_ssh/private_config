@@ -53,5 +53,7 @@ Host *nhgri.nih.gov
   GlobalKnownHostsFile ~/.ssh/nhgri_known_hosts
 
 Host *
+    CanonicalizeHostname yes
+    CanonicalDomains nhgri.nih.gov centaur.nhgri.nih.gov
     PubkeyAuthentication no
     IdentitiesOnly yes

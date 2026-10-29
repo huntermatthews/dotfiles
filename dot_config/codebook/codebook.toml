@@ -20,6 +20,7 @@ words = [
     "mandoc",
     "markdownlint",
     "openssl",
+    "podman",
     "rollout",
     "shellcheck",
     "sso",
